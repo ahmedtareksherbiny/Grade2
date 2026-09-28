@@ -1,5 +1,5 @@
 // Caches the game so it works with no internet after the first open.
-const CACHE = "hatha-v1";
+const CACHE = "hatha-v2";
 const FILES = ["./", "index.html", "manifest.webmanifest",
   "icons/apple-touch-icon.png", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png"];
 

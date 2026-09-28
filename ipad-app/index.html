@@ -427,7 +427,7 @@
   };
   document.addEventListener("touchend", unlock, { once: true });
   document.addEventListener("click", unlock, { once: true });
-  else $("voiceNote").textContent = "المتصفح لا يدعم النطق.";
+  if (!canSpeak) $("voiceNote").textContent = "المتصفح لا يدعم النطق.";
 
   function say(text) {
     if (!soundOn || !canSpeak) return;
