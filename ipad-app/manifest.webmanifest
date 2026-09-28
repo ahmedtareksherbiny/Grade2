@@ -1,0 +1,31 @@
+{
+  "name": "هذا وهذه وهؤلاء",
+  "short_name": "هذا وهذه",
+  "description": "لعبة ناطقة لتعليم أسماء الإشارة للصف الثاني",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#BFE9FF",
+  "theme_color": "#BFE9FF",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
