@@ -141,6 +141,82 @@
   .tip-row .em { font-size: 40px; }
   .tip-row .n { width: 32px; height: 32px; flex: none; border-radius: 50%; background: var(--sun); display: grid; place-items: center; font-weight: 800; }
 
+  /* ---- منهج KG1 ---- */
+  .home-tabs { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .htab { border: 0; border-radius: 999px; padding: 8px 22px; font-size: 22px; font-weight: 800; background: #fff; box-shadow: var(--shadow); }
+  .htab[aria-pressed="true"] { background: var(--sun); }
+  .course-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; }
+  .lesson-card { display: flex; align-items: center; gap: 12px; border: 0; background: #fff; border-radius: 22px; padding: 10px 14px; box-shadow: var(--shadow); text-align: right; }
+  .lesson-card.special { background: #FFF6D8; }
+  .lesson-card.done { box-shadow: 0 0 0 3px var(--go), var(--shadow); }
+  .lesson-card:active { transform: translateY(3px); }
+  .lc-num { width: 34px; height: 34px; border-radius: 50%; background: var(--sky); display: grid; place-items: center; font-weight: 800; flex: none; }
+  .lc-ch { font-family: var(--letter-font); font-size: 46px; min-width: 70px; text-align: center; line-height: 1.3; font-weight: 700; }
+  .lc-info { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .lc-info b { font-size: 22px; }
+  .lc-info small { font-size: 16px; color: var(--ink-soft); }
+  .lc-state { font-size: 24px; min-width: 28px; }
+  .bar-prog { height: 8px; border-radius: 99px; background: #EEF1F6; overflow: hidden; }
+  .bar-prog i { display: block; height: 100%; background: var(--go); border-radius: 99px; }
+  .l-head { display: flex; align-items: center; justify-content: center; gap: 14px; }
+  .l-letter { font-family: var(--letter-font); font-size: 68px; line-height: 1.25; font-weight: 700; }
+  .l-title { font-size: 30px; font-weight: 800; }
+  #lSteps .chip { border: 0; cursor: pointer; font-family: inherit; }
+  .l-body { background: var(--paper); border-radius: 28px; padding: 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; }
+  .l-next { align-self: center; }
+  .words { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+  .wcard { border: 0; background: #fff; border-radius: 20px; padding: 10px 6px; box-shadow: 0 4px 0 rgba(34,48,74,.12); display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .wcard .em { font-size: 50px; line-height: 1.2; }
+  .wcard .w, .q-word, .ex, .opt, .syl, .form-card .f, .tile-l, .lf { font-family: var(--letter-font); }
+  .wcard .w { font-size: 28px; line-height: 1.7; }
+  .wcard.star { box-shadow: 0 0 0 3px var(--sun), 0 4px 0 rgba(34,48,74,.12); }
+  .wcard .tag { font-size: 13px; font-weight: 800; background: var(--sun); border-radius: 999px; padding: 0 10px; }
+  .syl-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .syl { border: 0; background: #fff; border-radius: 22px; box-shadow: var(--shadow); font-size: 64px; line-height: 1.5; padding-block: 6px; }
+  .syl small { display: block; font-family: var(--font); font-size: 20px; font-weight: 800; line-height: 1.2; }
+  .forms { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+  .form-card { background: #fff; border-radius: 20px; padding: 10px; text-align: center; display: flex; flex-direction: column; gap: 4px; align-items: center; }
+  .form-card .f { font-size: 58px; line-height: 1.5; font-weight: 700; }
+  .form-card .lbl { font-weight: 800; font-size: 20px; }
+  .exs { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .ex { border: 0; background: var(--sky); border-radius: 999px; padding: 2px 14px; font-size: 24px; line-height: 1.7; color: var(--ink); }
+  .cleared { text-align: center; font-size: 24px; font-weight: 700; }
+  .cleared p { margin: 0; }
+  .big-em { font-size: 84px; line-height: 1.1; }
+  .qdots { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+  .qdots span { width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 2px solid var(--rule); }
+  .qdots span.on { background: var(--go); border-color: var(--go); }
+  .qdots span.now { background: var(--sun); border-color: var(--sun); }
+  .q { display: flex; flex-direction: column; gap: 14px; align-items: center; }
+  .q-head { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .q-pic { font-size: 92px; line-height: 1.1; }
+  .q-word { font-size: 42px; line-height: 1.6; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+  .q-word.joined { color: var(--go); }
+  .hear { border: 0; background: var(--sky); border-radius: 999px; padding: 6px 18px; font-size: 18px; font-weight: 700; }
+  .q-opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; }
+  .q-opts.two { grid-template-columns: repeat(2, 1fr); }
+  .q-opts.many { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+  .opt { border: 0; background: #fff; border-radius: 22px; padding: 10px 6px; box-shadow: var(--shadow); font-size: 46px; line-height: 1.5; min-height: 84px; font-weight: 700; }
+  .opt.pic { font-family: var(--font); font-size: 64px; }
+  .opt.txt { font-size: 28px; }
+  .opt.small { font-family: var(--font); font-size: 26px; font-weight: 800; }
+  .opt.right, .opt.picked { box-shadow: 0 0 0 5px var(--go), var(--shadow); animation: hop .5s ease; }
+  .opt.no { animation: shake .4s ease; }
+  .opt:disabled { opacity: .4; cursor: default; }
+  .opt.right:disabled, .opt.picked:disabled { opacity: 1; }
+  .tiles { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .tile-l { min-width: 62px; height: 70px; padding-inline: 6px; border-radius: 16px; background: #fff; border: 3px solid var(--rule); display: grid; place-items: center; font-size: 38px; font-weight: 700; }
+  .tile-l.blank { border-style: dashed; border-color: var(--warn); color: var(--warn); }
+  .circles .tile-l { border-radius: 50%; width: 72px; height: 72px; }
+  .pair { display: flex; align-items: center; gap: 10px; font-size: 30px; font-weight: 800; flex-wrap: wrap; justify-content: center; }
+  .al-list { display: flex; flex-direction: column; gap: 10px; }
+  .al-row { display: flex; align-items: center; gap: 14px; background: #fff; border-radius: 18px; padding: 6px 14px; }
+  .al-row .em { font-size: 44px; }
+  .al-row .q-word { flex: 1; }
+  .al-row .opt { min-height: 0; padding: 6px 18px; }
+  .al-row.on .q-word { color: var(--go); }
+  @keyframes shake { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
+
   #fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 30; }
 
   @keyframes hop { 0%,100% { transform: translateY(0) } 40% { transform: translateY(-14px) scale(1.06) } }
@@ -174,6 +250,15 @@
   <section id="scrHome" style="display:flex;flex-direction:column;gap:14px">
     <h1>حروفي <span class="pen">✏️</span></h1>
     <p class="sub">أتعلم أكتب الحروف العربية بالقلم · KG1</p>
+    <div class="home-tabs">
+      <button class="htab" id="tabCourse" aria-pressed="true">📚 منهج KG1</button>
+      <button class="htab" id="tabAll" aria-pressed="false">✍️ كل الحروف</button>
+    </div>
+    <div id="paneCourse" style="display:flex;flex-direction:column;gap:12px">
+      <p class="parents">الدروس بترتيب كتاب المدرسة. كل درس: تعرّف، اكتب بالقلم، الحركات، مكان الحرف، تدريبات، كلمة المنهج.</p>
+      <div class="course-list" id="courseList"></div>
+    </div>
+    <div id="paneAll" hidden style="display:flex;flex-direction:column;gap:14px">
     <button class="grip-btn" id="gripBtn">🤏 كيف أمسك القلم؟</button>
 
     <h2>🤸 نسخّن أيدينا</h2>
@@ -181,7 +266,15 @@
 
     <h2>🔤 الحروف</h2>
     <div class="grid" id="letterGrid"></div>
+    </div>
     <p class="parents">للأهل: مع Apple Pencil فعّلوا «القلم فقط» حتى لا تكتب يد الطفل عندما يسندها على الشاشة.</p>
+  </section>
+
+  <!-- LESSON (منهج) -->
+  <section id="scrLesson" hidden style="display:flex;flex-direction:column;gap:12px">
+    <div class="l-head"><div class="l-letter" id="lLetter"></div><div class="l-title" id="lTitle"></div></div>
+    <div class="steps" id="lSteps"></div>
+    <div class="l-body" id="lBody"></div>
   </section>
 
   <!-- TRACE -->
@@ -224,6 +317,67 @@
   </div>
 </div>
 
+<script type="application/json" id="courseData">
+{
+  "lessons": [
+    {"ch": "أ", "match": "أإ", "words": [["أَسَد","🦁"],["أَرْنَب","🐇"],["أُذُن","👂"],["إِبْرَة","🪡"],["أَنَانَاس","🍍"],["إِصْبَع","👆"],["أَخْطَبُوط","🐙"],["فَأْر","🐭"],["كَأْس","🏆"]]},
+    {"ch": "ب", "word": ["أَب","👨"], "words": [["بَطَّة","🦆"],["بَقَرَة","🐄"],["بَحْر","🌊"],["بِنْت","👧"],["بَاب","🚪"],["بُرْتُقَال","🍊"],["خُبْز","🍞"],["حَبْل","🪢"],["كَلْب","🐕"],["عِنَب","🍇"]]},
+    {"ch": "م", "word": ["أُمّ","👩"], "words": [["مَوْز","🍌"],["مِفْتَاح","🔑"],["مُهَرِّج","🤡"],["مِقَصّ","✂️"],["مَدْرَسَة","🏫"],["مِلْعَقَة","🥄"],["نَمْلَة","🐜"],["شَمْس","☀️"],["قَلَم","✏️"]]},
+    {"ch": "ح", "word": ["حَبّ","🌾"], "words": [["حِصَان","🐴"],["حِمَار","🫏"],["حُوت","🐋"],["حَبْل","🪢"],["حَقِيبَة","🎒"],["لَحْم","🥩"],["مِلْح","🧂"],["تُفَّاح","🍎"]]},
+    {"ch": "د", "word": ["دُبّ","🐻"], "words": [["دِيك","🐓"],["دَجَاجَة","🐔"],["دُودَة","🐛"],["دَلْو","🪣"],["دَوَاء","💊"],["مَدْرَسَة","🏫"],["قِرْد","🐒"],["وَرْد","🌹"]]},
+    {"ch": "ج", "word": ["جَدّ","👴"], "words": [["جَمَل","🐫"],["جَرَس","🔔"],["جَزَر","🥕"],["جِسْر","🌉"],["جُبْن","🧀"],["جُنْدِي","💂"],["نَجْمَة","⭐"],["رَجُل","👨"],["تَاج","👑"],["ثَلْج","❄️"]]},
+    {"ch": "خ", "word": ["أَخ","👦"], "words": [["خَرُوف","🐑"],["خُبْز","🍞"],["خِيَار","🥒"],["خَاتَم","💍"],["خَسّ","🥬"],["نَخْلَة","🌴"],["بِطِّيخ","🍉"],["صَخْرَة","🪨"]]},
+    {"ch": "ت", "word": ["خَتْم","🔖"], "words": [["تُفَّاحَة","🍎"],["تَاج","👑"],["تِمْسَاح","🐊"],["تِنِّين","🐉"],["كَتْكُوت","🐥"],["بَيْت","🏠"],["زَيْت","🫒"],["تُوت","🫐"]]},
+    {"special": "ta", "title": "التاء المفتوحة والمربوطة", "icon": "ت ة"},
+    {"ch": "ل", "word": ["لَحْم","🥩"], "words": [["لَيْمُون","🍋"],["لِسَان","👅"],["لَبَن","🥛"],["لُعْبَة","🧸"],["قَلْب","❤️"],["فِيل","🐘"],["جَمَل","🐫"],["نَحْلَة","🐝"]]},
+    {"special": "al", "title": "ال التعريف", "icon": "ال"},
+    {"ch": "س", "word": ["سُلَّم","🪜"], "words": [["سَمَكَة","🐟"],["سَاعَة","⌚"],["سَيَّارَة","🚗"],["سَفِينَة","🚢"],["سِنْجَاب","🐿️"],["مَسْجِد","🕌"],["أَسَد","🦁"],["شَمْس","☀️"],["فَأْس","🪓"]]},
+    {"ch": "ن", "word": ["بُنّ","☕"], "words": [["نَحْلَة","🐝"],["نَمِر","🐯"],["نَسْر","🦅"],["نِعْنَاع","🌿"],["نُقُود","💵"],["مَنْزِل","🏡"],["لَيْمُون","🍋"],["بِنْت","👧"],["عِنَب","🍇"]]},
+    {"ch": "ر", "word": ["رَمْل","🏖️"], "words": [["رَجُل","👨"],["رِيشَة","🪶"],["رُكْبَة","🦵"],["مَرْكَب","⛵"],["أَرْنَب","🐇"],["نَمِر","🐯"],["بَحْر","🌊"],["قِرْد","🐒"]]},
+    {"ch": "ف", "word": ["فَم","👄"], "words": [["فِيل","🐘"],["فَرَاشَة","🦋"],["فَأْر","🐭"],["فُسْتَان","👗"],["فُول","🫘"],["مِفْتَاح","🔑"],["قُفْل","🔒"],["خَرُوف","🐑"],["سَيْف","🗡️"]]},
+    {"ch": "ك", "word": ["كَلْب","🐕"], "words": [["كِتَاب","📕"],["كُرَة","⚽"],["كُرْسِي","🪑"],["كَعْكَة","🎂"],["كُوب","🥤"],["كَأْس","🏆"],["سَمَكَة","🐟"],["دِيك","🐓"],["مَرْكَب","⛵"]]},
+    {"ch": "ق", "word": ["قَلَم","✏️"], "words": [["قِطَّة","🐈"],["قَمِيص","👕"],["قَدَم","🦶"],["قُبَّعَة","👒"],["قُفْل","🔒"],["بَقَرَة","🐄"],["بُرْتُقَال","🍊"],["صُنْدُوق","📦"],["طَبَق","🍽️"]]},
+    {"ch": "ي", "word": ["يَد","✋"], "words": [["يَاقُوت","💎"],["يَخْت","🛥️"],["يُويُو","🪀"],["بَيْت","🏠"],["بَيْض","🥚"],["كُرْسِي","🪑"],["جُنْدِي","💂"],["فِيل","🐘"]]},
+    {"special": "review", "title": "مراجعة كلمات المنهج", "icon": "📝"}
+  ],
+  "ta": [["قِطَّة","🐈"],["بَيْت","🏠"],["دُودَة","🐛"],["زَيْت","🫒"],["سَاعَة","⌚"],["نَبَات","🪴"],["بُومَة","🦉"],["كُرَة","⚽"],["بَقَرَة","🐄"],["تُوت","🫐"],["بِنْت","👧"],["شَجَرَة","🌳"]],
+  "al": [["دُبّ","🐻","الدُّبّ"],["أَب","👨","الأَب"],["أُمّ","👩","الأُمّ"],["قَلَم","✏️","القَلَم"],["كَلْب","🐕","الكَلْب"],["بَاب","🚪","البَاب"],["شَمْس","☀️","الشَّمْس"],["رَمْل","🏖️","الرَّمْل"],["لَحْم","🥩","اللَّحْم"],["جَدّ","👴","الجَدّ"]],
+  "say": {
+    "intro": "اسمع الكلمات، واضغط على كل صورة",
+    "write": "هيا نكتب الحرف بالقلم",
+    "harakat": "هذه الحركات: فتحة، كسرة، ضمة. اضغط واسمع",
+    "harakatQ": "اسمع، ثم اختر الصوت الصحيح",
+    "harakatPic": "اختر التشكيل المناسب للصورة",
+    "forms": "الحرف يتغير شكله في أول الكلمة ووسطها وآخرها",
+    "position": "اسمع الكلمة: أين الحرف؟ في الأول، أم الوسط، أم الآخر؟",
+    "missing": "اختر الحرف الناقص",
+    "first": "ما الحرف الأول في اسم الصورة؟",
+    "common": "ما الحرف المشترك بين الكلمتين؟",
+    "build": "جرّد الكلمة: اضغط على حروفها بالترتيب",
+    "spell": "اكتب اسم الصورة: اضغط على الحروف بالترتيب",
+    "stepDone": "أحسنت! هيا للخطوة التالية",
+    "tryAgain": "حاول مرة أخرى",
+    "taIntro": "التاء المفتوحة نكتبها هكذا ت، والتاء المربوطة نكتبها هكذا ة",
+    "taQ": "اختر التاء المناسبة",
+    "taOpen": "اضغط على الكلمات التي فيها تاء مفتوحة",
+    "alIntro": "ال التعريف تأتي في أول الكلمة",
+    "alTap": "اضغط على ال لتضيفها للكلمة",
+    "alQ": "اختر الكلمة التي فيها ال التعريف",
+    "reviewIntro": "هيا نراجع كلمات المنهج",
+    "courseDone": "رائع! أنهيت الدرس كله",
+    "homeCourse": "أهلًا! اختر درسًا من المنهج",
+    "fatha": "فتحة", "kasra": "كسرة", "damma": "ضمة",
+    "pos0": "في أول الكلمة", "pos1": "في وسط الكلمة", "pos2": "في آخر الكلمة",
+    "openTa": "تاء مفتوحة", "tiedTa": "تاء مربوطة"
+  },
+  "tpl": {
+    "pick": "اختر الصورة التي تبدأ بحرف {def}",
+    "circle": "اضغط على كل كلمة فيها حرف {def}",
+    "color": "اضغط على كل مربع فيه حرف {def}",
+    "lessonDone": "أحسنت! أنهيت درس حرف {def}"
+  }
+}
+</script>
 <script>
 (() => {
   // ---------- data ----------
@@ -461,10 +615,12 @@
   }
   function showHome() {
     stopWatch();
-    $("scrHome").hidden = false; $("scrTrace").hidden = true; $("homeBtn").hidden = true;
-    renderHome();
+    backHook = null;
+    $("scrHome").hidden = false; $("scrTrace").hidden = true; $("scrLesson").hidden = true; $("homeBtn").hidden = true;
+    renderHome(); renderCourse(); setTab(homeTab);
     const done = LETTERS.filter(l => (stars[l.key] || 0) >= 3).length;
-    if (done) talk(withName(`أهلًا! كتبت ${ar(done)} من ${ar(LETTERS.length)} حرفًا. اختر حرفًا`), "أهلًا! اختر حرفًا");
+    if (homeTab === "course") talk(withName(SAY.homeCourse), SAY.homeCourse);
+    else if (done) talk(withName(`أهلًا! كتبت ${ar(done)} من ${ar(LETTERS.length)} حرفًا. اختر حرفًا`), "أهلًا! اختر حرفًا");
     else talk(withName("أهلًا! ابدأ بالتسخين أو اختر حرفًا"), "أهلًا! ابدأ بالتسخين أو اختر حرفًا");
   }
   $("homeBtn").onclick = showHome;
@@ -476,6 +632,7 @@
   // ---------- trace screen ----------
   const board = $("board"), gcv = $("guideCv"), icv = $("ink"), g = gcv.getContext("2d"), ic = icv.getContext("2d");
   let item = null, color = COLORS[0], step = "watch", si = 0, idx = 0, inks = [], live = null;
+  let backHook = null;                                   // set when a course lesson opened the writing board
   let S = 400, dpr = 1, showHelp = true, soloMisses = 0, lastNag = 0, watching = 0;
 
   function sizeBoard() {
@@ -569,10 +726,11 @@
 
   $("tWord").onclick = () => say(item.kind === "letter" ? item.word : item.say);
 
-  function openItem(it) {
+  function openItem(it, back) {
+    backHook = back || null;
     item = prep(it);
     color = it.kind === "letter" ? COLORS[LETTERS.indexOf(it) % COLORS.length] : COLORS[WARMUPS.indexOf(it) % COLORS.length];
-    $("scrHome").hidden = true; $("scrTrace").hidden = false; $("homeBtn").hidden = false;
+    $("scrHome").hidden = true; $("scrLesson").hidden = true; $("scrTrace").hidden = false; $("homeBtn").hidden = false;
     $("tLetter").textContent = it.kind === "letter" ? it.ch : it.ch;
     $("tLetter").style.color = color;
     $("tWord").innerHTML = it.kind === "letter" ? `<span class="em">${it.emo}</span>${it.word}` : it.lbl;
@@ -644,6 +802,7 @@
   }
   $("soloBtn").onclick = startSolo;
   $("nextBtn").onclick = () => {
+    if (backHook) { const h = backHook; backHook = null; return h(); }
     const list = item.kind === "letter" ? LETTERS : WARMUPS;
     const i = list.indexOf(item);
     if (i < list.length - 1) openItem(list[i + 1]);
@@ -672,7 +831,7 @@
       if (item.kind === "letter") talk(`${withName(pr)} كتبت حرف ${item.ch} وحدك`, [pr, `كتبت حرف ${item.def} وحدك`, item.word]);
       else talk(`${withName(pr)} يدك أصبحت أقوى`, [pr, "يدك أصبحت أقوى"]);
       $("nextBtn").hidden = false;
-      $("nextBtn").textContent = item.kind === "letter" ? "الحرف التالي ⬅" : "التمرين التالي ⬅";
+      $("nextBtn").textContent = backHook ? "ارجع للدرس ⬅" : item.kind === "letter" ? "الحرف التالي ⬅" : "التمرين التالي ⬅";
     }
     drawAll();
   }
@@ -755,6 +914,452 @@
   icv.addEventListener("pointercancel", endPtr);
   // stop iPad from scrolling or zooming while writing
   board.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
+
+  // ================= منهج KG1: lessons in the school book's order and its exercise types =================
+  const COURSE = JSON.parse($("courseData").textContent);
+  const SAY = COURSE.say, TPL = COURSE.tpl;
+  const MARKS = /[ً-ْ]/g;
+  const bare = w => w.replace(MARKS, "");
+  const NONJOIN = "اأإآدذرزوةء";                           // letters that never join the next letter
+  const ALL_CH = LETTERS.map(l => l.ch);
+  const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const sample = (a, n) => shuffle(a).slice(0, n);
+  const ding = () => tone([660, 880, 1320], .1);
+  const boop = () => tone([300, 220], .14, "sine", .12);
+  const mkWord = ([v, emo, al]) => ({ v, emo, al, p: bare(v) });
+
+  const LESSONS = COURSE.lessons.map(l => {
+    if (l.special) return { ...l, key: "s-" + l.special, kind: "special" };
+    const base = LETTERS.find(x => x.ch === l.ch);
+    return { ...l, kind: "lesson", key: "c-" + l.ch, name: base.name, def: base.def, trace: base,
+      set: l.match || l.ch, words: l.words.map(mkWord), word: l.word ? mkWord(l.word) : null };
+  });
+  const LLESSONS = LESSONS.filter(l => l.kind === "lesson");
+  const BANK = [];
+  LLESSONS.forEach(l => [...l.words, ...(l.word ? [l.word] : [])].forEach(w => { if (!BANK.some(b => b.v === w.v)) BANK.push(w); }));
+  const TA = COURSE.ta.map(mkWord), AL = COURSE.al.map(mkWord);
+
+  const has = (w, L) => [...w.p].some(c => L.set.includes(c));
+  const count = (w, L) => [...w.p].filter(c => L.set.includes(c)).length;
+  const starts = (w, L) => L.set.includes(w.p[0]);
+  const posOf = (w, L) => { const i = [...w.p].findIndex(c => L.set.includes(c)); return i === 0 ? 0 : i === w.p.length - 1 ? 2 : 1; };
+  const tpl = (key, L) => TPL[key].replace("{def}", L.def);
+  const HARAKA = ["َ", "ِ", "ُ"];
+  const HNAME = [SAY.fatha, SAY.kasra, SAY.damma];
+  const syllables = L => L.ch === "أ" ? ["أَ", "إِ", "أُ"] : HARAKA.map(h => L.ch + h);
+  const firstHaraka = w => HARAKA.indexOf(w.v[1]);
+  const otherLetters = (not, n) => sample(ALL_CH.filter(c => !not.includes(c)), n);
+
+  // the lesson's letter in colour inside a word, keeping Arabic joining with zero-width joiners
+  function markWord(w, L, color) {
+    const chars = [...w.v]; let out = "", i = 0;
+    while (i < chars.length) {
+      let j = i + 1;
+      while (j < chars.length && /[ً-ْ]/.test(chars[j])) j++;
+      const grp = chars.slice(i, j).join("");
+      if (L && L.set.includes(chars[i])) {
+        const prev = i ? bare(chars.slice(0, i).join("")).slice(-1) : "";
+        const pre = prev && !NONJOIN.includes(prev) ? "‍" : "";
+        const post = j < chars.length && !NONJOIN.includes(chars[i]) ? "‍" : "";
+        out += `${pre}<b style="color:${color}">${pre}${grp}${post}</b>${post}`;
+      } else out += grp;
+      i = j;
+    }
+    return out;
+  }
+
+  // ---------- progress ----------
+  let prog = {};
+  try { prog = JSON.parse(localStorage.getItem("kg1-course") || "{}"); } catch (e) {}
+  const saveProg = () => { try { localStorage.setItem("kg1-course", JSON.stringify(prog)); } catch (e) {} };
+  const stepsOf = L => L.kind === "lesson" ? ["intro", "write", "harakat", "forms", "practice", ...(L.word ? ["word"] : [])]
+    : L.special === "review" ? ["practice"] : ["learn", "practice"];
+  const STEP_LABEL = { intro: "👀 تعرّف", write: "✍️ اكتب", harakat: "🎵 الحركات", forms: "📍 مكان الحرف",
+    practice: "🧩 تدريبات", word: "🧱 كلمة المنهج", learn: "📖 تعلّم" };
+  const doneSteps = L => prog[L.key] || [];
+  function markDone(L, s) { const d = doneSteps(L); if (!d.includes(s)) { prog[L.key] = [...d, s]; saveProg(); } }
+
+  // ---------- home: course path ----------
+  let homeTab = "course";
+  try { homeTab = localStorage.getItem("kg1-tab") || "course"; } catch (e) {}
+  function setTab(t) {
+    homeTab = t;
+    $("paneCourse").hidden = t !== "course"; $("paneAll").hidden = t !== "all";
+    $("tabCourse").setAttribute("aria-pressed", t === "course"); $("tabAll").setAttribute("aria-pressed", t === "all");
+    try { localStorage.setItem("kg1-tab", t); } catch (e) {}
+  }
+  $("tabCourse").onclick = () => { setTab("course"); talk(SAY.homeCourse); };
+  $("tabAll").onclick = () => { setTab("all"); talk("أهلًا! ابدأ بالتسخين أو اختر حرفًا"); };
+
+  function renderCourse() {
+    const box = $("courseList"); box.innerHTML = "";
+    LESSONS.forEach((L, i) => {
+      const st = stepsOf(L), d = doneSteps(L).filter(s => st.includes(s)).length;
+      const b = document.createElement("button");
+      b.className = "lesson-card" + (d >= st.length ? " done" : "") + (L.kind === "special" ? " special" : "");
+      const c = COLORS[i % COLORS.length];
+      const title = L.kind === "lesson" ? `حرف ${L.def}` : L.title;
+      const sub = L.kind === "lesson" ? (L.word ? `كلمة المنهج: ${L.word.v} ${L.word.emo}` : `${L.words[0].v} ${L.words[0].emo}`) : "درس خاص";
+      b.innerHTML = `<span class="lc-num">${ar(i + 1)}</span>
+        <span class="lc-ch" style="color:${c}">${L.kind === "lesson" ? L.ch : L.icon}</span>
+        <span class="lc-info"><b>${title}</b><small>${sub}</small>
+          <span class="bar-prog"><i style="width:${Math.round(100 * d / st.length)}%"></i></span></span>
+        <span class="lc-state">${d >= st.length ? "⭐" : d ? "▶️" : ""}</span>`;
+      b.onclick = () => openLesson(L);
+      box.appendChild(b);
+    });
+  }
+
+  // ---------- lesson screen ----------
+  let lesson = null, lstep = null;
+  const lbody = () => $("lBody");
+  function openLesson(L, s) {
+    stopWatch(); backHook = null;
+    lesson = L;
+    ["scrHome", "scrTrace"].forEach(id => $(id).hidden = true);
+    $("scrLesson").hidden = false; $("homeBtn").hidden = false;
+    const i = LESSONS.indexOf(L), c = COLORS[i % COLORS.length];
+    $("lLetter").textContent = L.kind === "lesson" ? L.ch : L.icon;
+    $("lLetter").style.color = c;
+    $("lTitle").textContent = L.kind === "lesson" ? `حرف ${L.def}` : L.title;
+    const st = stepsOf(L);
+    goStep(s || st.find(x => !doneSteps(L).includes(x)) || st[0]);
+  }
+  function renderSteps() {
+    const box = $("lSteps"); box.innerHTML = "";
+    stepsOf(lesson).forEach(s => {
+      const b = document.createElement("button");
+      b.className = "chip" + (s === lstep ? " on" : doneSteps(lesson).includes(s) ? " done" : "");
+      b.textContent = STEP_LABEL[s];
+      b.onclick = () => goStep(s);
+      box.appendChild(b);
+    });
+  }
+  function goStep(s) {
+    lstep = s; renderSteps(); scrollTo({ top: 0 });
+    STEPS[s](lesson);
+  }
+  function nextButton(label = "التالي ⬅") {
+    const b = document.createElement("button");
+    b.className = "act go l-next"; b.textContent = label;
+    b.onclick = nextStep;
+    lbody().appendChild(b);
+    return b;
+  }
+  function nextStep() {
+    markDone(lesson, lstep);
+    const st = stepsOf(lesson), i = st.indexOf(lstep);
+    if (i < st.length - 1) goStep(st[i + 1]); else lessonDone();
+  }
+  function stepCleared(text = SAY.stepDone) {
+    markDone(lesson, lstep); renderSteps();
+    lbody().innerHTML = `<div class="cleared"><div class="big-em">🌟</div><p>${text}</p></div>`;
+    talk(withName(text), text);
+    nextButton();
+  }
+  function lessonDone() {
+    renderSteps();
+    confetti(160); setTimeout(() => confetti(100), 500);
+    tone([523, 659, 784, 1047, 784, 1047], .14, "triangle", .18);
+    const msg = lesson.kind === "lesson" ? tpl("lessonDone", lesson) : SAY.courseDone;
+    lbody().innerHTML = `<div class="cleared"><div class="big-em">🏆</div><p>${msg}</p></div>`;
+    talk(withName(msg), msg);
+    const i = LESSONS.indexOf(lesson);
+    if (i < LESSONS.length - 1) {
+      const b = document.createElement("button"); b.className = "act go l-next"; b.textContent = "الدرس التالي ⬅";
+      b.onclick = () => openLesson(LESSONS[i + 1]); lbody().appendChild(b);
+    }
+    const h = document.createElement("button"); h.className = "act l-next"; h.textContent = "📚 المنهج";
+    h.onclick = showHome; lbody().appendChild(h);
+  }
+
+  // ---------- question engine ----------
+  // q = { text, say, hint, show(box, resolve) }; resolve(ok, btn, afterParts, keep)
+  function runQuiz(qs, onEnd) {
+    let i = 0;
+    const next = () => {
+      if (i >= qs.length) return onEnd();
+      const q = qs[i];
+      lbody().innerHTML = `<div class="qdots">${qs.map((_, j) => `<span class="${j < i ? "on" : j === i ? "now" : ""}"></span>`).join("")}</div><div class="q" id="qBox"></div>`;
+      let first = true, over = false;
+      const resolve = (ok, btn, after, keep) => {
+        if (over) return;
+        if (ok) {
+          over = true;
+          if (btn) btn.classList.add("right");
+          lbody().querySelectorAll(".q button").forEach(b => { if (b !== btn) b.disabled = true; });
+          ding(); confetti(first ? 45 : 15);
+          const pr = pick(PRAISE);
+          talk(withName(pr), [pr, ...(after || [])]);
+          i++; setTimeout(next, 1500 + (after ? after.length * 700 : 0));
+        } else {
+          first = false; boop();
+          if (btn) { btn.classList.remove("no"); void btn.offsetWidth; btn.classList.add("no"); if (!keep) btn.disabled = true; }
+          nag(q.hint || SAY.tryAgain);
+        }
+      };
+      q.show($("qBox"), resolve);
+      talk(q.text, q.say || q.text);
+    };
+    next();
+  }
+  const hearBtn = parts => { const b = document.createElement("button"); b.className = "hear"; b.textContent = "🔊 اسمع"; b.onclick = () => say(parts); return b; };
+  function head(box, { emo, word, hearParts, html }) {
+    const h = document.createElement("div"); h.className = "q-head";
+    if (emo) h.insertAdjacentHTML("beforeend", `<div class="q-pic">${emo}</div>`);
+    if (word) h.insertAdjacentHTML("beforeend", `<div class="q-word">${word}</div>`);
+    if (html) h.insertAdjacentHTML("beforeend", html);
+    if (hearParts) h.appendChild(hearBtn(hearParts));
+    box.appendChild(h);
+    return h;
+  }
+  // one right answer among buttons
+  function qChoice({ text, say: parts, hint, top, opts, cls = "" }) {
+    return { text, say: parts, hint, show(box, resolve) {
+      if (top) head(box, top);
+      const o = document.createElement("div"); o.className = "q-opts " + cls; box.appendChild(o);
+      opts.forEach(op => {
+        const b = document.createElement("button");
+        b.className = "opt " + (op.cls || ""); b.innerHTML = op.html;
+        b.onclick = () => { if (op.ok && op.onRight) op.onRight(); resolve(op.ok, b, op.ok ? op.after : null); };
+        o.appendChild(b);
+      });
+    } };
+  }
+  // tap every right answer (ضع دائرة / لوّن)
+  function qMulti({ text, say: parts, hint, items, cls = "", fill }) {
+    return { text, say: parts, hint, show(box, resolve) {
+      const o = document.createElement("div"); o.className = "q-opts " + cls; box.appendChild(o);
+      let left = items.filter(x => x.ok).length;
+      items.forEach(it => {
+        const b = document.createElement("button");
+        b.className = "opt " + (it.cls || ""); b.innerHTML = it.html;
+        b.onclick = () => {
+          if (!it.ok) return resolve(false, b);
+          b.disabled = true; b.classList.add("picked");
+          if (fill) { b.style.background = fill; b.style.color = "#fff"; }
+          if (it.v) say(it.v);
+          if (--left === 0) resolve(true, null); else tone([880], .06);
+        };
+        o.appendChild(b);
+      });
+    } };
+  }
+  // put a word's letters in order into the circles (جرّد / اكتب اسم الشكل)
+  function qBuild({ text, say: parts, w, showWord }) {
+    return { text, say: parts, show(box, resolve) {
+      head(box, { emo: w.emo, word: showWord ? w.v : "", hearParts: [w.v] });
+      const letters = [...w.p];
+      const circ = document.createElement("div"); circ.className = "tiles circles"; box.appendChild(circ);
+      const slots = letters.map(() => { const s = document.createElement("span"); s.className = "tile-l blank"; circ.appendChild(s); return s; });
+      const pool = shuffle([...letters, ...otherLetters(letters, Math.min(2, 6 - letters.length))]);
+      const o = document.createElement("div"); o.className = "q-opts many"; box.appendChild(o);
+      let at = 0;
+      pool.forEach(ch => {
+        const b = document.createElement("button"); b.className = "opt"; b.textContent = ch;
+        b.onclick = () => {
+          if (ch !== letters[at]) return resolve(false, b, null, letters.slice(at).includes(ch));
+          slots[at].textContent = ch; slots[at].classList.remove("blank"); b.disabled = true; at++;
+          tone([880], .05);
+          if (at === letters.length) {
+            circ.insertAdjacentHTML("afterend", `<div class="q-word joined">${w.v}</div>`);
+            resolve(true, null, [w.v]);
+          }
+        };
+        o.appendChild(b);
+      });
+    } };
+  }
+  const letterOpts = (right, not, n = 2) => shuffle([right, ...otherLetters([...not, right], n)]).map(c => ({ html: c, ok: c === right }));
+
+  // ---------- steps ----------
+  const STEPS = {
+    intro(L) {
+      const c = $("lLetter").style.color;
+      lbody().innerHTML = `<div class="words"></div>`;
+      const box = lbody().querySelector(".words");
+      [...(L.word ? [L.word] : []), ...L.words].forEach((w, i) => {
+        const b = document.createElement("button");
+        b.className = "wcard" + (L.word && i === 0 ? " star" : "");
+        b.innerHTML = `<span class="em">${w.emo}</span><span class="w">${markWord(w, L, c)}</span>${L.word && i === 0 ? '<span class="tag">كلمة المنهج</span>' : ""}`;
+        b.onclick = () => say(w.v);
+        box.appendChild(b);
+      });
+      talk(`حرف ${L.ch}`, [`حرف ${L.def}`, SAY.intro]);
+      nextButton();
+    },
+    write(L) {
+      lbody().innerHTML = `<div class="cleared"><div class="big-em">✍️</div><p>اكتب حرف <b class="lf">${L.ch}</b> بالقلم: شاهد، ثم تتبّع، ثم اكتبه وحدك</p></div>`;
+      const b = document.createElement("button"); b.className = "act primary l-next"; b.textContent = "✍️ ابدأ الكتابة";
+      b.onclick = () => openItem(L.trace, () => { openLesson(L, "write"); nextStep(); });
+      lbody().appendChild(b);
+      if (doneSteps(L).includes("write")) nextButton();
+      talk(SAY.write);
+    },
+    harakat(L) {
+      const syl = syllables(L);
+      lbody().innerHTML = `<div class="syl-row"></div>`;
+      const row = lbody().querySelector(".syl-row");
+      syl.forEach((s, i) => {
+        const b = document.createElement("button"); b.className = "syl";
+        b.innerHTML = `${s}<small>${HNAME[i]}</small>`;
+        b.onclick = () => say([s, HNAME[i]]);
+        row.appendChild(b);
+      });
+      talk(SAY.harakat);
+      const go = document.createElement("button"); go.className = "act primary l-next"; go.textContent = "🎯 هيا نختبر";
+      go.onclick = () => {
+        const qs = shuffle(syl).map(s => qChoice({ text: SAY.harakatQ, say: [SAY.harakatQ, s],
+          top: { html: '<div class="q-pic">👂</div>', hearParts: [s] },
+          opts: shuffle(syl).map(x => ({ html: x, ok: x === s, after: [x] })) }));
+        const pics = [...(L.word ? [L.word] : []), ...L.words].filter(w => starts(w, L) && firstHaraka(w) >= 0);
+        const seen = new Set();
+        shuffle(pics).forEach(w => { const h = firstHaraka(w); if (seen.has(h) || seen.size >= 2) return; seen.add(h);
+          qs.push(qChoice({ text: SAY.harakatPic, say: [SAY.harakatPic, w.v], top: { emo: w.emo, hearParts: [w.v] },
+            opts: syl.map((x, i) => ({ html: x, ok: i === h, after: [w.v] })) })); });
+        runQuiz(qs, () => stepCleared());
+      };
+      lbody().appendChild(go);
+    },
+    forms(L) {
+      const c = $("lLetter").style.color, joins = !NONJOIN.includes(L.ch);
+      const forms = joins ? [[0, L.ch + "ـ", SAY.pos0], [1, "ـ" + L.ch + "ـ", SAY.pos1], [2, "ـ" + L.ch, SAY.pos2]]
+        : [[0, L.ch, SAY.pos0], [2, "ـ" + L.ch, "في الوسط والآخر"]];
+      const once = [...(L.word ? [L.word] : []), ...L.words].filter(w => count(w, L) === 1);
+      lbody().innerHTML = `<div class="forms"></div>`;
+      const box = lbody().querySelector(".forms");
+      forms.forEach(([p, f, lbl]) => {
+        const d = document.createElement("div"); d.className = "form-card";
+        d.innerHTML = `<div class="f" style="color:${c}">${f}</div><div class="lbl">${lbl}</div><div class="exs"></div>`;
+        once.filter(w => joins ? posOf(w, L) === p : (p === 0 ? posOf(w, L) === 0 : posOf(w, L) > 0)).slice(0, 3).forEach(w => {
+          const b = document.createElement("button"); b.className = "ex"; b.innerHTML = `${w.emo} ${markWord(w, L, c)}`;
+          b.onclick = () => say(w.v); d.querySelector(".exs").appendChild(b);
+        });
+        box.appendChild(d);
+      });
+      talk(SAY.forms);
+      const go = document.createElement("button"); go.className = "act primary l-next"; go.textContent = "🎯 هيا نلعب";
+      go.onclick = () => {
+        const byPos = [0, 1, 2].map(p => shuffle(once.filter(w => posOf(w, L) === p)));
+        const picks = [];
+        for (let r = 0; picks.length < 4 && r < 4; r++) byPos.forEach(list => { if (list[r] && picks.length < 4) picks.push(list[r]); });
+        const qs = shuffle(picks).map(w => qChoice({ text: SAY.position, say: [SAY.position, w.v],
+          top: { emo: w.emo, word: w.v, hearParts: [w.v] }, cls: "",
+          opts: [0, 1, 2].map(p => ({ html: ["أول", "وسط", "آخر"][p], cls: "small", ok: posOf(w, L) === p, after: [SAY["pos" + p]] })) }));
+        runQuiz(qs, () => stepCleared());
+      };
+      lbody().appendChild(go);
+    },
+    practice(L) {
+      if (L.kind === "special") return SPECIAL[L.special].practice(L);
+      const li = LLESSONS.indexOf(L), learned = LLESSONS.slice(0, li + 1);
+      const mine = [...(L.word ? [L.word] : []), ...L.words];
+      const notMine = BANK.filter(w => !has(w, L));
+      const qs = [];
+      // اختر الصورة المناسبة للحرف
+      const s = pick(mine.filter(w => starts(w, L)));
+      qs.push(qChoice({ text: tpl("pick", L), say: [tpl("pick", L)], cls: "",
+        opts: shuffle([s, ...sample(notMine, 2)]).map(w => ({ html: w.emo, cls: "pic", ok: w === s, after: [w.v] })) }));
+      // ضع دائرة حول الكلمة التي بها الحرف
+      qs.push(qMulti({ text: tpl("circle", L), say: [tpl("circle", L)], cls: "many",
+        items: shuffle([...sample(mine, 3).map(w => ({ html: w.v, v: w.v, ok: true, cls: "txt" })), ...sample(notMine, 3).map(w => ({ html: w.v, ok: false, cls: "txt" }))]) }));
+      // اكتب الحرف الناقص
+      const m = pick(mine.filter(w => count(w, L) === 1 && w.p.length > 1));
+      if (m) {
+        const at = [...m.p].findIndex(c => L.set.includes(c)), right = m.p[at];
+        const tiles = [...m.p].map((c, i) => `<span class="tile-l${i === at ? " blank" : ""}">${i === at ? "؟" : c}</span>`).join("");
+        qs.push(qChoice({ text: SAY.missing, say: [SAY.missing, m.v], top: { emo: m.emo, html: `<div class="tiles">${tiles}</div>`, hearParts: [m.v] },
+          opts: letterOpts(right, L.set).map(o => ({ ...o, after: [m.v] })) }));
+      }
+      // لوّن الحرف
+      qs.push(qMulti({ text: tpl("color", L), say: [tpl("color", L)], cls: "many", fill: $("lLetter").style.color,
+        items: shuffle([...Array(3).fill(L.ch), ...otherLetters(L.set, 5)]).map(c => ({ html: c, ok: c === L.ch, cls: "" })) }));
+      // اكتب الحرف الأول (من الحروف السابقة أيضًا)
+      const fl = pick(learned.length > 1 ? learned.slice(0, -1) : learned);
+      const fw = pick([...fl.words, ...(fl.word ? [fl.word] : [])].filter(w => starts(w, fl)));
+      qs.push(qChoice({ text: SAY.first, say: [SAY.first, fw.v], top: { emo: fw.emo, hearParts: [fw.v] },
+        opts: letterOpts(fw.p[0], fl.set).map(o => ({ ...o, after: [fw.v] })) }));
+      // الحرف المشترك
+      if (li >= 1) {
+        const X = pick([L, L, ...learned]);
+        const pair = sample(BANK.filter(w => has(w, X)), 2);
+        if (pair.length === 2) {
+          const common = [...pair[0].p].filter(c => pair[1].p.includes(c));
+          const right = common.find(c => X.set.includes(c));
+          if (right) qs.push(qChoice({ text: SAY.common, say: [SAY.common, pair[0].v, pair[1].v],
+            top: { html: `<div class="pair"><button class="ex">${pair[0].emo} ${pair[0].v}</button><span>+</span><button class="ex">${pair[1].emo} ${pair[1].v}</button></div>` },
+            opts: shuffle([right, ...otherLetters([...common, ...X.set], 2)]).map(c => ({ html: c, ok: c === right })) }));
+        }
+      }
+      // اكتب اسم الشكل: كلمة منهج سابقة
+      const prevWords = learned.slice(0, -1).filter(x => x.word).map(x => x.word);
+      if (prevWords.length) { const pw = pick(prevWords); qs.push(qBuild({ text: SAY.spell, say: [SAY.spell, pw.v], w: pw, showWord: false })); }
+      runQuiz(qs, () => stepCleared());
+    },
+    word(L) {
+      runQuiz([qBuild({ text: SAY.build, say: [SAY.build, L.word.v], w: L.word, showWord: true }),
+               qBuild({ text: SAY.spell, say: [SAY.spell, L.word.v], w: L.word, showWord: false })], () => stepCleared());
+    },
+    learn(L) { SPECIAL[L.special].learn(L); },
+  };
+
+  // ---------- special lessons ----------
+  const SPECIAL = {
+    ta: {
+      learn() {
+        const open = TA.filter(w => w.p.endsWith("ت")), tied = TA.filter(w => w.p.endsWith("ة"));
+        lbody().innerHTML = `<div class="forms"><div class="form-card"><div class="f">ت</div><div class="lbl">${SAY.openTa}</div><div class="exs" id="exOpen"></div></div>
+          <div class="form-card"><div class="f">ة ـة</div><div class="lbl">${SAY.tiedTa}</div><div class="exs" id="exTied"></div></div></div>`;
+        [[open, "exOpen"], [tied, "exTied"]].forEach(([list, id]) => list.slice(0, 4).forEach(w => {
+          const b = document.createElement("button"); b.className = "ex"; b.textContent = `${w.emo} ${w.v}`; b.onclick = () => say(w.v); $(id).appendChild(b);
+        }));
+        talk(SAY.taIntro);
+        nextButton();
+      },
+      practice() {
+        const qs = sample(TA, 6).map(w => {
+          const stem = w.p.slice(0, -1), right = w.p.slice(-1);
+          const shown = stem + (NONJOIN.includes(stem.slice(-1)) ? "" : "ـ");
+          return qChoice({ text: SAY.taQ, say: [SAY.taQ, w.v], top: { emo: w.emo, html: `<div class="q-word">${shown}<span class="tile-l blank">؟</span></div>`, hearParts: [w.v] },
+            cls: "two", opts: ["ت", "ة"].map(c => ({ html: c, ok: c === right, after: [w.v] })) });
+        });
+        const pickW = [...sample(TA.filter(w => w.p.endsWith("ت")), 3), ...sample(TA.filter(w => w.p.endsWith("ة")), 3)];
+        qs.push(qMulti({ text: SAY.taOpen, say: [SAY.taOpen], cls: "many",
+          items: shuffle(pickW).map(w => ({ html: w.v, v: w.v, ok: w.p.endsWith("ت"), cls: "txt" })) }));
+        runQuiz(qs, () => stepCleared());
+      },
+    },
+    al: {
+      learn() {
+        lbody().innerHTML = `<div class="al-list"></div>`;
+        const box = lbody().querySelector(".al-list");
+        AL.slice(0, 6).forEach(w => {
+          const row = document.createElement("div"); row.className = "al-row";
+          row.innerHTML = `<span class="em">${w.emo}</span><span class="q-word">${w.v}</span>`;
+          const b = document.createElement("button"); b.className = "opt small"; b.textContent = "+ ال";
+          b.onclick = () => { row.querySelector(".q-word").textContent = w.al; b.disabled = true; row.classList.add("on"); tone([880], .06); say(w.al); };
+          row.appendChild(b); box.appendChild(row);
+        });
+        talk(SAY.alIntro, [SAY.alIntro, SAY.alTap]);
+        nextButton();
+      },
+      practice() {
+        const qs = sample(AL, 4).map(w => {
+          const others = sample(BANK.filter(b => b.v !== w.v), 2);
+          return qChoice({ text: SAY.alQ, say: [SAY.alQ], cls: "",
+            opts: shuffle([{ html: `${w.emo}<br>${w.al}`, ok: true, after: [w.al] }, ...others.map(o => ({ html: `${o.emo}<br>${o.v}`, ok: false }))]).map(o => ({ ...o, cls: "txt" })) });
+        });
+        runQuiz(qs, () => stepCleared());
+      },
+    },
+    review: {
+      practice() {
+        const words = sample(LLESSONS.filter(l => l.word).map(l => l.word), 8);
+        talk(SAY.reviewIntro);
+        runQuiz(words.map(w => qBuild({ text: SAY.spell, say: [SAY.spell, w.v], w, showWord: false })), () => stepCleared(SAY.courseDone));
+      },
+    },
+  };
 
   showHome();
 })();
