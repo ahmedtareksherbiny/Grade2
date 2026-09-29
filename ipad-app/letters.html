@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="مدرستي">
+<meta name="theme-color" content="#BFE9FF">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<style>
+  :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  body { margin: 0; overscroll-behavior: none; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+  .hub-link {
+    position: fixed; right: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); z-index: 15;
+    width: 56px; height: 56px; border-radius: 50%; background: #fff; display: grid; place-items: center;
+    font-size: 28px; text-decoration: none; box-shadow: 0 5px 0 rgba(34,48,74,.18);
+  }
+</style>
+<title>حروفي بالقلم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Noto+Naskh+Arabic:wght@700&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --sky: #BFE9FF;
+    --paper: #FFFBF0;
+    --ink: #22304A;
+    --ink-soft: #5B6780;
+    --sun: #FFC93C;
+    --go: #2BA84A;
+    --warn: #F2994A;
+    --rule: #D6E7F5;
+    --line-red: #F28B82;
+    --shadow: 0 6px 0 rgba(34,48,74,.18);
+    --font: "Baloo Bhaijaan 2", "Segoe UI", Tahoma, Arial, sans-serif;
+    --letter-font: "Noto Naskh Arabic", "Traditional Arabic", "Segoe UI", serif;  /* book-style letter shapes */
+  }
+  html, body { height: 100%; }
+  [hidden] { display: none !important; }
+  body {
+    background: linear-gradient(180deg, var(--sky) 0%, #E6F7FF 70%, #FDF3D6 100%);
+    background-attachment: fixed;
+    color: var(--ink); font-family: var(--font); font-size: 18px;
+    -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+  }
+  .app { max-width: 1000px; margin: 0 auto; padding-inline: 16px; padding-block: 12px 40px; display: flex; flex-direction: column; gap: 14px; }
+  button { font-family: inherit; cursor: pointer; color: var(--ink); }
+  button:focus-visible { outline: 4px solid var(--sun); outline-offset: 3px; }
+
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .pill {
+    border: 0; background: #fff; border-radius: 999px; padding: 8px 16px; font-size: 18px; font-weight: 700;
+    box-shadow: var(--shadow); display: inline-flex; align-items: center; gap: 6px;
+  }
+  .pill[aria-pressed="true"] { background: var(--go); color: #fff; }
+  .pill:active { transform: translateY(3px); box-shadow: 0 3px 0 rgba(34,48,74,.18); }
+  .bar-group { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .guide { display: flex; align-items: flex-end; gap: 10px; }
+  .owl { font-size: 56px; line-height: 1; }
+  .owl.bounce { animation: hop .6s ease; }
+  .bubble {
+    position: relative; background: #fff; border-radius: 22px; padding: 8px 18px; font-size: 22px; font-weight: 700;
+    box-shadow: var(--shadow); flex: 1; display: flex; align-items: center;
+    /* fixed height so the writing board never jumps while the owl talks */
+    height: 2.9em; line-height: 1.3; overflow: hidden;
+  }
+  .bubble::after { content: ""; position: absolute; bottom: 12px; right: -10px; border: 10px solid transparent; border-left-color: #fff; border-right: 0; }
+
+  /* home */
+  h1 { font-size: clamp(44px, 9vw, 68px); line-height: 1.05; margin: 0; text-align: center; font-weight: 800; text-wrap: balance; }
+  h1 .pen { display: inline-block; transform: rotate(-20deg); }
+  .sub { text-align: center; color: var(--ink-soft); margin: 0; font-size: 20px; }
+  h2 { font-size: 28px; margin: 6px 0 0; display: flex; align-items: center; gap: 8px; }
+  .grip-btn {
+    border: 3px dashed var(--sun); background: #FFF6D8; border-radius: 22px; padding: 12px 16px;
+    font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 12px; }
+  .tile {
+    border: 0; background: #fff; border-radius: 22px; padding: 8px 4px 6px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; align-items: center; gap: 0;
+  }
+  .tile .ch { font-family: var(--letter-font); font-size: 50px; font-weight: 700; line-height: 1.4; }
+  .tile.warm .ch { font-family: var(--font); }
+  .tile .em { font-size: 24px; line-height: 1; }
+  .tile .st { font-size: 14px; letter-spacing: 1px; min-height: 18px; }
+  .tile.warm .ch { font-size: 30px; line-height: 1.6; }
+  .tile .lbl { font-size: 16px; font-weight: 700; }
+  .tile:active { transform: translateY(3px); }
+  .parents { font-size: 15px; color: var(--ink-soft); text-align: center; margin: 0; }
+
+  /* trace screen: stacked on phones and portrait, controls beside the board in landscape */
+  .trace { display: flex; flex-direction: column; gap: 12px; }
+  .t-side { display: flex; flex-direction: column; gap: 12px; }
+  .trace .board-wrap { order: 0; }
+  .trace .t-side { display: contents; }
+  .trace .t-head { order: -3; } .trace .steps { order: -2; } .trace .t-actions { order: 1; }
+  @media (min-width: 820px) and (min-aspect-ratio: 1/1) {
+    .trace { display: grid; grid-template-columns: minmax(220px, 280px) 1fr; align-items: start; gap: 18px; }
+    .trace .t-side { display: flex; position: sticky; top: 0; }
+    .trace .t-actions { flex-direction: column; align-items: stretch; }
+    .trace .board-wrap { justify-self: center; }
+  }
+  .t-head { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .t-letter { font-family: var(--letter-font); font-size: 64px; font-weight: 700; line-height: 1.2; }
+  .t-word { font-size: 28px; font-weight: 700; display: flex; align-items: center; gap: 8px; background: #fff; border-radius: 999px; padding: 4px 16px; box-shadow: var(--shadow); border: 0; }
+  .t-word .em { font-size: 34px; }
+  .steps { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .chip { border-radius: 999px; padding: 4px 14px; font-weight: 800; font-size: 18px; background: #fff; color: var(--ink-soft); box-shadow: 0 3px 0 rgba(34,48,74,.12); }
+  .chip.on { background: var(--sun); color: var(--ink); }
+  .chip.done { background: var(--go); color: #fff; }
+  .board-wrap { position: relative; align-self: center; border-radius: 28px; background: #fff; box-shadow: var(--shadow); overflow: hidden; touch-action: none; }
+  .board-wrap canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #ink { touch-action: none; }
+  .marker {
+    position: absolute; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%;
+    background: var(--go); color: #fff; font-weight: 800; font-size: 22px; display: grid; place-items: center;
+    pointer-events: none; box-shadow: 0 0 0 6px rgba(43,168,74,.25); animation: pulse 1.2s ease-in-out infinite;
+  }
+  .marker.dot { background: transparent; border: 4px dashed var(--go); color: var(--go); box-shadow: none; }
+  .pencil { position: absolute; font-size: 44px; margin: -44px 0 0 -4px; pointer-events: none; transform: rotate(-10deg); }
+  .t-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .act { border: 0; border-radius: 999px; padding: 10px 22px; font-size: 22px; font-weight: 800; box-shadow: var(--shadow); background: #fff; }
+  .act.primary { background: var(--sun); font-size: 26px; padding-inline: 30px; }
+  .act.go { background: var(--go); color: #fff; font-size: 26px; padding-inline: 30px; }
+
+  /* grip card */
+  .overlay { position: fixed; inset: 0; background: rgba(34,48,74,.45); display: grid; place-items: center; padding: 16px; z-index: 20; }
+  .card { background: var(--paper); border-radius: 28px; padding: 20px; max-width: 520px; width: 100%; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 12px; }
+  .card h3 { margin: 0; font-size: 30px; text-align: center; }
+  .tip-row { display: flex; align-items: center; gap: 14px; background: #fff; border-radius: 18px; padding: 8px 14px; border: 0; text-align: right; font-size: 21px; font-weight: 700; }
+  .tip-row .em { font-size: 40px; }
+  .tip-row .n { width: 32px; height: 32px; flex: none; border-radius: 50%; background: var(--sun); display: grid; place-items: center; font-weight: 800; }
+
+  #fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 30; }
+
+  @keyframes hop { 0%,100% { transform: translateY(0) } 40% { transform: translateY(-14px) scale(1.06) } }
+  @keyframes pulse { 0%,100% { transform: scale(1) } 50% { transform: scale(1.15) } }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  @media (max-width: 520px) {
+    .grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .tile .ch { font-size: 40px; }
+    .owl { font-size: 44px; } .bubble { font-size: 18px; }
+    .t-letter { font-size: 48px; }
+  }
+</style>
+
+<canvas id="fx"></canvas>
+<div class="app" dir="rtl" lang="ar">
+  <div class="bar">
+    <button class="pill" id="homeBtn" hidden>🏠 الحروف</button>
+    <span id="barSpacer"></span>
+    <div class="bar-group">
+      <button class="pill" id="penBtn" aria-pressed="false" title="عند التفعيل: اليد على الشاشة لا تكتب، القلم فقط">✏️ القلم فقط</button>
+      <button class="pill" id="soundBtn" aria-pressed="true">🔊</button>
+    </div>
+  </div>
+
+  <div class="guide">
+    <div class="owl" id="owl" aria-hidden="true">🦉</div>
+    <div class="bubble" id="bubble" aria-live="polite">أهلًا! هيا نتعلم كتابة الحروف</div>
+  </div>
+
+  <!-- HOME -->
+  <section id="scrHome" style="display:flex;flex-direction:column;gap:14px">
+    <h1>حروفي <span class="pen">✏️</span></h1>
+    <p class="sub">أتعلم أكتب الحروف العربية بالقلم · KG1</p>
+    <button class="grip-btn" id="gripBtn">🤏 كيف أمسك القلم؟</button>
+
+    <h2>🤸 نسخّن أيدينا</h2>
+    <div class="grid" id="warmGrid"></div>
+
+    <h2>🔤 الحروف</h2>
+    <div class="grid" id="letterGrid"></div>
+    <p class="parents">للأهل: مع Apple Pencil فعّلوا «القلم فقط» حتى لا تكتب يد الطفل عندما يسندها على الشاشة.</p>
+  </section>
+
+  <!-- TRACE -->
+  <section id="scrTrace" class="trace" hidden>
+    <div class="t-side" id="tSide">
+      <div class="t-head">
+        <div class="t-letter" id="tLetter"></div>
+        <button class="t-word" id="tWord"></button>
+      </div>
+      <div class="steps">
+        <span class="chip" id="chipWatch">👀 شاهد</span>
+        <span class="chip" id="chipTrace">✍️ تتبّع</span>
+        <span class="chip" id="chipSolo">⭐ وحدك</span>
+      </div>
+      <div class="t-actions">
+        <button class="act primary" id="soloBtn" hidden>⭐ اكتبه وحدك</button>
+        <button class="act go" id="nextBtn" hidden>الحرف التالي ⬅</button>
+        <button class="act" id="clearBtn">🧽 امسح</button>
+        <button class="act" id="watchBtn">👀 شاهد مرة ثانية</button>
+      </div>
+    </div>
+    <div class="board-wrap" id="board">
+      <canvas id="guideCv"></canvas>
+      <canvas id="ink"></canvas>
+      <div class="marker" id="marker" hidden></div>
+      <div class="pencil" id="pencil" hidden>✏️</div>
+    </div>
+  </section>
+
+  <!-- GRIP CARD -->
+  <div class="overlay" id="gripCard" hidden>
+    <div class="card">
+      <h3>كيف أمسك القلم؟</h3>
+      <button class="tip-row" data-say="أمسك القلم بالإبهام والسبابة"><span class="n">١</span><span class="em">🤏</span>أمسك القلم بالإبهام والسبابة</button>
+      <button class="tip-row" data-say="أسند القلم على الإصبع الوسطى"><span class="n">٢</span><span class="em">✌️</span>أسند القلم على الإصبع الوسطى</button>
+      <button class="tip-row" data-say="أمسك القلم من قريب، فوق السن بقليل"><span class="n">٣</span><span class="em">✏️</span>أمسك القلم من قريب، فوق السن بقليل</button>
+      <button class="tip-row" data-say="اجلس معتدلًا، والجهاز أمامك على الطاولة"><span class="n">٤</span><span class="em">🪑</span>اجلس معتدلًا والجهاز أمامك</button>
+      <button class="act go" id="gripClose">فهمت 👍</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  // ---------- data ----------
+  // Letter shapes live in a 100×100 box (y down). The writing line (السطر) is y = 64.
+  // Each stroke is an SVG path drawn in writing order and direction (right → left), or a dot [x, y].
+  const BODY_BA = "M80 48 C82 60 78 66 66 66 L34 66 C24 66 17 60 18 48";
+  const BODY_JIM = "M36 34 C46 30 58 28 66 30 C54 36 40 42 34 52 C28 64 34 80 50 84 C60 86 68 84 72 80";
+  const BODY_DAL = "M44 34 C52 42 62 52 62 60 C62 65 56 66 36 64";
+  const BODY_RA = "M58 46 C60 58 56 70 34 80";
+  const BODY_SIN = "M88 48 L88 58 C88 64 78 64 76 58 L76 50 L76 58 C76 64 66 64 64 58 L64 50 L64 62 C64 80 50 86 38 84 C24 82 18 74 20 64";
+  const BODY_SAD = "M60 62 C62 44 92 42 90 56 C88 64 74 62 60 62 C60 80 46 86 34 84 C22 82 17 74 19 64";
+  const BODY_TA = "M30 64 C50 64 68 64 80 62 C92 58 88 42 74 44 C62 46 54 56 50 64";
+  const BODY_AIN = "M62 36 C54 30 44 34 46 44 C48 52 58 54 66 52 C50 56 40 64 42 76 C44 86 58 88 70 84";
+
+  const LETTERS = [
+    { ch: "أ", name: "أَلِف", word: "أَرْنَب", emo: "🐇", s: ["M50 32 L50 66", "M62 8 C57 3 46 4 46 11 C46 16 50 18 55 18 L62 24 C54 26 46 26 37 25"] },
+    { ch: "ب", name: "بَاء", word: "بَطَّة", emo: "🦆", s: [BODY_BA, [50, 80]] },
+    { ch: "ت", name: "تَاء", word: "تُفَّاحَة", emo: "🍎", s: [BODY_BA, [57, 50], [43, 50]] },
+    { ch: "ث", name: "ثَاء", word: "ثَعْلَب", emo: "🦊", s: [BODY_BA, [57, 52], [43, 52], [50, 41]] },
+    { ch: "ج", name: "جِيم", word: "جَمَل", emo: "🐫", s: [BODY_JIM, [52, 64]] },
+    { ch: "ح", name: "حَاء", word: "حِصَان", emo: "🐴", s: [BODY_JIM] },
+    { ch: "خ", name: "خَاء", word: "خَرُوف", emo: "🐑", s: [BODY_JIM, [50, 18]] },
+    { ch: "د", name: "دَال", word: "دُبّ", emo: "🐻", s: [BODY_DAL] },
+    { ch: "ذ", name: "ذَال", word: "ذُرَة", emo: "🌽", s: [BODY_DAL, [46, 24]] },
+    { ch: "ر", name: "رَاء", word: "رِيشَة", emo: "🪶", s: [BODY_RA] },
+    { ch: "ز", name: "زَاي", word: "زَرَافَة", emo: "🦒", s: [BODY_RA, [58, 34]] },
+    { ch: "س", name: "سِين", word: "سَمَكَة", emo: "🐟", s: [BODY_SIN] },
+    { ch: "ش", name: "شِين", word: "شَمْس", emo: "☀️", s: [BODY_SIN, [82, 38], [70, 38], [76, 28]] },
+    { ch: "ص", name: "صَاد", word: "صَقْر", emo: "🦅", s: [BODY_SAD] },
+    { ch: "ض", name: "ضَاد", word: "ضِفْدَع", emo: "🐸", s: [BODY_SAD, [74, 34]] },
+    { ch: "ط", name: "طَاء", word: "طَائِرَة", emo: "✈️", s: [BODY_TA, "M52 20 L52 62"] },
+    { ch: "ظ", name: "ظَاء", word: "ظَرْف", emo: "✉️", s: [BODY_TA, "M52 20 L52 62", [70, 32]] },
+    { ch: "ع", name: "عَيْن", word: "عِنَب", emo: "🍇", s: [BODY_AIN] },
+    { ch: "غ", name: "غَيْن", word: "غَزَال", emo: "🦌", s: [BODY_AIN, [54, 20]] },
+    { ch: "ف", name: "فَاء", word: "فِيل", emo: "🐘", s: ["M74 58 C64 54 66 40 76 40 C84 40 86 50 82 56 C80 60 76 62 66 62 L32 62 C22 62 17 56 18 46", [76, 28]] },
+    { ch: "ق", name: "قَاف", word: "قِطَّة", emo: "🐈", s: ["M66 50 C58 44 64 32 74 34 C82 36 82 48 76 54 C74 70 64 84 46 84 C30 84 22 74 24 62", [80, 22], [67, 22]] },
+    { ch: "ك", name: "كَاف", word: "كِتَاب", emo: "📕", s: ["M84 14 C80 16 76 19 76 25 L76 60 C76 66 70 66 64 66 L30 66 C22 66 18 60 18 52", "M59 31 C54 26 44 27 44 34 C44 39 48 41 53 41 L59 47 C52 49 45 49 38 48"] },
+    { ch: "ل", name: "لَام", word: "لَيْمُون", emo: "🍋", s: ["M66 20 L66 62 C66 80 52 86 40 84 C28 82 22 74 24 64"] },
+    { ch: "م", name: "مِيم", word: "مَوْز", emo: "🍌", s: ["M52 58 C50 44 64 40 68 48 C72 56 62 60 52 58 C44 58 42 70 42 86"] },
+    { ch: "ن", name: "نُون", word: "نَحْلَة", emo: "🐝", s: ["M68 48 C72 60 66 78 50 80 C34 80 28 70 30 56", [50, 57]] },
+    { ch: "ه", name: "هَاء", word: "هَدِيَّة", emo: "🎁", s: ["M36 14 C48 14 62 18 69 24 C80 31 85 44 79 53 C73 61 60 63 53 56 C44 48 40 37 44 30 C49 23 60 23 62 31 C65 39 59 47 52 51 C46 54 43 60 39 63 L15 65"] },
+    { ch: "و", name: "وَاو", word: "وَرْدَة", emo: "🌹", s: ["M60 58 C52 58 50 46 58 44 C66 42 70 50 66 58 C62 70 52 80 38 84"] },
+    { ch: "ي", name: "يَاء", word: "يَد", emo: "✋", s: ["M62 36 C52 36 50 48 60 52 C70 56 76 62 70 72 C62 82 40 84 28 78 C22 74 22 66 26 62", [56, 92], [44, 92]] },
+  ].map((l, i) => ({ ...l, key: "l" + i, kind: "letter", def: "ال" + l.name.replace(/[ً-ْ]/g, "") }));
+
+  const WARMUPS = [
+    { ch: "➖", lbl: "خط نائم", say: "ارسم خطًّا نائمًا من اليمين إلى اليسار", s: ["M86 50 L14 50"] },
+    { ch: "|", lbl: "خط واقف", say: "ارسم خطًّا واقفًا من فوق إلى تحت", s: ["M50 14 L50 86"] },
+    { ch: "〰️", lbl: "خط موجي", say: "ارسم موجة البحر", s: ["M88 50 C80 30 66 30 60 50 C54 70 40 70 34 50 C30 38 20 36 14 44"] },
+    { ch: "⚡", lbl: "خط متعرج", say: "ارسم جبالًا صغيرة", s: ["M88 62 L76 38 L64 62 L52 38 L40 62 L28 38 L16 62"] },
+    { ch: "⭕", lbl: "دائرة", say: "ارسم دائرة كبيرة", s: ["M50 18 C30 18 18 34 18 50 C18 68 32 82 50 82 C68 82 82 68 82 50 C82 34 70 18 52 18"] },
+  ].map((w, i) => ({ ...w, key: "w" + i, kind: "warm" }));
+
+  const COLORS = ["#2F80ED", "#E8508A", "#2BA84A", "#9B51E0", "#F2994A", "#16A3B8"];
+  const PRAISE = ["أحسنت!", "برافو عليك!", "ممتاز!", "شاطر!", "رائع جدًّا!", "الله عليك!", "هايل!"];
+  const SMALL = ["جميل!", "استمر!", "تمام!", "حلو!"];
+
+  const $ = id => document.getElementById(id);
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+  const ar = n => n.toLocaleString("ar-EG");
+  let childName = "";
+  try { childName = localStorage.getItem("hatha-name") || ""; } catch (e) {}
+  const withName = s => childName ? s.replace(/[!،.]?$/, m => ` يا ${childName}${m || "!"}`) : s;
+
+  let stars = {};
+  try { stars = JSON.parse(localStorage.getItem("kg1-stars") || "{}"); } catch (e) {}
+  const saveStars = () => { try { localStorage.setItem("kg1-stars", JSON.stringify(stars)); } catch (e) {} };
+
+  // ---------- sampling stroke paths ----------
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("width", "0"); svg.setAttribute("height", "0");
+  svg.style.position = "absolute"; svg.style.visibility = "hidden";
+  const probe = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  svg.appendChild(probe); document.body.appendChild(svg);
+  function prep(item) {
+    if (item.strokes) return item;
+    item.strokes = item.s.map(st => {
+      if (Array.isArray(st)) return { dot: true, x: st[0], y: st[1] };
+      probe.setAttribute("d", st);
+      const len = probe.getTotalLength(), n = Math.max(14, Math.ceil(len / 1.2)), pts = [];
+      for (let i = 0; i <= n; i++) { const p = probe.getPointAtLength(len * i / n); pts.push([p.x, p.y]); }
+      return { d: st, path: new Path2D(st), pts, len };
+    });
+    return item;
+  }
+
+  // ---------- voice ----------
+  let soundOn = true, arVoice = null;
+  const vocalize = t => t.replace(/[«»]/g, "");
+  const canSpeak = "speechSynthesis" in window;
+  function loadVoices() {
+    const vs = speechSynthesis.getVoices();
+    arVoice = vs.find(v => /^ar[-_]EG/i.test(v.lang)) || vs.find(v => /^ar/i.test(v.lang)) || null;
+  }
+  if (canSpeak) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+  // Recorded clips (Egyptian voice) play first; the device voice is only a fallback.
+  // voice-letters.json maps each spoken phrase to a base64 mp3 (made by make-voice.py). If it is missing, the device voice speaks.
+  let clips = null;
+  fetch("voice-letters.json").then(r => r.ok ? r.json() : null).then(j => { clips = j; }).catch(() => {});
+  const bufs = new Map();
+  let playId = 0, playing = null;
+  function audioCtx() {
+    try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); if (ac.state === "suspended") ac.resume(); } catch (e) {}
+    return ac;
+  }
+  function clipBuffer(text) {
+    if (!bufs.has(text)) {
+      const bin = atob(clips[text]), bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      bufs.set(text, new Promise((ok, no) => audioCtx().decodeAudioData(bytes.buffer, ok, no)));
+    }
+    return bufs.get(text);
+  }
+  function playBuffer(buf) {
+    return new Promise(done => {
+      const src = ac.createBufferSource();
+      src.buffer = buf; src.connect(ac.destination); src.onended = done;
+      playing = src; src.start();
+    });
+  }
+  function ttsPart(text) {
+    return new Promise(done => {
+      if (!canSpeak) return done();
+      const u = new SpeechSynthesisUtterance(vocalize(text));
+      u.lang = arVoice ? arVoice.lang : "ar-EG";
+      if (arVoice) u.voice = arVoice;
+      u.rate = 0.85; u.pitch = 1.15;
+      u.onend = u.onerror = done;
+      speechSynthesis.speak(u);
+      setTimeout(done, 600 + text.length * 200);
+    });
+  }
+  function hush() {
+    playId++;
+    if (playing) { try { playing.stop(); } catch (e) {} playing = null; }
+    if (canSpeak) speechSynthesis.cancel();
+  }
+  // parts: one phrase or a list of phrases spoken one after another
+  async function say(parts) {
+    if (!soundOn) return;
+    hush();
+    const id = playId;
+    for (const part of [].concat(parts)) {
+      if (id !== playId) return;
+      if (clips && clips[part] && audioCtx()) {
+        try { const buf = await clipBuffer(part); if (id !== playId) return; await playBuffer(buf); continue; } catch (e) {}
+      }
+      await ttsPart(part);
+    }
+  }
+  function talk(text, speak = text) {
+    $("bubble").textContent = text;
+    const o = $("owl"); o.classList.remove("bounce"); void o.offsetWidth; o.classList.add("bounce");
+    say(speak);
+  }
+  let ac = null;
+  function tone(freqs, dur = .1, type = "triangle", vol = .14) {
+    if (!soundOn) return;
+    try {
+      ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+      if (ac.state === "suspended") ac.resume();
+      freqs.forEach((f, i) => {
+        const o = ac.createOscillator(), g = ac.createGain(), t = ac.currentTime + i * dur;
+        o.type = type; o.frequency.value = f;
+        g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(.001, t + dur * 1.8);
+        o.connect(g).connect(ac.destination); o.start(t); o.stop(t + dur * 2);
+      });
+    } catch (e) {}
+  }
+  const unlock = () => {
+    try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); if (ac.state === "suspended") ac.resume(); } catch (e) {}
+    if (canSpeak && !speechSynthesis.speaking) { const u = new SpeechSynthesisUtterance(" "); u.volume = 0; speechSynthesis.speak(u); }
+  };
+  document.addEventListener("touchend", unlock, { once: true });
+  document.addEventListener("click", unlock, { once: true });
+
+  $("soundBtn").onclick = () => {
+    soundOn = !soundOn;
+    $("soundBtn").textContent = soundOn ? "🔊" : "🔇";
+    $("soundBtn").setAttribute("aria-pressed", soundOn);
+    if (!soundOn) hush();
+  };
+
+  // pen-only mode: palm resting on the screen does not draw
+  let penOnly = false;
+  function setPenOnly(v) {
+    penOnly = v; $("penBtn").setAttribute("aria-pressed", v);
+    try { localStorage.setItem("kg1-pen", v ? "1" : "0"); } catch (e) {}
+  }
+  try { if (localStorage.getItem("kg1-pen") === "1") setPenOnly(true); } catch (e) {}
+  $("penBtn").onclick = () => { setPenOnly(!penOnly); talk(penOnly ? "الآن القلم فقط هو الذي يكتب" : "الآن الإصبع والقلم يكتبان"); };
+
+  // ---------- confetti ----------
+  const fx = $("fx"), fcx = fx.getContext("2d");
+  let bits = [], raf = 0;
+  const fitFx = () => { fx.width = innerWidth * devicePixelRatio; fx.height = innerHeight * devicePixelRatio; };
+  fitFx(); addEventListener("resize", fitFx);
+  function confetti(n = 80) {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    for (let i = 0; i < n; i++) bits.push({
+      x: fx.width / 2 + (Math.random() - .5) * fx.width * .3, y: fx.height * .45,
+      vx: (Math.random() - .5) * 26, vy: -Math.random() * 26 - 8, r: Math.random() * 6 + 5,
+      c: pick(COLORS.concat("#FFC93C")), a: Math.random() * 6, va: (Math.random() - .5) * .4, life: 90 + Math.random() * 40,
+    });
+    if (!raf) raf = requestAnimationFrame(stepFx);
+  }
+  function stepFx() {
+    fcx.clearRect(0, 0, fx.width, fx.height);
+    bits = bits.filter(b => b.life-- > 0);
+    bits.forEach(b => {
+      b.vy += .9; b.x += b.vx; b.y += b.vy; b.vx *= .98; b.a += b.va;
+      fcx.save(); fcx.translate(b.x, b.y); fcx.rotate(b.a); fcx.fillStyle = b.c; fcx.fillRect(-b.r, -b.r / 2, b.r * 2, b.r); fcx.restore();
+    });
+    raf = bits.length ? requestAnimationFrame(stepFx) : 0;
+  }
+
+  // ---------- home ----------
+  const starText = k => { const n = stars[k] || 0; return n ? "⭐".repeat(n) : ""; };
+  function renderHome() {
+    $("warmGrid").innerHTML = ""; $("letterGrid").innerHTML = "";
+    WARMUPS.forEach(w => {
+      const b = document.createElement("button");
+      b.className = "tile warm";
+      b.innerHTML = `<span class="ch">${w.ch}</span><span class="lbl">${w.lbl}</span><span class="st">${starText(w.key)}</span>`;
+      b.onclick = () => openItem(w);
+      $("warmGrid").appendChild(b);
+    });
+    LETTERS.forEach((l, i) => {
+      const b = document.createElement("button");
+      b.className = "tile";
+      b.innerHTML = `<span class="ch" style="color:${COLORS[i % COLORS.length]}">${l.ch}</span><span class="em">${l.emo}</span><span class="st">${starText(l.key)}</span>`;
+      b.onclick = () => openItem(l);
+      $("letterGrid").appendChild(b);
+    });
+  }
+  function showHome() {
+    stopWatch();
+    $("scrHome").hidden = false; $("scrTrace").hidden = true; $("homeBtn").hidden = true;
+    renderHome();
+    const done = LETTERS.filter(l => (stars[l.key] || 0) >= 3).length;
+    if (done) talk(withName(`أهلًا! كتبت ${ar(done)} من ${ar(LETTERS.length)} حرفًا. اختر حرفًا`), "أهلًا! اختر حرفًا");
+    else talk(withName("أهلًا! ابدأ بالتسخين أو اختر حرفًا"), "أهلًا! ابدأ بالتسخين أو اختر حرفًا");
+  }
+  $("homeBtn").onclick = showHome;
+
+  $("gripBtn").onclick = () => { $("gripCard").hidden = false; talk("أمسك القلم بالإبهام والسبابة، وأسنده على الإصبع الوسطى"); };
+  $("gripClose").onclick = () => { $("gripCard").hidden = true; talk("ممتاز! هيا نكتب"); };
+  document.querySelectorAll(".tip-row").forEach(b => b.onclick = () => say(b.dataset.say));
+
+  // ---------- trace screen ----------
+  const board = $("board"), gcv = $("guideCv"), icv = $("ink"), g = gcv.getContext("2d"), ic = icv.getContext("2d");
+  let item = null, color = COLORS[0], step = "watch", si = 0, idx = 0, inks = [], live = null;
+  let S = 400, dpr = 1, showHelp = true, soloMisses = 0, lastNag = 0, watching = 0;
+
+  function sizeBoard() {
+    const side = $("tSide"), beside = getComputedStyle(side).display !== "contents";
+    const w = board.parentElement.clientWidth - (beside ? side.offsetWidth + 18 : 0);
+    const below = beside ? 24 : 90;             // room for the buttons under the board
+    const h = Math.max(280, innerHeight - board.getBoundingClientRect().top - below);
+    S = Math.floor(Math.min(w, h, 760));
+    dpr = devicePixelRatio || 1;
+    board.style.width = board.style.height = S + "px";
+    [gcv, icv].forEach(c => { c.width = S * dpr; c.height = S * dpr; });
+    drawAll();
+  }
+  addEventListener("resize", () => { if (!$("scrTrace").hidden) sizeBoard(); });
+
+  const k = () => S / 100;                               // box units → css px
+  const toBox = e => { const r = icv.getBoundingClientRect(); return [(e.clientX - r.left) / k(), (e.clientY - r.top) / k()]; };
+  const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
+  const TOL = 10;                                        // how far from the line still counts (box units)
+
+  function drawGuide() {
+    g.setTransform(dpr * k(), 0, 0, dpr * k(), 0, 0);
+    g.clearRect(0, 0, 100, 100);
+    // notebook lines, with the red writing line (السطر)
+    g.lineWidth = .4; g.strokeStyle = "#D6E7F5";
+    [24, 44, 84].forEach(y => { g.beginPath(); g.moveTo(3, y); g.lineTo(97, y); g.stroke(); });
+    g.lineWidth = .7; g.strokeStyle = "#F28B82";
+    g.beginPath(); g.moveTo(3, 64); g.lineTo(97, 64); g.stroke();
+
+    const faint = step === "solo";
+    g.lineCap = g.lineJoin = "round";
+    item.strokes.forEach((st, i) => {
+      if (st.dot) {
+        g.fillStyle = i < si ? color : faint ? "#EEF1F6" : "#E3E9F3";
+        g.beginPath(); g.arc(st.x, st.y, 5, 0, Math.PI * 2); g.fill();
+        return;
+      }
+      g.lineWidth = 10; g.strokeStyle = faint ? "#EEF1F6" : "#E3E9F3"; g.stroke(st.path);
+      if (i < si) { g.lineWidth = 7.5; g.strokeStyle = color; g.stroke(st.path); }
+    });
+    // progress on the current stroke
+    const cur = item.strokes[si];
+    if (cur && !cur.dot && idx > 0) {
+      g.lineWidth = 7.5; g.strokeStyle = color; g.beginPath();
+      cur.pts.slice(0, idx + 1).forEach((p, j) => j ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]));
+      g.stroke();
+    }
+    // helpers: dashed centre line and direction arrows on the current stroke
+    if (cur && !cur.dot && step === "trace") {
+      g.setLineDash([1.5, 2.5]); g.lineWidth = .8; g.strokeStyle = "#8A97B0"; g.stroke(cur.path); g.setLineDash([]);
+      g.fillStyle = "#8A97B0";
+      for (let j = Math.max(idx, 6); j < cur.pts.length - 4; j += 14) {
+        const a = cur.pts[j], b = cur.pts[j + 2], ang = Math.atan2(b[1] - a[1], b[0] - a[0]);
+        g.save(); g.translate(a[0], a[1]); g.rotate(ang);
+        g.beginPath(); g.moveTo(2.2, 0); g.lineTo(-1.6, -1.8); g.lineTo(-1.6, 1.8); g.closePath(); g.fill(); g.restore();
+      }
+    }
+  }
+  function drawInk() {
+    ic.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ic.clearRect(0, 0, S, S);
+    ic.lineCap = ic.lineJoin = "round";
+    inks.forEach(s => {
+      ic.strokeStyle = s.bad ? "rgba(242,153,74,.55)" : "rgba(34,48,74,.85)";
+      for (let i = 1; i < s.pts.length; i++) {
+        const a = s.pts[i - 1], b = s.pts[i];
+        ic.lineWidth = b[2]; ic.beginPath(); ic.moveTo(a[0] * k(), a[1] * k()); ic.lineTo(b[0] * k(), b[1] * k()); ic.stroke();
+      }
+      if (s.pts.length === 1) { const p = s.pts[0]; ic.fillStyle = ic.strokeStyle; ic.beginPath(); ic.arc(p[0] * k(), p[1] * k(), p[2] / 2, 0, 7); ic.fill(); }
+    });
+  }
+  function placeMarker() {
+    const m = $("marker"), cur = item.strokes[si];
+    const help = step === "trace" || (step === "solo" && showHelp);
+    if (!cur || !help || watching) { m.hidden = true; return; }
+    const p = cur.dot ? [cur.x, cur.y] : cur.pts[idx];
+    m.hidden = false; m.className = "marker" + (cur.dot ? " dot" : "");
+    m.textContent = cur.dot ? "" : ar(si + 1);
+    m.style.left = p[0] * k() + "px"; m.style.top = p[1] * k() + "px";
+  }
+  let pending = false;
+  function drawAll() { if (!item) return; drawGuide(); drawInk(); placeMarker(); }
+  function drawSoon() { if (pending) return; pending = true; requestAnimationFrame(() => { pending = false; drawAll(); }); }
+
+  function setChips() {
+    const order = ["watch", "trace", "solo"], at = order.indexOf(step);
+    [["chipWatch", 0], ["chipTrace", 1], ["chipSolo", 2]].forEach(([id, i]) => {
+      $(id).className = "chip" + (i < at ? " done" : i === at ? " on" : "");
+    });
+  }
+
+  $("tWord").onclick = () => say(item.kind === "letter" ? item.word : item.say);
+
+  function openItem(it) {
+    item = prep(it);
+    color = it.kind === "letter" ? COLORS[LETTERS.indexOf(it) % COLORS.length] : COLORS[WARMUPS.indexOf(it) % COLORS.length];
+    $("scrHome").hidden = true; $("scrTrace").hidden = false; $("homeBtn").hidden = false;
+    $("tLetter").textContent = it.kind === "letter" ? it.ch : it.ch;
+    $("tLetter").style.color = color;
+    $("tWord").innerHTML = it.kind === "letter" ? `<span class="em">${it.emo}</span>${it.word}` : it.lbl;
+    scrollTo({ top: 0 });
+    requestAnimationFrame(() => { sizeBoard(); startWatch(); });
+    // measure again once fonts and the page have settled (the board keeps its drawing, it only rescales)
+    setTimeout(sizeBoard, 350);
+    if (document.fonts) document.fonts.ready.then(() => { if (!$("scrTrace").hidden) sizeBoard(); });
+  }
+
+  function resetStroke() { si = 0; idx = 0; inks = []; live = null; }
+
+  // --- step 1: watch the pencil write it ---
+  function stopWatch() { if (watching) cancelAnimationFrame(watching); watching = 0; $("pencil").hidden = true; }
+  function startWatch() {
+    stopWatch();
+    step = "watch"; setChips(); resetStroke(); showHelp = true;
+    $("soloBtn").hidden = $("nextBtn").hidden = true;
+    if (item.kind === "letter") talk(`شاهد كيف نكتب حرف ${item.ch}`, [`حرف ${item.def}`, item.word, "شاهد كيف نكتبه"]);
+    else talk(item.lbl, item.say);
+    const pen = $("pencil");
+    let t0 = null;
+    const speed = 0.045;                      // box units per ms
+    const pauseDot = 350;
+    const tick = now => {
+      if (t0 === null) t0 = now + 900;        // give the voice a head start
+      const cur = item.strokes[si];
+      if (!cur) { finishWatch(); return; }
+      const el = now - t0;
+      if (el < 0) { watching = requestAnimationFrame(tick); drawAll(); return; }
+      if (cur.dot) {
+        pen.hidden = false; pen.style.left = cur.x * k() + "px"; pen.style.top = cur.y * k() + "px";
+        if (el > pauseDot) { si++; idx = 0; t0 = now + 150; tone([880], .06); }
+      } else {
+        const f = Math.min(1, el * speed / cur.len);
+        idx = Math.round(f * (cur.pts.length - 1));
+        const p = cur.pts[idx];
+        pen.hidden = false; pen.style.left = p[0] * k() + "px"; pen.style.top = p[1] * k() + "px";
+        if (f >= 1) { si++; idx = 0; t0 = now + 300; }
+      }
+      drawAll();
+      watching = requestAnimationFrame(tick);
+    };
+    watching = requestAnimationFrame(tick);
+    drawAll();
+  }
+  function finishWatch() {
+    stopWatch();
+    setTimeout(() => startTrace(), 500);
+  }
+  $("watchBtn").onclick = startWatch;
+  $("clearBtn").onclick = () => { if (watching) return; resetStroke(); drawAll(); };
+
+  // --- step 2: trace with help ---
+  function startTrace() {
+    step = "trace"; setChips(); resetStroke(); showHelp = true;
+    stars[item.key] = Math.max(stars[item.key] || 0, 1); saveStars();
+    $("soloBtn").hidden = $("nextBtn").hidden = true;
+    drawAll();
+    talk("دورك! ابدأ من النقطة الخضراء، وامشِ مع الأسهم");
+  }
+  // --- step 3: on your own ---
+  function startSolo() {
+    step = "solo"; setChips(); resetStroke(); showHelp = false; soloMisses = 0;
+    $("soloBtn").hidden = $("nextBtn").hidden = true;
+    drawAll();
+    if (item.kind === "letter") talk(`الآن اكتب حرف ${item.ch} وحدك`, `الآن اكتب حرف ${item.def} وحدك`);
+    else talk("الآن ارسمه وحدك");
+  }
+  $("soloBtn").onclick = startSolo;
+  $("nextBtn").onclick = () => {
+    const list = item.kind === "letter" ? LETTERS : WARMUPS;
+    const i = list.indexOf(item);
+    if (i < list.length - 1) openItem(list[i + 1]);
+    else if (item.kind === "warm") openItem(LETTERS[0]);
+    else showHome();
+  };
+
+  function strokeDone() {
+    si++; idx = 0;
+    if (si >= item.strokes.length) return itemDone();
+    tone([660, 990], .08);
+    if (Math.random() < .5) talk(pick(SMALL));
+  }
+  function itemDone() {
+    tone([523, 659, 784, 1047], .12, "triangle", .18);
+    if (step === "trace") {
+      stars[item.key] = Math.max(stars[item.key] || 0, 2); saveStars();
+      confetti(60);
+      const pr = pick(PRAISE);
+      talk(`${withName(pr)} الآن جرّب وحدك`, [pr, "الآن جرّب وحدك"]);
+      $("soloBtn").hidden = false;
+    } else {
+      stars[item.key] = 3; saveStars();
+      confetti(160); setTimeout(() => confetti(100), 500);
+      const pr = pick(PRAISE);
+      if (item.kind === "letter") talk(`${withName(pr)} كتبت حرف ${item.ch} وحدك`, [pr, `كتبت حرف ${item.def} وحدك`, item.word]);
+      else talk(`${withName(pr)} يدك أصبحت أقوى`, [pr, "يدك أصبحت أقوى"]);
+      $("nextBtn").hidden = false;
+      $("nextBtn").textContent = item.kind === "letter" ? "الحرف التالي ⬅" : "التمرين التالي ⬅";
+    }
+    drawAll();
+  }
+
+  function nag(text) {
+    const now = Date.now();
+    if (now - lastNag < 2500) return;
+    lastNag = now; talk(text);
+  }
+
+  // ---------- pen / finger input ----------
+  const ptrs = new Set();
+  function allowed(e) {
+    if (e.pointerType === "pen" && !penOnly && step !== "watch") { /* first pen use switches on palm rejection */ setPenOnly(true); }
+    if (penOnly && e.pointerType === "touch") return false;
+    return true;
+  }
+  function inkWidth(e) {
+    const base = Math.max(5, S * 0.022);
+    return e.pointerType === "pen" && e.pressure > 0 ? base * (0.6 + e.pressure * 0.9) : base;
+  }
+  icv.addEventListener("pointerdown", e => {
+    if (!item || watching || step === "watch" || !allowed(e)) return;
+    if (si >= item.strokes.length) return;
+    e.preventDefault();
+    if (live) return;                                    // one writer at a time
+    try { icv.setPointerCapture(e.pointerId); } catch (err) {}
+    const p = toBox(e), cur = item.strokes[si];
+    live = { id: e.pointerId, pts: [[p[0], p[1], inkWidth(e)]], tracking: false, off: 0, total: 0 };
+    inks.push(live);
+    if (cur.dot) {
+      if (dist(p, [cur.x, cur.y]) <= TOL) { live.dotHit = true; strokeDone(); }
+    } else if (dist(p, cur.pts[idx]) <= TOL * 1.3) live.tracking = live.startedOk = true;
+    drawSoon();
+  });
+  icv.addEventListener("pointermove", e => {
+    if (!live || e.pointerId !== live.id) return;
+    e.preventDefault();
+    const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+    for (const ev of (evs.length ? evs : [e])) {
+      const p = toBox(ev);
+      live.pts.push([p[0], p[1], inkWidth(ev)]);
+      const cur = item.strokes[si];
+      if (!cur) continue;
+      // is this bit of ink on the letter at all?
+      const near = cur.dot ? dist(p, [cur.x, cur.y]) : Math.min(...cur.pts.map(q => dist(p, q)));
+      live.total++; if (near > TOL * 1.6) live.off++;
+      if (!live.tracking || cur.dot) continue;
+      // move forward along the stroke, in the right direction only
+      for (let j = idx; j < Math.min(idx + 10, cur.pts.length); j++) {
+        if (dist(p, cur.pts[j]) <= TOL) idx = j;
+      }
+      if (idx >= cur.pts.length - 2) { live.tracking = false; live.completed = true; strokeDone(); }
+    }
+    drawSoon();
+  });
+  function endPtr(e) {
+    if (!live || e.pointerId !== live.id) return;
+    const s = live; live = null;
+    const cur = item.strokes[si];
+    if (s.dotHit) { drawSoon(); return; }
+    const messy = s.total > 8 && s.off / s.total > .35;
+    if (messy) {
+      s.bad = true;
+      setTimeout(() => { inks = inks.filter(x => x !== s); drawSoon(); }, 700);
+      nag("حاول أن تكتب فوق الحرف");
+    } else if (s.completed || !cur) {
+      // finished a stroke in this go: nothing to correct
+    } else if (cur.dot) {
+      nag("ضع النقطة في مكانها");
+    } else if (!s.startedOk) {
+      if (step === "solo") showHelp = true;          // show the start dot after one miss
+      nag(step === "solo" && idx === 0 ? "ابدأ من هنا" : idx > 0 ? "أكمل من النقطة الخضراء" : "ابدأ من النقطة الخضراء");
+    } else if (idx > 0) {
+      nag("أكمل من حيث توقفت");
+    }
+    drawSoon();
+  }
+  icv.addEventListener("pointerup", endPtr);
+  icv.addEventListener("pointercancel", endPtr);
+  // stop iPad from scrolling or zooming while writing
+  board.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
+
+  showHome();
+})();
+</script>
+<a class="hub-link" href="./" aria-label="القائمة">🏫</a>
+
+<script>
+  // offline support: cache the app the first time it opens
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+</script>
+</html>
