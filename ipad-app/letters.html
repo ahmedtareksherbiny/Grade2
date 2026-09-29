@@ -476,7 +476,7 @@
   // Recorded clips (Egyptian voice) play first; the device voice is only a fallback.
   // voice-letters.json maps each spoken phrase to a base64 mp3 (made by make-voice.py). If it is missing, the device voice speaks.
   let clips = null;
-  fetch("voice-letters.json").then(r => r.ok ? r.json() : null).then(j => { clips = j; }).catch(() => {});
+  const clipsReady = fetch("voice-letters.json").then(r => r.ok ? r.json() : null).then(j => { clips = j; return j; }).catch(() => null);
   const bufs = new Map();
   let playId = 0, playing = null;
   function audioCtx() {
@@ -520,12 +520,14 @@
     if (!soundOn) return;
     hush();
     const id = playId;
+    // wait for the recorded voice instead of falling back to the device's (male) voice while it downloads
+    if (!clips) { await Promise.race([clipsReady, new Promise(r => setTimeout(r, 20000))]); if (id !== playId) return; }
     for (const part of [].concat(parts)) {
       if (id !== playId) return;
       if (clips && clips[part] && audioCtx()) {
         try { const buf = await clipBuffer(part); if (id !== playId) return; await playBuffer(buf); continue; } catch (e) {}
       }
-      await ttsPart(part);
+      if (!clips) await ttsPart(part);   // device voice only when the recorded voice could not load at all
     }
   }
   function talk(text, speak = text) {
