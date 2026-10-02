@@ -26,7 +26,7 @@
 <title>هذا وهذه وهؤلاء</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Noto+Naskh+Arabic:wght@500;700&display=swap">
 <style>
   :root {
     color-scheme: light;
@@ -42,6 +42,9 @@
     --wrong: #F2994A;
     --shadow: 0 6px 0 rgba(34,48,74,.18);
     --font: "Baloo Bhaijaan 2", "Segoe UI", Tahoma, Arial, sans-serif;
+    --letter-font: "Noto Naskh Arabic", "Traditional Arabic", "Segoe UI", serif;  /* book-style text with tashkeel */
+    --go: #2BA84A;
+    --rule: #D6E7F5;
   }
   html, body { height: 100%; }
   [hidden] { display: none !important; }
@@ -226,6 +229,72 @@
     .owl { font-size: 50px; } .bubble { font-size: 19px; }
     .cards { grid-template-columns: repeat(2, 1fr); }
   }
+  /* ---- منهج الصف الثاني ---- */
+  .course-home h1 { font-size: clamp(36px, 7vw, 54px); }
+  .unit-title { font-size: 24px; margin: 8px 0 0; color: var(--ink); }
+  .course-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; }
+  .lesson-card { display: flex; align-items: center; gap: 12px; border: 0; background: #fff; border-radius: 22px; padding: 10px 14px; box-shadow: var(--shadow); text-align: right; font-family: inherit; color: var(--ink); cursor: pointer; }
+  .lesson-card.special { background: #FFF6D8; }
+  .lesson-card.done { box-shadow: 0 0 0 3px var(--go), var(--shadow); }
+  .lesson-card:active { transform: translateY(3px); }
+  .lc-num { width: 34px; height: 34px; border-radius: 50%; background: var(--sky); display: grid; place-items: center; font-weight: 800; flex: none; }
+  .lc-ch { font-size: 36px; min-width: 56px; text-align: center; }
+  .lc-info { flex: 1; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .lc-info b { font-size: 21px; }
+  .lc-info small { font-size: 15px; color: var(--ink-soft); }
+  .lc-state { font-size: 22px; min-width: 26px; }
+  .bar-prog { height: 8px; border-radius: 99px; background: #EEF1F6; overflow: hidden; }
+  .bar-prog i { display: block; height: 100%; background: var(--go); border-radius: 99px; }
+  .game-card { border: 0; border-radius: 22px; padding: 14px; font-size: 24px; font-weight: 800; background: var(--sun); box-shadow: var(--shadow); font-family: inherit; color: var(--ink); cursor: pointer; }
+  .l-head { display: flex; align-items: center; justify-content: center; gap: 12px; }
+  .l-icon { font-size: 52px; }
+  .l-title { font-size: 30px; font-weight: 800; text-align: center; }
+  .steps { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .chip { border: 0; border-radius: 999px; padding: 4px 16px; font-weight: 800; font-size: 18px; background: #fff; color: var(--ink-soft); box-shadow: 0 3px 0 rgba(34,48,74,.12); font-family: inherit; cursor: pointer; }
+  .chip.on { background: var(--sun); color: var(--ink); }
+  .chip.done { background: var(--go); color: #fff; }
+  .l-body { background: var(--paper); border-radius: 28px; padding: 18px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 14px; }
+  .big-act { align-self: center; border: 0; border-radius: 999px; padding: 10px 30px; font-size: 24px; font-weight: 800; box-shadow: var(--shadow); background: #fff; font-family: inherit; color: var(--ink); cursor: pointer; }
+  .big-act.go { background: var(--go); color: #fff; }
+  .big-act.primary { background: var(--sun); }
+  .q-sent, .q-word, .vrow, .poem-line, .rule-line, .ex-card, .opt, .tile-l { font-family: var(--letter-font); }
+  .poem { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .poem-line { border: 0; background: #fff; border-radius: 16px; padding: 8px 12px; font-size: 26px; line-height: 1.8; box-shadow: 0 3px 0 rgba(34,48,74,.1); color: var(--ink); cursor: pointer; }
+  .vt { margin: 4px 0 0; font-size: 22px; color: var(--girl); }
+  .vlist { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 8px; }
+  .vrow { display: flex; align-items: center; justify-content: space-between; gap: 8px; border: 0; background: #fff; border-radius: 16px; padding: 6px 14px; font-size: 24px; line-height: 1.8; color: var(--ink); cursor: pointer; }
+  .vrow i { font-style: normal; color: var(--ink-soft); font-family: var(--font); }
+  .vrow span:last-child { color: var(--boy); }
+  .rule-box { background: #FFF1C9; border-radius: 20px; padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+  .rule-line { border: 0; background: transparent; text-align: right; font-size: 24px; line-height: 1.9; color: var(--ink); cursor: pointer; border-radius: 12px; padding: 2px 8px; }
+  .rule-line:hover { background: rgba(255,255,255,.6); }
+  .examples { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+  .ex-card { border: 0; background: #fff; border-radius: 18px; padding: 8px 12px; display: flex; align-items: center; gap: 10px; font-size: 24px; line-height: 1.8; box-shadow: 0 3px 0 rgba(34,48,74,.1); color: var(--ink); text-align: right; cursor: pointer; }
+  .ex-card .em { font-size: 34px; font-family: var(--font); }
+  .cleared { text-align: center; font-size: 24px; font-weight: 700; }
+  .cleared p { margin: 0; }
+  .big-em { font-size: 84px; line-height: 1.1; }
+  .qdots { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+  .qdots span { width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 2px solid var(--rule); }
+  .qdots span.on { background: var(--go); border-color: var(--go); }
+  .qdots span.now { background: var(--sun); border-color: var(--sun); }
+  .q { display: flex; flex-direction: column; gap: 14px; align-items: center; }
+  .q-head { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .q-pic { font-size: 80px; line-height: 1.1; }
+  .q-word { font-size: 40px; line-height: 1.7; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+  .q-sent { font-size: 32px; line-height: 1.9; text-align: center; font-weight: 700; }
+  .q-sent .gap { display: inline-block; min-width: 90px; border-bottom: 4px dashed var(--ink-soft); color: var(--ink-soft); text-align: center; }
+  .q-opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; }
+  .q-opts.two { grid-template-columns: repeat(2, 1fr); }
+  .q-opts.one { grid-template-columns: 1fr; }
+  .q-opts.many { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  .opt { border: 0; background: #fff; border-radius: 22px; padding: 10px 8px; box-shadow: var(--shadow); font-size: 30px; line-height: 1.6; min-height: 76px; font-weight: 700; color: var(--ink); cursor: pointer; }
+  .opt.right, .opt.picked { box-shadow: 0 0 0 5px var(--go), var(--shadow); animation: hop .5s ease; }
+  .opt.no { animation: shake .4s ease; }
+  .opt:disabled { opacity: .4; cursor: default; }
+  .opt.right:disabled, .opt.picked:disabled { opacity: 1; }
+  .tile-l { min-width: 56px; height: 64px; padding-inline: 6px; border-radius: 14px; background: #fff; border: 3px dashed var(--wrong); color: var(--wrong); display: inline-grid; place-items: center; font-size: 34px; }
+  @media (max-width: 520px) { .poem { grid-template-columns: 1fr; } .q-sent { font-size: 26px; } .opt { font-size: 24px; } }
 </style>
 
 <canvas id="fx"></canvas>
@@ -241,6 +310,25 @@
     <div class="bubble" id="bubble" aria-live="polite">أهلًا يا بطل! هيا نتعلم معًا</div>
   </div>
 
+  <!-- COURSE HOME: منهج الصف الثاني -->
+  <section id="scrCourse" class="course-home" style="display:flex;flex-direction:column;gap:14px">
+    <h1>العربي <span class="w2">للصف الثاني</span></h1>
+    <p class="sub">منهج الترم الأول بترتيب كتاب المدرسة: قراءة وكلمات، أناشيد، أساليب وقواعد</p>
+    <div class="name-row">
+      <label for="nameInput">ما اسمك؟</label>
+      <input id="nameInput" type="text" maxlength="20" placeholder="اكتب اسمك هنا" autocomplete="off">
+    </div>
+    <button class="game-card" id="goGame">🎮 لعبة هذا وهذه وهؤلاء</button>
+    <div id="g2Units" style="display:flex;flex-direction:column;gap:10px"></div>
+  </section>
+
+  <!-- LESSON -->
+  <section id="scrLesson" hidden style="display:flex;flex-direction:column;gap:12px">
+    <div class="l-head"><div class="l-icon" id="lIcon"></div><div class="l-title" id="lTitle"></div></div>
+    <div class="steps" id="lSteps"></div>
+    <div class="l-body" id="lBody"></div>
+  </section>
+
   <!-- START -->
   <section id="scrStart" class="panel" style="display:flex;flex-direction:column;gap:18px">
     <h1><span class="w1">هذا</span> و<span class="w2">هذه</span> و<span class="w3">هؤلاء</span></h1>
@@ -249,10 +337,6 @@
       <div class="rule c-boy"><b>هذا</b><span>للمفرد المذكر</span><span class="em">👦 ✏️</span></div>
       <div class="rule c-girl"><b>هذه</b><span>للمفرد المؤنث وجمع غير العاقل</span><span class="em">👧 📚</span></div>
       <div class="rule c-crowd"><b>هؤلاء</b><span>للجمع من الناس</span><span class="em">👦👧👦</span></div>
-    </div>
-    <div class="name-row">
-      <label for="nameInput">ما اسمك؟</label>
-      <input id="nameInput" type="text" maxlength="20" placeholder="اكتب اسمك هنا" autocomplete="off">
     </div>
     <div class="big-actions three">
       <button class="big b-learn" id="goLearn"><span class="em">📖</span>تعلَّم<small>اضغط واسمع</small></button>
@@ -295,6 +379,203 @@
   </section>
 </div>
 
+<script type="application/json" id="g2Data">
+{
+  "units": [
+    {"title": "الوحدة الأولى: قيم وأخلاق", "lessons": [
+      {"id": "v1", "kind": "vocab", "title": "كلماتي الجميلة", "icon": "💬",
+       "syn": [["تَسْعَدُ","تَفْرَحُ"],["تُزَيِّنُ","تُجَمِّلُ"],["سَقَطَ","وَقَعَ"]],
+       "opp": [["حَضَرَتْ","غَابَتْ"],["ابْتَسَمَتْ","عَبَسَتْ"],["تَسْعَدُ","تَحْزَنُ"],["جَمِيلَةٌ","قَبِيحَةٌ"]],
+       "plural": [["أُمٌّ","أُمَّهَاتٌ"],["التِّلْمِيذُ","التَّلَامِيذُ"],["أَبٌ","آبَاءٌ"],["ابْنٌ","أَبْنَاءٌ"],["الْقَلْبُ","الْقُلُوبُ"],["مَلْبَسٌ","مَلَابِسُ"],["كَلِمَةٌ","كَلِمَاتٌ"]]},
+      {"id": "dual", "kind": "grammar", "title": "المفرد والمثنى", "icon": "✌️",
+       "rule": ["عِنْدَمَا نُعَبِّرُ عَنِ اثْنَيْنِ أَوِ اثْنَتَيْنِ نُضِيفُ (انِ أَوْ يْنِ) عَلَى الِاسْمِ الْمُفْرَدِ."],
+       "examples": [["قَلَمٌ + قَلَمٌ = قَلَمَانِ، قَلَمَيْنِ","✏️✏️"],["كِتَابٌ + كِتَابٌ = كِتَابَانِ، كِتَابَيْنِ","📕📕"],["وَلَدٌ + وَلَدٌ = وَلَدَانِ، وَلَدَيْنِ","👦👦"],["فَأْرٌ + فَأْرٌ = فَأْرَانِ، فَأْرَيْنِ","🐭🐭"]],
+       "quiz": "dual"},
+      {"id": "syll", "kind": "grammar", "title": "تحليل الكلمات إلى مقاطع صوتية", "icon": "✂️",
+       "rule": ["الْمَقْطَعُ الصَّوْتِيُّ: حَرْفٌ مُتَحَرِّكٌ، مِثْلُ: حَ، أَوْ حَرْفٌ مُتَحَرِّكٌ وَحَرْفٌ سَاكِنٌ، مِثْلُ: قَرْ.", "الْحَرْفُ الْمُشَدَّدُ حَرْفَانِ: الْأَوَّلُ سَاكِنٌ وَالثَّانِي مُتَحَرِّكٌ، مِثْلُ: فّ = فْ + فَ."],
+       "examples": [["الْقَرْيَةُ: الْ / قَرْ / يَـ / ـةُ","🏡"],["تُفَّاحَةٌ: تُفْ / فَا / حَـ / ـةٌ","🍎"],["الرِّيَاضَةُ: الرْ / رِ / يَا / ضَـ / ـةُ","⚽"]],
+       "quiz": "syll"},
+      {"id": "v2", "kind": "vocab", "title": "أحب أصدقائي", "icon": "🤝",
+       "syn": [["زَمِيلٌ","صَدِيقٌ"],["بَارِعٌ","مَاهِرٌ"],["رُكْنٌ","جَانِبٌ"],["عُدْنَا","رَجَعْنَا"],["حَكَى","رَوَى"],["ابْتَسَمَ","ضَحِكَ دُونَ صَوْتٍ"]],
+       "opp": [["دَخَلْنَا","خَرَجْنَا"],["أُحِبُّ","أَكْرَهُ"],["زَمِيلٌ","عَدُوٌّ"],["جَمِيلَةٌ","قَبِيحَةٌ"],["كَثِيرًا","قَلِيلًا"],["نِهَايَةٌ","بِدَايَةٌ"]],
+       "plural": [["الْمَدْرَسَةُ","الْمَدَارِسُ"],["زَمِيلٌ","زُمَلَاءُ"],["رُكْنٌ","أَرْكَانٌ"],["صَوْتٌ","أَصْوَاتٌ"],["الرَّسْمُ","الرُّسُومُ"],["سَعِيدٌ","سُعَدَاءُ"],["وَرَقَةٌ","أَوْرَاقٌ"]]},
+      {"id": "demo", "kind": "grammar", "title": "أسماء الإشارة", "icon": "👉", "game": true,
+       "rule": ["لِلْمُفْرَدِ: هَذَا لِلْمُذَكَّرِ، وَهَذِهِ لِلْمُؤَنَّثِ.", "لِلْمُثَنَّى: هَذَانِ لِلْمُذَكَّرِ، وَهَاتَانِ لِلْمُؤَنَّثِ.", "لِلْجَمْعِ: هَؤُلَاءِ."],
+       "examples": [["هَذَا طَبِيبٌ","👨‍⚕️"],["هَذَانِ طَبِيبَانِ","👨‍⚕️👨‍⚕️"],["هَؤُلَاءِ أَطِبَّاءُ","👨‍⚕️👨‍⚕️👨‍⚕️"],["هَذِهِ طَبِيبَةٌ","👩‍⚕️"],["هَاتَانِ طَبِيبَتَانِ","👩‍⚕️👩‍⚕️"],["هَؤُلَاءِ طَبِيبَاتٌ","👩‍⚕️👩‍⚕️👩‍⚕️"]],
+       "ask": "اخْتَرِ اسْمَ الْإِشَارَةِ الْمُنَاسِبَ",
+       "qs": [
+         ["___ وَلَدٌ مُؤَدَّبٌ.","👦","هَذَا",["هَذِهِ","هَذَانِ"]],
+         ["___ أَبٌ رَحِيمٌ.","👨","هَذَا",["هَؤُلَاءِ","هَذِهِ"]],
+         ["___ فَتَاةٌ مُتَفَوِّقَةٌ.","👧","هَذِهِ",["هَذَا","هَاتَانِ"]],
+         ["___ شَجَرَةٌ مُثْمِرَةٌ.","🌳","هَذِهِ",["هَذَا","هَؤُلَاءِ"]],
+         ["___ وَلَدَانِ نَشِيطَانِ.","👦👦","هَذَانِ",["هَاتَانِ","هَؤُلَاءِ"]],
+         ["___ مُهَنْدِسَانِ مُبْدِعَانِ.","👷👷","هَذَانِ",["هَذَا","هَاتَانِ"]],
+         ["___ كِتَابَانِ مُفِيدَانِ.","📘📘","هَذَانِ",["هَذِهِ","هَاتَانِ"]],
+         ["___ وَرْدَتَانِ جَمِيلَتَانِ.","🌹🌹","هَاتَانِ",["هَذَانِ","هَذِهِ"]],
+         ["___ بِنْتَانِ مُؤَدَّبَتَانِ.","👧👧","هَاتَانِ",["هَذَانِ","هَؤُلَاءِ"]],
+         ["___ جُنُودٌ أَقْوِيَاءُ.","💂💂💂","هَؤُلَاءِ",["هَذِهِ","هَذَانِ"]],
+         ["___ فَنَّانُونَ مَاهِرُونَ.","🧑‍🎨🧑‍🎨🧑‍🎨","هَؤُلَاءِ",["هَذَا","هَاتَانِ"]],
+         ["___ طَبِيبَاتٌ مَاهِرَاتٌ.","👩‍⚕️👩‍⚕️👩‍⚕️","هَؤُلَاءِ",["هَاتَانِ","هَذِهِ"]]
+       ]},
+      {"id": "v3", "kind": "vocab", "title": "الطفل المهذب", "icon": "🎵",
+       "poem": ["أَنَا الطِّفْلُ الْمُؤَدَّبْ","مَعَ النَّاسِ مُهَذَّبْ","أَقُولُ الصِّدْقَ دَوْمَا","وَمَا كَذَبْتُ يَوْمَا","أُسَاعِدُ الْكِبَارْ","وَأَنْصَحُ الصِّغَارْ","بِأَخْلَاقِ الْكِرَامْ","سَنَحْيَا فِي سَلَامْ"],
+       "syn": [["الطِّفْلُ","الْوَلَدُ الصَّغِيرُ"],["مُهَذَّبٌ","مُؤَدَّبٌ"],["أَقُولُ","أَتَحَدَّثُ"],["دَوْمًا","دَائِمًا"],["أَنْصَحُ","أُرْشِدُ"],["سَنَحْيَا","سَنَعِيشُ"]],
+       "opp": [["الطِّفْلُ","الشَّيْخُ"],["مُهَذَّبٌ","سَيِّئُ الْخُلُقِ"],["الصِّدْقُ","الْكَذِبُ"],["دَوْمًا","أَحْيَانًا"],["الْكِبَارُ","الصِّغَارُ"],["أَنْصَحُ","أُضَلِّلُ"],["الْكِرَامُ","اللِّئَامُ"],["سَنَحْيَا","سَنَمُوتُ"]],
+       "plural": [["الطِّفْلُ","الْأَطْفَالُ"],["الْمُؤَدَّبُ","الْمُؤَدَّبُونَ"],["يَوْمٌ","أَيَّامٌ"],["الصَّغِيرُ","الصِّغَارُ"],["الْكَرِيمُ","الْكِرَامُ"]]}
+    ]},
+    {"title": "الوحدة الثانية: عادات صحية", "lessons": [
+      {"id": "v4", "kind": "vocab", "title": "أسناني قوية", "icon": "🦷",
+       "syn": [["الْحُلْمُ","مَا يَرَاهُ النَّائِمُ"],["تُهَاجِمُهُ","تَدْخُلُ عَلَيْهِ فَجْأَةً"],["ضَخْمَةٌ","كَبِيرَةٌ"],["اسْتَيْقَظَ","صَحَا مِنْ نَوْمِهِ"],["قَصَّ","حَكَى"]],
+       "opp": [["جَلَسَ","وَقَفَ"],["تَكَاسَلَ","نَشِطَ"],["تَقْتَرِبُ","تَبْتَعِدُ"],["ضَخْمَةٌ","صَغِيرَةٌ"],["أَحْمِيكَ","أُوذِيكَ"],["هَرَبَتْ","وَاجَهَتْ"],["اسْتَيْقَظَ","نَامَ"],["تَذَكَّرَ","نَسِيَ"]],
+       "plural": [["سَرِيرٌ","أَسِرَّةٌ"],["الْفُرْشَاةُ","الْفُرَشُ"],["سُوسَةٌ","سُوسٌ"],["الْحَشَرَةُ","الْحَشَرَاتُ"],["الْمِرْآةُ","الْمَرَايَا"],["سِنٌّ","أَسْنَانٌ"],["الْحَارِسُ","الْحُرَّاسُ"],["الْحُلْمُ","الْأَحْلَامُ"]]},
+      {"id": "far", "kind": "grammar", "title": "أسماء الإشارة للبعيد (ذلك – تلك)", "icon": "🔭",
+       "rule": ["مِنْ أَسْمَاءِ الْإِشَارَةِ لِلْبَعِيدِ: ذَلِكَ لِلْمُفْرَدِ الْمُذَكَّرِ، وَتِلْكَ لِلْمُفْرَدِ الْمُؤَنَّثِ."],
+       "examples": [["هَذَا بَيْتٌ. (قَرِيبٌ)","🏠✋"],["ذَلِكَ بَيْتٌ. (بَعِيدٌ)","🏠🔭"],["هَذِهِ سَيَّارَةٌ. (قَرِيبَةٌ)","🚗✋"],["تِلْكَ سَيَّارَةٌ. (بَعِيدَةٌ)","🚗🔭"]],
+       "ask": "اخْتَرِ اسْمَ الْإِشَارَةِ الْمُنَاسِبَ: قَرِيبٌ أَمْ بَعِيدٌ؟",
+       "qs": [
+         ["___ قَمَرٌ مُنِيرٌ. (بَعِيدٌ)","🌙🔭","ذَلِكَ",["تِلْكَ","هَذَا"]],
+         ["___ سَمَاءٌ صَافِيَةٌ. (بَعِيدَةٌ)","🌌🔭","تِلْكَ",["ذَلِكَ","هَذِهِ"]],
+         ["___ عُصْفُورٌ يَطِيرُ فِي السَّمَاءِ. (بَعِيدٌ)","🐦🔭","ذَلِكَ",["تِلْكَ","هَذَا"]],
+         ["___ شَمْسٌ مُشْرِقَةٌ. (بَعِيدَةٌ)","☀️🔭","تِلْكَ",["ذَلِكَ","هَذِهِ"]],
+         ["___ فَرَاشَةٌ فَوْقَ الْأَشْجَارِ. (بَعِيدَةٌ)","🦋🔭","تِلْكَ",["ذَلِكَ","هَذِهِ"]],
+         ["___ صَارُوخٌ. (بَعِيدٌ)","🚀🔭","ذَلِكَ",["تِلْكَ","هَذَا"]],
+         ["___ سَفِينَةٌ. (قَرِيبَةٌ)","🚢✋","هَذِهِ",["تِلْكَ","هَذَا"]],
+         ["___ صَارُوخٌ. (قَرِيبٌ)","🚀✋","هَذَا",["ذَلِكَ","هَذِهِ"]],
+         ["___ سَفِينَةٌ. (بَعِيدَةٌ)","🚢🔭","تِلْكَ",["ذَلِكَ","هَذِهِ"]]
+       ]},
+      {"id": "lam", "kind": "grammar", "title": "اللام الشمسية واللام القمرية", "icon": "☀️🌙",
+       "rule": ["اللَّامُ الشَّمْسِيَّةُ: تُكْتَبُ وَلَا تُنْطَقُ، وَيَأْتِي بَعْدَهَا حَرْفٌ مُشَدَّدٌ، مِثْلُ كَلِمَةِ: الشَّمْسُ.", "حُرُوفُ اللَّامِ الشَّمْسِيَّةِ: ت ث د ذ ر ز س ش ص ض ط ظ ل ن.", "اللَّامُ الْقَمَرِيَّةُ: تُكْتَبُ وَتُنْطَقُ، مِثْلُ كَلِمَةِ: الْقَمَرُ.", "حُرُوفُ اللَّامِ الْقَمَرِيَّةِ: أ ب ج ح خ ع غ ف ق ك م هـ و ي."],
+       "examples": [["الشَّمْسُ (لَامٌ شَمْسِيَّةٌ)","☀️"],["الشَّمْعَةُ (لَامٌ شَمْسِيَّةٌ)","🕯️"],["الْقَمَرُ (لَامٌ قَمَرِيَّةٌ)","🌙"],["الْفُرْشَاةُ (لَامٌ قَمَرِيَّةٌ)","🪥"]],
+       "quiz": "lam",
+       "words": [["الطَّرِيقُ","🛣️","s"],["الْحَشَرَةُ","🐞","q"],["الصُّنْدُوقُ","📦","s"],["الْأَسْنَانُ","🦷","q"],["النَّافِذَةُ","🪟","s"],["الْفَوَاكِهُ","🍇","q"],["التَّعَبُ","😓","s"],["الْمَلْعَبُ","🏟️","q"],["الْقَمْحُ","🌾","q"],["الطُّيُورُ","🐦","s"],["الذِّئْبُ","🐺","s"],["الْعَسَلُ","🍯","q"],["السَّحَابُ","☁️","s"],["الْكِتَابُ","📕","q"],["الدَّجَاجُ","🐔","s"],["الْبَيْتُ","🏠","q"]]},
+      {"id": "v5", "kind": "vocab", "title": "طعامي الصحي", "icon": "🥗",
+       "syn": [["الضَّرُورِيَّةُ","اللَّازِمَةُ"],["الْعَوْدَةُ","الرُّجُوعُ"],["تَشْعُرُ","تُحِسُّ"],["أَعَدَّتْ","جَهَّزَتْ"],["صِحِّيًّا","مُفِيدًا"]],
+       "opp": [["التَّعَبُ","الرَّاحَةُ"],["صِحِّيًّا","مُضِرًّا"],["قَوِيًّا","ضَعِيفًا"],["نَشَاطٌ","كَسَلٌ"],["الْعَوْدَةُ","الذَّهَابُ"],["بِصُعُوبَةٍ","بِسُهُولَةٍ"]],
+       "plural": [["عَادَةٌ","عَادَاتٌ"],["الطَّعَامُ","الْأَطْعِمَةُ"],["نَصِيحَةٌ","نَصَائِحُ"],["حَقِيبَةٌ","حَقَائِبُ"],["الْغِذَاءُ","الْأَغْذِيَةُ"],["طَرِيقٌ","طُرُقٌ"]]},
+      {"id": "time", "kind": "grammar", "title": "ظرف الزمان", "icon": "⏰",
+       "rule": ["ظَرْفُ الزَّمَانِ: اسْمٌ يُبَيِّنُ زَمَنَ حُدُوثِ الْفِعْلِ، وَنَسْأَلُ عَنْهُ بِـ (مَتَى).", "مِثْلُ: صَبَاحًا، مَسَاءً، لَيْلًا، صَيْفًا، شِتَاءً، أَمْسِ، سَاعَةً، قَبْلَ، بَعْدَ، الْآنَ."],
+       "examples": [["تَسْقُطُ الْأَمْطَارُ شِتَاءً.","🌧️"],["يَظْهَرُ الْقَمَرُ لَيْلًا.","🌙"],["تَرْتَفِعُ الْحَرَارَةُ صَيْفًا.","☀️"],["تَذْهَبُ التَّلَامِيذُ إِلَى الْمَدْرَسَةِ صَبَاحًا.","🏫"]],
+       "ask": "أَكْمِلْ بِظَرْفِ زَمَانٍ مُنَاسِبٍ",
+       "qs": [
+         ["تُغَرِّدُ الْعَصَافِيرُ ___.","🐦","صَبَاحًا",["فَوْقَ","تَحْتَ"]],
+         ["تُضِيءُ الْمَصَابِيحُ ___.","💡","لَيْلًا",["أَمَامَ","خَلْفَ"]],
+         ["تَسْقُطُ الْأَمْطَارُ ___.","🌧️","شِتَاءً",["دَاخِلَ","فَوْقَ"]],
+         ["تَرْتَفِعُ الْحَرَارَةُ ___.","☀️","صَيْفًا",["تَحْتَ","أَمَامَ"]],
+         ["يَظْهَرُ الْقَمَرُ ___.","🌙","لَيْلًا",["خَارِجَ","فَوْقَ"]],
+         ["أَذْهَبُ إِلَى النَّوْمِ ___.","🛏️","مَسَاءً",["تَحْتَ","وَسَطَ"]]
+       ],
+       "pick": "اضْغَطْ عَلَى ظَرْفِ الزَّمَانِ فِي الْجُمْلَةِ",
+       "picks": [["تَسْقُطُ الْأَمْطَارُ شِتَاءً.","شِتَاءً"],["يَظْهَرُ الْقَمَرُ لَيْلًا.","لَيْلًا"],["تَرْتَفِعُ الْحَرَارَةُ صَيْفًا.","صَيْفًا"],["تَذْهَبُ التَّلَامِيذُ إِلَى الْمَدْرَسَةِ صَبَاحًا.","صَبَاحًا"]]},
+      {"id": "place", "kind": "grammar", "title": "ظرف المكان", "icon": "📍",
+       "rule": ["ظَرْفُ الْمَكَانِ: اسْمٌ يُبَيِّنُ مَكَانَ حُدُوثِ الْفِعْلِ، وَنَسْأَلُ عَنْهُ بِـ (أَيْنَ).", "مِثْلُ: فَوْقَ، تَحْتَ، أَمَامَ، خَلْفَ، دَاخِلَ، خَارِجَ، وَسَطَ، أَسْفَلَ، أَعْلَى.", "بَعْضُ الظُّرُوفِ تَأْتِي لِلزَّمَانِ وَالْمَكَانِ، مِثْلُ: قَبْلَ، بَعْدَ، عِنْدَ، بَيْنَ، مَعَ، وَنَعْرِفُهَا مِنْ مَعْنَى الْجُمْلَةِ."],
+       "examples": [["يَطِيرُ الْعُصْفُورُ فَوْقَ الشَّجَرَةِ.","🐦🌳"],["تَنَامُ الْقِطَّةُ تَحْتَ الْكُرْسِيِّ.","🐈🪑"],["قَابَلْتُ عُمَرَ بَعْدَ الْعَشَاءِ. (زَمَانٌ)","🕘"],["قَابَلْتُ عُمَرَ بَعْدَ سُورِ الْمَدْرَسَةِ. (مَكَانٌ)","🏫"]],
+       "ask": "اخْتَرِ الظَّرْفَ الْمُنَاسِبَ",
+       "qs": [
+         ["يَطِيرُ الْعُصْفُورُ ___ الشَّجَرَةِ.","🐦🌳","فَوْقَ",["تَحْتَ","لَيْلًا"]],
+         ["تَنَامُ الْقِطَّةُ ___ الْكُرْسِيِّ.","🐈🪑","تَحْتَ",["فَوْقَ","صَبَاحًا"]],
+         ["تُوجَدُ السَّبُّورَةُ ___ التَّلَامِيذِ.","🧑‍🏫","أَمَامَ",["خَلْفَ","مَسَاءً"]],
+         ["يَلْعَبُ الْأَطْفَالُ ___ الْبَيْتِ.","🏠⚽","خَارِجَ",["دَاخِلَ","شِتَاءً"]],
+         ["تَسْبَحُ الْأَسْمَاكُ ___ الْمَاءِ.","🐟","دَاخِلَ",["فَوْقَ","صَيْفًا"]]
+       ],
+       "kindAsk": "هَلِ الظَّرْفُ فِي الْجُمْلَةِ ظَرْفُ زَمَانٍ أَمْ ظَرْفُ مَكَانٍ؟",
+       "kinds": [["تَتَنَقَّلُ الْعَصَافِيرُ بَيْنَ الْأَشْجَارِ.","مكان"],["جَاءَ مُحَمَّدٌ بَيْنَ الظُّهْرِ وَالْعَصْرِ.","زمان"],["قَابَلْتُ عُمَرَ بَعْدَ الْعَشَاءِ.","زمان"],["قَابَلْتُ عُمَرَ بَعْدَ سُورِ الْمَدْرَسَةِ.","مكان"],["يَجْلِسُ الطِّفْلُ أَمَامَ التِّلْفَازِ.","مكان"],["تَسْقُطُ الْأَمْطَارُ شِتَاءً.","زمان"]]},
+      {"id": "v6", "kind": "vocab", "title": "البطل الصغير", "icon": "🦸",
+       "poem": ["الْبَطَلُ الصَّغِيرْ","عَادَاتُهُ مُفِيدَةْ","يَقُومُ فِي الْبُكُورْ","لِلنُّورِ وَالسُّرُورْ","يُنَظِّفُ الْأَسْنَانْ","يُرَتِّبُ الْمَكَانْ","طَعَامُهُ صِحِّيّ","وَجِسْمُهُ قَوِيّ","الْبَطَلُ الصَّغِيرْ","حَيَاتُهُ سَعِيدَةْ"],
+       "syn": [["عَادَاتُهُ","أَفْعَالُهُ الَّتِي اعْتَادَ الْقِيَامَ بِهَا"],["الْبُكُورُ","أَوَّلُ النَّهَارِ"],["السُّرُورُ","السَّعَادَةُ"],["صِحِّيٌّ","مُفِيدٌ لِلصِّحَّةِ"],["مُفِيدَةٌ","نَافِعَةٌ"]],
+       "opp": [["مُفِيدَةٌ","مُضِرَّةٌ"],["السُّرُورُ","الْحُزْنُ"],["الْبُكُورُ","آخِرُ النَّهَارِ"],["قَوِيٌّ","ضَعِيفٌ"],["الصَّغِيرُ","الْكَبِيرُ"],["نُورٌ","ظَلَامٌ"],["سَعِيدَةٌ","تَعِيسَةٌ"]],
+       "plural": [["الْبَطَلُ","الْأَبْطَالُ"],["الطَّعَامُ","الْأَطْعِمَةُ"],["جِسْمٌ","أَجْسَامٌ"],["عَادَةٌ","عَادَاتٌ"],["سِنٌّ","أَسْنَانٌ"],["مَكَانٌ","أَمَاكِنُ"]]}
+    ]},
+    {"title": "الوحدة الثالثة: الرياضة والتكنولوجيا", "lessons": [
+      {"id": "v7", "kind": "vocab", "title": "حسام والكمبيوتر", "icon": "💻",
+       "syn": [["مُتَأَلِّمًا","مُتَوَجِّعًا"],["ابْتِسَامَةٌ","ضَحِكٌ بِدُونِ صَوْتٍ"],["يُؤْذِي","يَضُرُّ"],["اللَّازِمَةُ","الضَّرُورِيَّةُ"],["أُكْمِلُ","أُتِمُّ"],["تُمَارِسُ","تُؤَدِّي"],["يُوَزِّعُ","يُقَسِّمُ"]],
+       "opp": [["يَجْلِسُ","يَقِفُ"],["طَوِيلَةٌ","قَصِيرَةٌ"],["أَمَامَ","خَلْفَ"],["وَضَعَ","رَفَعَ"],["أَعْرِفُ","أَجْهَلُ"],["تُحِبُّ","تَكْرَهُ"],["يُؤْذِي","يَنْفَعُ"],["يُقَلِّلُ","يَزِيدُ"]],
+       "plural": [["الْيَوْمُ","الْأَيَّامُ"],["عَيْنٌ","عُيُونٌ"],["الْأُمُّ","الْأُمَّهَاتُ"],["الْحَرَكَةُ","الْحَرَكَاتُ"],["وَقْتٌ","أَوْقَاتٌ"],["فَتْرَةٌ","فَتَرَاتٌ"],["الشَّاشَةُ","الشَّاشَاتُ"],["مُشْكِلَةٌ","مُشْكِلَاتٌ"],["اللُّعْبَةُ","الْأَلْعَابُ"]]},
+      {"id": "amr", "kind": "grammar", "title": "أسلوب الأمر", "icon": "📣",
+       "rule": ["فِعْلُ الْأَمْرِ: طَلَبُ الْقِيَامِ بِشَيْءٍ مَا.", "الْجُمْلَةُ الَّتِي فِيهَا فِعْلُ أَمْرٍ تُسَمَّى أُسْلُوبَ الْأَمْرِ."],
+       "examples": [["ارْسُمِ اللَّوْحَةَ. (لِلْوَلَدِ)","👦🎨"],["ارْسُمِي اللَّوْحَةَ. (لِلْبِنْتِ)","👧🎨"],["حَافِظْ عَلَى الْمِيَاهِ.","👦💧"],["حَافِظِي عَلَى الْمِيَاهِ.","👧💧"]],
+       "ask": "اخْتَرِ الْفِعْلَ الْمُنَاسِبَ لِتُكْمِلَ أُسْلُوبَ الْأَمْرِ",
+       "qs": [
+         ["___ الْوَاجِبَ يَا سَارَةُ.","👧📒","اكْتُبِي",["كَتَبَ","اكْتُبْ"]],
+         ["___ غُرْفَتَكَ يَا أَنَسُ.","👦🛏️","رَتِّبْ",["يُرَتِّبُ","رَتِّبِي"]],
+         ["___ يَدَكَ قَبْلَ الْأَكْلِ وَبَعْدَهُ يَا خَالِدُ.","👦🧼","اغْسِلْ",["يَغْسِلُ","اغْسِلِي"]],
+         ["___ خَطَّكَ يَا مُرَادُ.","👦✍️","حَسِّنْ",["يُحَسِّنُ","حَسِّنِي"]],
+         ["___ عَلَى الْكُرْسِيِّ يَا مَرْيَمُ.","👧🪑","اجْلِسِي",["اجْلِسْ","جَلَسَ"]],
+         ["___ عَلَى الْمِيَاهِ يَا سَلْمَى.","👧💧","حَافِظِي",["حَافِظْ","يُحَافِظُ"]],
+         ["___ أَسْنَانَكَ يَا عَلِيُّ.","👦🪥","نَظِّفْ",["نَظِّفِي","يُنَظِّفُ"]]
+       ]},
+      {"id": "nahy", "kind": "grammar", "title": "أسلوب النهي", "icon": "🚫",
+       "rule": ["أُسْلُوبُ النَّهْيِ = لَا النَّاهِيَةُ + فِعْلٌ مُضَارِعٌ.", "مِثْلُ: لَا تَكْتُبْ عَلَى الْحَائِطِ، لِلْوَلَدِ. وَلَا تَكْتُبِي عَلَى الْحَائِطِ، لِلْبِنْتِ."],
+       "examples": [["لَا تَكْتُبْ عَلَى الْحَائِطِ.","👦🧱"],["لَا تَكْتُبِي عَلَى الْحَائِطِ.","👧🧱"],["لَا تَلْعَبْ بِالْكَهْرَبَاءِ.","⚡"]],
+       "ask": "أَكْمِلْ بِالْكَلِمَةِ الْمُنَاسِبَةِ لِتُكَوِّنَ أُسْلُوبَ نَهْيٍ",
+       "qs": [
+         ["لَا ___ مِنَ النَّارِ.","🔥","تَقْتَرِبْ",["اقْتَرِبْ","اقْتَرَبَ"]],
+         ["لَا ___ عَنْ مَوْعِدِ الْمَدْرَسَةِ يَا آدَمُ.","👦🏫","تَتَأَخَّرْ",["تَأَخَّرْ","تَأَخَّرَ"]],
+         ["لَا ___ بِالْكُرَةِ فِي الشَّارِعِ يَا فَاطِمَةُ.","👧⚽","تَلْعَبِي",["تَلْعَبْ","الْعَبِي"]],
+         ["لَا ___ غُصْنَ الشَّجَرَةِ.","🌳","تَقْطَعْ",["اقْطَعْ","قَطَعَ"]],
+         ["لَا ___ أَمَامَ شَاشَةِ الْكُمْبْيُوتَرِ لِفَتْرَةٍ طَوِيلَةٍ.","💻","تَجْلِسْ",["اجْلِسْ","جَلَسَ"]],
+         ["لَا ___ بِالْكَهْرَبَاءِ.","⚡","تَلْعَبْ",["الْعَبْ","لَعِبَ"]]
+       ],
+       "kindAsk": "هَلْ هَذِهِ الْجُمْلَةُ أُسْلُوبُ أَمْرٍ أَمْ أُسْلُوبُ نَهْيٍ؟",
+       "kinds": [["حَافِظْ عَلَى نَظَافَةِ الشَّارِعِ.","أمر"],["لَا تُسْرِفْ فِي الْمَاءِ.","نهي"],["اغْسِلْ أَسْنَانَكَ بِالْفُرْشَاةِ.","أمر"],["لَا تَقْطِفِي الزُّهُورَ.","نهي"],["اسْتَمِعْ إِلَى نَصَائِحِ الْكِبَارِ.","أمر"],["لَا تَلْعَبْ فِي الشَّارِعِ.","نهي"]]},
+      {"id": "sim", "kind": "grammar", "title": "الحروف المتشابهة في النطق", "icon": "🔤",
+       "rule": ["بَعْضُ الْحُرُوفِ تَتَشَابَهُ فِي النُّطْقِ، فَنَنْتَبِهُ عِنْدَ كِتَابَتِهَا:", "ت وَ ط، د وَ ض، ق وَ ك، ذ وَ ث وَ ظ، ز وَ س وَ ص."],
+       "examples": [["تُفَّاحَةٌ / طَائِرَةٌ (ت / ط)","🍎✈️"],["دِيكٌ / ضِرْسٌ (د / ض)","🐓🦷"],["قَلْبٌ / كَلْبٌ (ق / ك)","❤️🐕"],["ذَهَبٌ / ثَلْجٌ / ظَرْفٌ (ذ / ث / ظ)","🪙❄️✉️"],["زَهْرَةٌ / سَيْفٌ / صَقْرٌ (ز / س / ص)","🌸🗡️🦅"]],
+       "quiz": "sim",
+       "words": [["دِيكٌ","🐓","د","ض"],["ضِرْسٌ","🦷","ض","د"],["قَلْبٌ","❤️","ق","ك"],["كَلْبٌ","🐕","ك","ق"],["ذَهَبٌ","🪙","ذ","ث ظ"],["ثَلْجٌ","❄️","ث","ذ ظ"],["ظَرْفٌ","✉️","ظ","ذ ث"],["زَهْرَةٌ","🌸","ز","س ص"],["سَيْفٌ","🗡️","س","ز ص"],["صَقْرٌ","🦅","ص","س ز"],["طَائِرَةٌ","✈️","ط","ت"],["تُفَّاحَةٌ","🍎","ت","ط"],["دُبٌّ","🐻","د","ض"],["ضِفْدَعٌ","🐸","ض","د"],["سَمَكَةٌ","🐟","س","ص ز"],["صُنْدُوقٌ","📦","ص","س ز"],["طَبْلٌ","🥁","ط","ت"],["تَاجٌ","👑","ت","ط"]]},
+      {"id": "v8", "kind": "vocab", "title": "في النادي", "icon": "🏅",
+       "syn": [["الْعُطْلَةُ","الْإِجَازَةُ"],["الْمُفَضَّلَةُ","الْمَحْبُوبَةُ"],["تَفَوُّقُهُ","تَقَدُّمُهُ"],["جَيِّدَةٌ","حَسَنَةٌ"],["التَّعَاوُنُ","الْمُسَاعَدَةُ"],["مَهَارَاتٌ","قُدُرَاتٌ"],["الْمُتَنَوِّعَةُ","الْمُخْتَلِفَةُ"],["تَرْكِيزٌ","انْتِبَاهٌ"]],
+       "opp": [["ذَهَبَ","رَجَعَ"],["الْمُفَضَّلَةُ","الْمَكْرُوهَةُ"],["الِانْتِهَاءُ","الِابْتِدَاءُ"],["جَيِّدَةٌ","رَدِيئَةٌ"],["فُزْتُ","خَسِرْتُ"],["التَّعَاوُنُ","التَّخَاذُلُ"],["الْمُتَنَوِّعَةُ","الْمُتَشَابِهَةُ"],["سُرْعَةٌ","بُطْءٌ"]],
+       "plural": [["الْعُطْلَةُ","الْعُطُلَاتُ"],["أُخْتٌ","أَخَوَاتٌ"],["النَّادِي","النَّوَادِي"],["سَبَبٌ","أَسْبَابٌ"],["فِكْرٌ","أَفْكَارٌ"],["فَرِيقٌ","فِرَقٌ"],["مُسَابَقَةٌ","مُسَابَقَاتٌ"],["كُرَةٌ","كُرَاتٌ"]]},
+      {"id": "rel", "kind": "grammar", "title": "الأسماء الموصولة (الذي – التي)", "icon": "🔗",
+       "rule": ["الَّذِي: يُسْتَخْدَمُ مَعَ الْمُفْرَدِ الْمُذَكَّرِ.", "الَّتِي: تُسْتَخْدَمُ مَعَ الْمُفْرَدِ الْمُؤَنَّثِ."],
+       "examples": [["هَذَا الْوَلَدُ الَّذِي فَازَ بِالْجَائِزَةِ.","👦🏆"],["هَذِهِ الْبِنْتُ الَّتِي فَازَتْ بِالْجَائِزَةِ.","👧🏆"],["الْقَلَمُ الَّذِي اشْتَرَيْتُهُ جَمِيلٌ.","✏️"],["الْحَقِيبَةُ الَّتِي اشْتَرَيْتُهَا جَمِيلَةٌ.","👜"]],
+       "ask": "اخْتَرِ الْإِجَابَةَ الصَّحِيحَةَ: الَّذِي أَمِ الَّتِي؟",
+       "qs": [
+         ["الْبَيْتُ ___ نَسْكُنُ فِيهِ قَرِيبٌ.","🏠","الَّذِي",["الَّتِي"]],
+         ["اللُّعْبَةُ ___ يُحِبُّهَا حُسَامٌ مُمْتِعَةٌ.","🎮","الَّتِي",["الَّذِي"]],
+         ["الرِّيَاضَةُ ___ أُمَارِسُهَا هِيَ كُرَةُ الْيَدِ.","🤾","الَّتِي",["الَّذِي"]],
+         ["الْوَقْتُ ___ يَقْضِيهِ حُسَامٌ أَمَامَ الْحَاسُوبِ طَوِيلٌ.","💻","الَّذِي",["الَّتِي"]],
+         ["الطَّبِيبَةُ ___ تُعَالِجُ الْمَرْضَى مَاهِرَةٌ.","👩‍⚕️","الَّتِي",["الَّذِي"]],
+         ["الْكِتَابُ ___ قَرَأْتُهُ مُفِيدٌ.","📕","الَّذِي",["الَّتِي"]],
+         ["الشَّجَرَةُ ___ أَمَامَ الْبَيْتِ عَالِيَةٌ.","🌳","الَّتِي",["الَّذِي"]]
+       ]},
+      {"id": "v9", "kind": "vocab", "title": "نشيد رياضتي", "icon": "🏃",
+       "poem": ["رِيَاضَتِي الْجَدِيدَةْ","نَافِعَةٌ مُفِيدَةْ","جِسْمِي بِهَا قَوِيّ","عَقْلِي بِهَا ذَكِيّ","تُرَتِّبُ الْأَوْقَاتْ","تُجَمِّلُ الْحَيَاةْ","تُعَلِّمُ النِّظَامْ","وَتَصْنَعُ السَّلَامْ"],
+       "syn": [["نَافِعَةٌ","مُفِيدَةٌ"],["ذَكِيٌّ","سَرِيعُ الْفَهْمِ"],["تُجَمِّلُ","تُحَسِّنُ"],["النِّظَامُ","التَّرْتِيبُ"]],
+       "opp": [["الْجَدِيدَةُ","الْقَدِيمَةُ"],["نَافِعَةٌ","ضَارَّةٌ"],["ذَكِيٌّ","غَبِيٌّ"],["السَّلَامُ","الْحَرْبُ"],["النِّظَامُ","الْفَوْضَى"]],
+       "plural": [["جِسْمٌ","أَجْسَامٌ"],["ذَكِيٌّ","أَذْكِيَاءُ"],["عَقْلٌ","عُقُولٌ"]]},
+      {"id": "review", "kind": "review", "title": "مراجعة عامة", "icon": "📝"}
+    ]}
+  ],
+  "dual": [["قَلَمٌ","قَلَمَانِ","أَقْلَامٌ","✏️"],["كِتَابٌ","كِتَابَانِ","كُتُبٌ","📕"],["وَلَدٌ","وَلَدَانِ","أَوْلَادٌ","👦"],["بِنْتٌ","بِنْتَانِ","بَنَاتٌ","👧"],["شَجَرَةٌ","شَجَرَتَانِ","أَشْجَارٌ","🌳"],["طَبِيبٌ","طَبِيبَانِ","أَطِبَّاءُ","👨‍⚕️"],["مُعَلِّمَةٌ","مُعَلِّمَتَانِ","مُعَلِّمَاتٌ","👩‍🏫"],["فِيلٌ","فِيلَانِ","أَفْيَالٌ","🐘"],["أَرْنَبٌ","أَرْنَبَانِ","أَرَانِبُ","🐇"],["وَرْدَةٌ","وَرْدَتَانِ","وُرُودٌ","🌹"]],
+  "dualWords": [["بُرْتُقَالَةٌ","مفرد"],["أَرْنَبَانِ","مثنى"],["رَجُلَيْنِ","مثنى"],["فِيلٌ","مفرد"],["يَوْمَانِ","مثنى"],["مُعَلِّمَةٌ","مفرد"],["طَبِيبٌ","مفرد"],["مُهَنْدِسَيْنِ","مثنى"]],
+  "syll": [["فَاكِهَةٌ","فَا / كِ / هَـ / ـةٌ","🍇"],["أَلْعَابٌ","أَلْ / عَا / بٌ","🧸"],["الْكُرَةُ","الْ / كُ / رَ / ةُ","⚽"],["مَدْرَسَةٌ","مَدْ / رَ / سَـ / ـةٌ","🏫"],["قَلَمٌ","قَ / لَ / مٌ","✏️"],["شَمْسٌ","شَمْ / سٌ","☀️"],["كِتَابٌ","كِ / تَا / بٌ","📕"],["الْقَرْيَةُ","الْ / قَرْ / يَـ / ـةُ","🏡"],["تُفَّاحَةٌ","تُفْ / فَا / حَـ / ـةٌ","🍎"],["سَمَكَةٌ","سَ / مَ / كَـ / ـةٌ","🐟"]],
+  "say": {
+    "homeCourse": "أهلًا! اختر درسًا من منهج الصف الثاني",
+    "words": "اضغط على الكلمة لتسمعها، وتعلّم معناها ومضادها وجمعها",
+    "poem": "اسمع النشيد، واضغط على كل سطر لتردده",
+    "learn": "اقرأ القاعدة، واضغط على الأمثلة لتسمعها",
+    "syn": "اختر معنى الكلمة",
+    "opp": "اختر مضاد الكلمة",
+    "plural": "اختر جمع الكلمة",
+    "single": "اختر مفرد الكلمة",
+    "dualQ": "اختر المثنى",
+    "dualKind": "هل هذه الكلمة مفرد أم مثنى؟",
+    "syllQ": "اختر التحليل الصحيح إلى مقاطع صوتية",
+    "syllCount": "كم مقطعًا صوتيًا في هذه الكلمة؟",
+    "lamQ": "هل اللام في هذه الكلمة شمسية أم قمرية؟",
+    "lamPick": "اضغط على الكلمات التي فيها لام شمسية",
+    "simQ": "اختر الحرف الناقص",
+    "stepDone": "أحسنت! هيا للخطوة التالية",
+    "tryAgain": "حاول مرة أخرى",
+    "allDone": "رائع! أنهيت الدرس كله",
+    "reviewIntro": "هيا نراجع كل ما تعلمناه",
+    "playGame": "هيا نلعب لعبة هذا وهذه وهؤلاء",
+    "sun": "لام شمسية", "moon": "لام قمرية",
+    "mufrad": "مفرد", "muthanna": "مثنى", "zaman": "ظرف زمان", "makan": "ظرف مكان", "amr": "أسلوب أمر", "nahy": "أسلوب نهي"
+  }
+}
+</script>
 <script>
 (() => {
   // ---------- data ----------
@@ -552,13 +833,13 @@
   }
 
   // ---------- screens ----------
-  const screens = ["scrStart", "scrLearn", "scrQuiz", "scrEnd"];
+  const screens = ["scrCourse", "scrLesson", "scrStart", "scrLearn", "scrQuiz", "scrEnd"];
   function show(id) {
     screens.forEach(s => $(s).hidden = s !== id);
-    $("homeBtn").hidden = id === "scrStart";
+    $("homeBtn").hidden = id === "scrCourse";
     scrollTo({ top: 0, behavior: "smooth" });
   }
-  $("homeBtn").onclick = () => { show("scrStart"); talk(withName("أهلًا يا بطل! اختر: تعلّم أو العب"), "أهلًا يا بطل! اختر: تعلّم أو العب"); };
+  $("homeBtn").onclick = () => showCourse();
 
   // ---------- learn ----------
   let learnTab = "hatha";
@@ -808,7 +1089,267 @@
     talk(withName(msg), [msg, `حصلت على ${score} من ${TOTAL()}`]);
   }
 
-  show("scrStart");
+  // ================= منهج العربي للصف الثاني (الترم الأول): units, lessons and exercises from the school book =================
+  const G2 = JSON.parse($("g2Data").textContent);
+  const GS = G2.say;
+  const sample = (a, n) => shuffle(a).slice(0, n);
+  const MARKS = /[ً-ْ]/g;
+  const LESSONS = G2.units.flatMap((u, ui) => u.lessons.map(l => ({ ...l, unit: ui })));
+
+  // ---------- progress ----------
+  let prog = {};
+  try { prog = JSON.parse(localStorage.getItem("g2-course") || "{}"); } catch (e) {}
+  const saveProg = () => { try { localStorage.setItem("g2-course", JSON.stringify(prog)); } catch (e) {} };
+  const stepsOf = L => L.kind === "vocab" ? [...(L.poem ? ["poem"] : []), "words", "quiz"] : L.kind === "review" ? ["quiz"] : ["learn", "quiz"];
+  const STEP_LABEL = { poem: "🎵 النشيد", words: "📖 الكلمات", learn: "💡 القاعدة", quiz: "🧩 تدريبات" };
+  const doneSteps = L => prog[L.id] || [];
+  function markDone(L, s) { const d = doneSteps(L); if (!d.includes(s)) { prog[L.id] = [...d, s]; saveProg(); } }
+
+  // ---------- course home ----------
+  function renderCourse() {
+    const box = $("g2Units"); box.innerHTML = "";
+    let n = 0;
+    G2.units.forEach((u, ui) => {
+      box.insertAdjacentHTML("beforeend", `<h2 class="unit-title">${u.title}</h2><div class="course-list" id="unit${ui}"></div>`);
+      LESSONS.filter(L => L.unit === ui).forEach(L => {
+        n++;
+        const st = stepsOf(L), d = doneSteps(L).filter(s => st.includes(s)).length;
+        const b = document.createElement("button");
+        b.className = "lesson-card" + (d >= st.length ? " done" : "") + (L.kind !== "vocab" ? " special" : "");
+        const sub = L.kind === "vocab" ? (L.poem ? "نشيد وكلمات" : "قراءة وكلمات") : L.kind === "review" ? "مراجعة" : "أساليب وقواعد";
+        b.innerHTML = `<span class="lc-num">${ar(n)}</span><span class="lc-ch">${L.icon}</span>
+          <span class="lc-info"><b>${L.title}</b><small>${sub}</small><span class="bar-prog"><i style="width:${Math.round(100 * d / st.length)}%"></i></span></span>
+          <span class="lc-state">${d >= st.length ? "⭐" : d ? "▶️" : ""}</span>`;
+        b.onclick = () => openLesson(L);
+        $("unit" + ui).appendChild(b);
+      });
+    });
+  }
+  function showCourse() {
+    hush(); show("scrCourse"); renderCourse();
+    talk(withName(GS.homeCourse), GS.homeCourse);
+  }
+  $("goGame").onclick = () => { show("scrStart"); talk(withName("أهلًا يا بطل! اختر: تعلّم أو العب"), "أهلًا يا بطل! اختر: تعلّم أو العب"); };
+
+  // ---------- lesson screen ----------
+  let lesson = null, lstep = null;
+  const lbody = () => $("lBody");
+  function openLesson(L, s) {
+    lesson = L; show("scrLesson");
+    $("lIcon").textContent = L.icon; $("lTitle").textContent = L.title;
+    const st = stepsOf(L);
+    goStep(s || st.find(x => !doneSteps(L).includes(x)) || st[0]);
+  }
+  function renderSteps() {
+    const box = $("lSteps"); box.innerHTML = "";
+    stepsOf(lesson).forEach(s => {
+      const b = document.createElement("button");
+      b.className = "chip" + (s === lstep ? " on" : doneSteps(lesson).includes(s) ? " done" : "");
+      b.textContent = STEP_LABEL[s]; b.onclick = () => goStep(s);
+      box.appendChild(b);
+    });
+  }
+  function goStep(s) { lstep = s; renderSteps(); scrollTo({ top: 0 }); STEPS[s](lesson); }
+  function button(label, cls, onClick) {
+    const b = document.createElement("button");
+    b.className = "big-act " + cls; b.textContent = label; b.onclick = onClick;
+    lbody().appendChild(b); return b;
+  }
+  const nextButton = () => button("التالي ⬅", "go", nextStep);
+  function nextStep() {
+    markDone(lesson, lstep);
+    const st = stepsOf(lesson), i = st.indexOf(lstep);
+    if (i < st.length - 1) goStep(st[i + 1]); else lessonDone();
+  }
+  function stepCleared(text = GS.stepDone) {
+    markDone(lesson, lstep); renderSteps();
+    lbody().innerHTML = `<div class="cleared"><div class="big-em">🌟</div><p>${text}</p></div>`;
+    talk(withName(text), text);
+    nextButton();
+  }
+  function lessonDone() {
+    renderSteps(); confetti(160); setTimeout(() => confetti(100), 500); fanfare();
+    lbody().innerHTML = `<div class="cleared"><div class="big-em">🏆</div><p>${GS.allDone}</p></div>`;
+    talk(withName(GS.allDone), GS.allDone);
+    const i = LESSONS.indexOf(lesson);
+    if (i < LESSONS.length - 1) button("الدرس التالي ⬅", "go", () => openLesson(LESSONS[i + 1]));
+    button("📚 المنهج", "", showCourse);
+  }
+
+  // ---------- question engine ----------
+  // q = { text, say, show(box, resolve) }; resolve(ok, btn, afterParts)
+  function runQuiz(qs, onEnd) {
+    let i = 0;
+    const next = () => {
+      if (i >= qs.length) return onEnd();
+      const q = qs[i];
+      lbody().innerHTML = `<div class="qdots">${qs.map((_, j) => `<span class="${j < i ? "on" : j === i ? "now" : ""}"></span>`).join("")}</div><div class="q" id="qBox"></div>`;
+      let first = true, over = false;
+      const resolve = (ok, btn, after) => {
+        if (over) return;
+        if (ok) {
+          over = true;
+          if (btn) btn.classList.add("right");
+          lbody().querySelectorAll(".q button").forEach(b => { if (b !== btn && !b.classList.contains("hear")) b.disabled = true; });
+          if (q.onRight) q.onRight();
+          ding(); confetti(first ? 45 : 15);
+          const pr = pick(PRAISE);
+          talk(withName(pr), [pr, ...(after || [])]);
+          i++; setTimeout(next, 1600 + (after ? after.length * 1300 : 0));
+        } else {
+          first = false; boop();
+          if (btn) { btn.classList.remove("no"); void btn.offsetWidth; btn.classList.add("no"); btn.disabled = true; }
+          talk(GS.tryAgain);
+        }
+      };
+      q.show($("qBox"), resolve);
+      talk(q.text, q.say || q.text);
+    };
+    next();
+  }
+  const hearBtn = parts => { const b = document.createElement("button"); b.className = "hear"; b.textContent = "🔊 اسمع"; b.onclick = () => say(parts); return b; };
+  function qChoice({ text, say: parts, emo, html, hear, opts, cls = "", onRight }) {
+    return { text, say: parts, onRight, show(box, resolve) {
+      const h = document.createElement("div"); h.className = "q-head";
+      if (emo) h.insertAdjacentHTML("beforeend", `<div class="q-pic">${emo}</div>`);
+      if (html) h.insertAdjacentHTML("beforeend", html);
+      if (hear) h.appendChild(hearBtn(hear));
+      box.appendChild(h);
+      const o = document.createElement("div"); o.className = "q-opts " + cls; box.appendChild(o);
+      opts.forEach(op => {
+        const b = document.createElement("button");
+        b.className = "opt"; b.innerHTML = op.html;
+        b.onclick = () => resolve(op.ok, b, op.ok ? op.after : null);
+        o.appendChild(b);
+      });
+    } };
+  }
+  function qMulti({ text, say: parts, items, cls = "many" }) {
+    return { text, say: parts, show(box, resolve) {
+      const o = document.createElement("div"); o.className = "q-opts " + cls; box.appendChild(o);
+      let left = items.filter(x => x.ok).length;
+      items.forEach(it => {
+        const b = document.createElement("button"); b.className = "opt"; b.innerHTML = it.html;
+        b.onclick = () => {
+          if (!it.ok) return resolve(false, b);
+          b.disabled = true; b.classList.add("picked"); say(it.v);
+          if (--left === 0) resolve(true, null); else tone([880], .06);
+        };
+        o.appendChild(b);
+      });
+    } };
+  }
+  const opts = (right, wrong, after) => shuffle([right, ...wrong]).map(x => ({ html: x, ok: x === right, after }));
+  const sentence = (t, fill) => t.replace("___", fill === undefined ? '<span class="gap">؟</span>' : `<b class="filled">${fill}</b>`);
+
+  // ---------- question makers (one per exercise type in the book) ----------
+  const ALLV = LESSONS.filter(l => l.kind === "vocab");
+  const pool = key => ALLV.flatMap(l => l[key] || []);
+  function vocabQs(L, n = 7) {
+    const qs = [];
+    const add = (key, text, pairs, flip) => sample(pairs, 2).forEach(([a, b]) => {
+      const [w, right] = flip ? [b, a] : [a, b];
+      const wrong = sample([...new Set(pool(key).map(p => flip ? p[0] : p[1]).filter(x => x !== right && x !== w))], 2);
+      qs.push(qChoice({ text, say: [text, w], html: `<div class="q-word">${w}</div>`, hear: [w], opts: opts(right, wrong, [w, right]) }));
+    });
+    add("syn", GS.syn, L.syn); add("opp", GS.opp, L.opp); add("plural", GS.plural, L.plural);
+    const [s, p] = pick(L.plural);
+    const wrong = sample(pool("plural").map(x => x[0]).filter(x => x !== s), 2);
+    qs.push(qChoice({ text: GS.single, say: [GS.single, p], html: `<div class="q-word">${p}</div>`, hear: [p], opts: opts(s, wrong, [p, s]) }));
+    return sample(qs, n);
+  }
+  const fillQs = (L, n) => sample(L.qs, n).map(([t, emo, right, wrong]) =>
+    qChoice({ text: L.ask, say: [L.ask], emo, html: `<div class="q-sent">${sentence(t)}</div>`, opts: opts(right, wrong, [t.replace("___", right)]) }));
+  const kindQs = (L, n) => sample(L.kinds, n).map(([t, k]) => {
+    const labels = L.id === "place" ? [["زمان", GS.zaman], ["مكان", GS.makan]] : [["أمر", GS.amr], ["نهي", GS.nahy]];
+    return qChoice({ text: L.kindAsk, say: [L.kindAsk, t], html: `<div class="q-sent">${t}</div>`, hear: [t], cls: "two",
+      opts: labels.map(([key, lbl]) => ({ html: lbl, ok: key === k, after: [lbl] })) });
+  });
+  const pickQs = (L, n) => sample(L.picks, n).map(([t, right]) =>
+    qChoice({ text: L.pick, say: [L.pick, t], html: `<div class="q-sent">${t}</div>`, hear: [t], cls: "many",
+      opts: t.replace(/[.،]/g, "").split(" ").map(w => ({ html: w, ok: w === right, after: [t] })) }));
+  const SPECIAL = {
+    dual: n => [
+      ...sample(G2.dual, Math.ceil(n / 2)).map(([s, d, p, emo]) => qChoice({ text: GS.dualQ, say: [GS.dualQ, s], emo: emo + emo,
+        html: `<div class="q-word">${s} + ${s}</div>`, opts: opts(d, [p, s], [d]) })),
+      ...sample(G2.dualWords, Math.floor(n / 2)).map(([w, k]) => qChoice({ text: GS.dualKind, say: [GS.dualKind, w], html: `<div class="q-word">${w}</div>`,
+        hear: [w], cls: "two", opts: [["مفرد", GS.mufrad], ["مثنى", GS.muthanna]].map(([key, lbl]) => ({ html: lbl, ok: key === k, after: [w] })) })),
+    ],
+    syll: n => sample(G2.syll, n).map(([w, split, emo], i) => {
+      const parts = split.split(" / ");
+      if (i % 2) {
+        const c = parts.length;
+        return qChoice({ text: GS.syllCount, say: [GS.syllCount, w], emo, html: `<div class="q-word">${w}</div>`, hear: [w],
+          opts: opts(ar(c), [ar(c - 1), ar(c + 1)], [w]) });
+      }
+      const merged = k => parts.slice(0, k).concat(parts[k] + parts[k + 1], parts.slice(k + 2)).join(" / ").replace(/ـ/g, "");
+      const wrong = [...new Set([merged(0), merged(parts.length - 2), merged(Math.floor((parts.length - 1) / 2))])].filter(x => x !== split).slice(0, 2);
+      return qChoice({ text: GS.syllQ, say: [GS.syllQ, w], emo, html: `<div class="q-word">${w}</div>`, hear: [w], cls: "one", opts: opts(split, wrong, [w]) });
+    }),
+    lam: n => [
+      ...sample(LESSONS.find(l => l.id === "lam").words, n - 1).map(([w, emo, k]) => qChoice({ text: GS.lamQ, say: [GS.lamQ, w], emo,
+        html: `<div class="q-word">${w}</div>`, hear: [w], cls: "two",
+        opts: [["s", "☀️ " + GS.sun], ["q", "🌙 " + GS.moon]].map(([key, lbl]) => ({ html: lbl, ok: key === k, after: [w] })) })),
+      (() => { const ws = sample(LESSONS.find(l => l.id === "lam").words, 6);
+        return qMulti({ text: GS.lamPick, say: [GS.lamPick], items: ws.map(([w, emo, k]) => ({ html: `${emo}<br>${w}`, v: w, ok: k === "s" })) }); })(),
+    ],
+    sim: n => sample(LESSONS.find(l => l.id === "sim").words, n).map(([w, emo, right, others]) => {
+      const rest = w.replace(/^.[ً-ْ]*/, "");
+      return qChoice({ text: GS.simQ, say: [GS.simQ, w], emo, hear: [w],
+        html: `<div class="q-word"><span class="tile-l blank">؟</span>${rest}</div>`, opts: opts(right, others.split(" "), [w]) });
+    }),
+  };
+  function grammarQs(L) {
+    if (L.quiz) return SPECIAL[L.quiz](L.quiz === "lam" ? 7 : 6);
+    return [...fillQs(L, 5), ...(L.picks ? pickQs(L, 2) : []), ...(L.kinds ? kindQs(L, 3) : [])];
+  }
+
+  // ---------- steps ----------
+  const STEPS = {
+    poem(L) {
+      lbody().innerHTML = `<div class="poem"></div>`;
+      const box = lbody().querySelector(".poem");
+      L.poem.forEach(line => { const b = document.createElement("button"); b.className = "poem-line"; b.textContent = line; b.onclick = () => say(line); box.appendChild(b); });
+      button("▶️ اسمع النشيد كله", "primary", () => say(L.poem));
+      talk(GS.poem);
+      nextButton();
+    },
+    words(L) {
+      lbody().innerHTML = "";
+      [["syn", "الكلمة ومرادفها", "="], ["opp", "الكلمة ومضادها", "≠"], ["plural", "المفرد والجمع", "⬅"]].forEach(([key, title, sign]) => {
+        if (!L[key]) return;
+        lbody().insertAdjacentHTML("beforeend", `<h3 class="vt">${title}</h3><div class="vlist" id="v-${key}"></div>`);
+        L[key].forEach(([a, b]) => {
+          const r = document.createElement("button"); r.className = "vrow";
+          r.innerHTML = `<span>${a}</span><i>${sign}</i><span>${b}</span>`;
+          r.onclick = () => say([a, b]);
+          $("v-" + key).appendChild(r);
+        });
+      });
+      talk(GS.words);
+      nextButton();
+    },
+    learn(L) {
+      lbody().innerHTML = `<div class="rule-box"></div><div class="examples"></div>`;
+      L.rule.forEach(r => { const b = document.createElement("button"); b.className = "rule-line"; b.textContent = r; b.onclick = () => say(r); lbody().querySelector(".rule-box").appendChild(b); });
+      L.examples.forEach(([t, emo]) => { const b = document.createElement("button"); b.className = "ex-card"; b.innerHTML = `<span class="em">${emo}</span><span>${t}</span>`; b.onclick = () => say(t); lbody().querySelector(".examples").appendChild(b); });
+      if (L.game) button("🎮 العب لعبة هذا وهذه وهؤلاء", "primary", () => { say(GS.playGame); show("scrStart"); });
+      talk(GS.learn);
+      nextButton();
+    },
+    quiz(L) {
+      if (L.kind === "vocab") return runQuiz(vocabQs(L), () => stepCleared());
+      if (L.kind === "review") {
+        talk(GS.reviewIntro);
+        const qs = [...sample(ALLV, 3).flatMap(v => vocabQs(v, 1)),
+          ...sample(LESSONS.filter(l => l.kind === "grammar"), 5).flatMap(g => sample(grammarQs(g), 1))];
+        return runQuiz(shuffle(qs), () => stepCleared(GS.allDone));
+      }
+      runQuiz(grammarQs(L), () => stepCleared());
+    },
+  };
+
+  showCourse();
 })();
 </script>
 <a class="hub-link" href="./" aria-label="القائمة">🏫</a>

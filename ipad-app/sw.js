@@ -1,5 +1,5 @@
 // Caches the app so it works with no internet after the first open.
-const CACHE = "hatha-v7";
+const CACHE = "hatha-v8";
 const FILES = ["./", "index.html", "grade2.html", "letters.html", "english.html", "manifest.webmanifest", "voice-grade2.json", "voice-letters.json", "voice-english.json", "icons/apple-touch-icon.png", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png"];
 
 self.addEventListener("install", e => {
