@@ -21,6 +21,7 @@
     width: 56px; height: 56px; border-radius: 50%; background: #fff; display: grid; place-items: center;
     font-size: 28px; text-decoration: none; box-shadow: 0 5px 0 rgba(34,48,74,.18);
   }
+  .hub-link.left { right: auto; left: 14px; }   /* English page: the writing board sits on the right */
 </style>
 <title>هذا وهذه وهؤلاء</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -489,6 +490,7 @@
         try { const buf = await clipBuffer(part); if (id !== playId) return; await playBuffer(buf); continue; } catch (e) {}
       }
       if (!clips) await ttsPart(part);   // device voice only when the recorded voice could not load at all
+      else (window.__voiceMissing = window.__voiceMissing || new Set()).add(part);   // a phrase nobody recorded (checked by tests)
     }
   }
   function talk(text, speak = text) {

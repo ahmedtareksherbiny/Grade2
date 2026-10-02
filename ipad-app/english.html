@@ -23,10 +23,10 @@
   }
   .hub-link.left { right: auto; left: 14px; }   /* English page: the writing board sits on the right */
 </style>
-<title>حروفي بالقلم</title>
+<title>My ABC</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Noto+Naskh+Arabic:wght@700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Andika:wght@400;700&display=swap">
 <style>
   :root {
     color-scheme: light;
@@ -40,8 +40,8 @@
     --rule: #D6E7F5;
     --line-red: #F28B82;
     --shadow: 0 6px 0 rgba(34,48,74,.18);
-    --font: "Baloo Bhaijaan 2", "Segoe UI", Tahoma, Arial, sans-serif;
-    --letter-font: "Noto Naskh Arabic", "Traditional Arabic", "Segoe UI", serif;  /* book-style letter shapes */
+    --font: "Baloo 2", "Segoe UI", Arial, sans-serif;
+    --letter-font: "Andika", "Comic Sans MS", "Segoe UI", sans-serif;  /* school-style a and g */
   }
   html, body { height: 100%; }
   [hidden] { display: none !important; }
@@ -218,6 +218,16 @@
   .al-row.on .q-word { color: var(--go); }
   @keyframes shake { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-8px) } 75% { transform: translateX(8px) } }
 
+  /* ---- English page: left-to-right ---- */
+  .app[dir="ltr"] .bubble::after { right: auto; left: -10px; border: 10px solid transparent; border-right-color: #fff; border-left: 0; }
+  .app[dir="ltr"] .tip-row, .app[dir="ltr"] .lesson-card { text-align: left; }
+  .tile .ch, .t-letter, .l-letter, .lc-ch { letter-spacing: 1px; }
+  .qa-list { display: flex; flex-direction: column; gap: 12px; }
+  .qa { display: flex; flex-direction: column; gap: 6px; background: #fff; border-radius: 20px; padding: 10px 14px; }
+  .qa button { border: 0; text-align: left; font-family: var(--letter-font); font-size: 26px; border-radius: 16px; padding: 6px 14px; color: var(--ink); }
+  .qa-q { background: var(--sky); }
+  .qa-a { background: #FFF1C9; margin-left: 28px; }
+
   #fx { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 30; }
 
   @keyframes hop { 0%,100% { transform: translateY(0) } 40% { transform: translateY(-14px) scale(1.06) } }
@@ -232,46 +242,44 @@
 </style>
 
 <canvas id="fx"></canvas>
-<div class="app" dir="rtl" lang="ar">
+<div class="app" dir="ltr" lang="en">
   <div class="bar">
-    <button class="pill" id="homeBtn" hidden>🏠 الحروف</button>
+    <button class="pill" id="homeBtn" hidden>🏠 Home</button>
     <span id="barSpacer"></span>
     <div class="bar-group">
-      <button class="pill" id="penBtn" aria-pressed="false" title="عند التفعيل: اليد على الشاشة لا تكتب، القلم فقط">✏️ القلم فقط</button>
+      <button class="pill" id="penBtn" aria-pressed="false" title="When on, only the pen writes, so a resting hand does not">✏️ Pen only</button>
       <button class="pill" id="soundBtn" aria-pressed="true">🔊</button>
     </div>
   </div>
 
   <div class="guide">
     <div class="owl" id="owl" aria-hidden="true">🦉</div>
-    <div class="bubble" id="bubble" aria-live="polite">أهلًا! هيا نتعلم كتابة الحروف</div>
+    <div class="bubble" id="bubble" aria-live="polite">Hello! Let's learn English letters.</div>
   </div>
 
   <!-- HOME -->
   <section id="scrHome" style="display:flex;flex-direction:column;gap:14px">
-    <h1>حروفي <span class="pen">✏️</span></h1>
-    <p class="sub">أتعلم أكتب الحروف العربية بالقلم · KG1</p>
+    <h1>My ABC <span class="pen">✏️</span></h1>
+    <p class="sub">I learn to write English letters with my pen · KG1</p>
     <div class="home-tabs">
-      <button class="htab" id="tabCourse" aria-pressed="true">📚 منهج KG1</button>
-      <button class="htab" id="tabAll" aria-pressed="false">✍️ كل الحروف</button>
+      <button class="htab" id="tabCourse" aria-pressed="true">📚 KG1 lessons</button>
+      <button class="htab" id="tabAll" aria-pressed="false">✍️ All letters</button>
     </div>
     <div id="paneCourse" style="display:flex;flex-direction:column;gap:12px">
-      <p class="parents">الدروس بترتيب كتاب المدرسة. كل درس: تعرّف، اكتب بالقلم، الحركات، مكان الحرف، تدريبات، كلمة المنهج.</p>
+      <p class="parents">The lessons follow the school book: letters A to M, talk time, reading time and key words.</p>
       <div class="course-list" id="courseList"></div>
     </div>
     <div id="paneAll" hidden style="display:flex;flex-direction:column;gap:14px">
-    <button class="grip-btn" id="gripBtn">🤏 كيف أمسك القلم؟</button>
-
-    <h2>🤸 نسخّن أيدينا</h2>
-    <div class="grid" id="warmGrid"></div>
-
-    <h2>🔤 الحروف</h2>
-    <div class="grid" id="letterGrid"></div>
+      <button class="grip-btn" id="gripBtn">🤏 How do I hold the pen?</button>
+      <h2>🤸 Warm up</h2>
+      <div class="grid" id="warmGrid"></div>
+      <h2>🔤 Letters</h2>
+      <div class="grid" id="letterGrid"></div>
     </div>
-    <p class="parents">للأهل: مع Apple Pencil فعّلوا «القلم فقط» حتى لا تكتب يد الطفل عندما يسندها على الشاشة.</p>
+    <p class="parents">For parents: with an Apple Pencil, turn on “Pen only” so a resting hand does not write. للأهل: فعّلوا «Pen only» مع قلم الآيباد.</p>
   </section>
 
-  <!-- LESSON (منهج) -->
+  <!-- LESSON -->
   <section id="scrLesson" hidden style="display:flex;flex-direction:column;gap:12px">
     <div class="l-head"><div class="l-letter" id="lLetter"></div><div class="l-title" id="lTitle"></div></div>
     <div class="steps" id="lSteps"></div>
@@ -286,15 +294,15 @@
         <button class="t-word" id="tWord"></button>
       </div>
       <div class="steps">
-        <span class="chip" id="chipWatch">👀 شاهد</span>
-        <span class="chip" id="chipTrace">✍️ تتبّع</span>
-        <span class="chip" id="chipSolo">⭐ وحدك</span>
+        <span class="chip" id="chipWatch">👀 Watch</span>
+        <span class="chip" id="chipTrace">✍️ Trace</span>
+        <span class="chip" id="chipSolo">⭐ Alone</span>
       </div>
       <div class="t-actions">
-        <button class="act primary" id="soloBtn" hidden>⭐ اكتبه وحدك</button>
-        <button class="act go" id="nextBtn" hidden>الحرف التالي ⬅</button>
-        <button class="act" id="clearBtn">🧽 امسح</button>
-        <button class="act" id="watchBtn">👀 شاهد مرة ثانية</button>
+        <button class="act primary" id="soloBtn" hidden>⭐ Write it alone</button>
+        <button class="act go" id="nextBtn" hidden>Next ➡</button>
+        <button class="act" id="clearBtn">🧽 Clear</button>
+        <button class="act" id="watchBtn">👀 Watch again</button>
       </div>
     </div>
     <div class="board-wrap" id="board">
@@ -308,12 +316,12 @@
   <!-- GRIP CARD -->
   <div class="overlay" id="gripCard" hidden>
     <div class="card">
-      <h3>كيف أمسك القلم؟</h3>
-      <button class="tip-row" data-say="أمسك القلم بالإبهام والسبابة"><span class="n">١</span><span class="em">🤏</span>أمسك القلم بالإبهام والسبابة</button>
-      <button class="tip-row" data-say="أسند القلم على الإصبع الوسطى"><span class="n">٢</span><span class="em">✌️</span>أسند القلم على الإصبع الوسطى</button>
-      <button class="tip-row" data-say="أمسك القلم من قريب، فوق السن بقليل"><span class="n">٣</span><span class="em">✏️</span>أمسك القلم من قريب، فوق السن بقليل</button>
-      <button class="tip-row" data-say="اجلس معتدلًا، والجهاز أمامك على الطاولة"><span class="n">٤</span><span class="em">🪑</span>اجلس معتدلًا والجهاز أمامك</button>
-      <button class="act go" id="gripClose">فهمت 👍</button>
+      <h3>How do I hold the pen?</h3>
+      <button class="tip-row" data-say="Hold the pencil with your thumb and first finger."><span class="n">1</span><span class="em">🤏</span>Hold it with your thumb and first finger</button>
+      <button class="tip-row" data-say="Rest the pencil on your middle finger."><span class="n">2</span><span class="em">✌️</span>Rest it on your middle finger</button>
+      <button class="tip-row" data-say="Hold the pencil close to the tip."><span class="n">3</span><span class="em">✏️</span>Hold it close to the tip</button>
+      <button class="tip-row" data-say="Sit up straight, with the iPad in front of you."><span class="n">4</span><span class="em">🪑</span>Sit up straight, iPad in front of you</button>
+      <button class="act go" id="gripClose">Got it 👍</button>
     </div>
   </div>
 </div>
@@ -321,131 +329,163 @@
 <script type="application/json" id="courseData">
 {
   "lessons": [
-    {"ch": "أ", "match": "أإ", "words": [["أَسَد","🦁"],["أَرْنَب","🐇"],["أُذُن","👂"],["إِبْرَة","🪡"],["أَنَانَاس","🍍"],["إِصْبَع","👆"],["أَخْطَبُوط","🐙"],["فَأْر","🐭"],["كَأْس","🏆"]]},
-    {"ch": "ب", "word": ["أَب","👨"], "words": [["بَطَّة","🦆"],["بَقَرَة","🐄"],["بَحْر","🌊"],["بِنْت","👧"],["بَاب","🚪"],["بُرْتُقَال","🍊"],["خُبْز","🍞"],["حَبْل","🪢"],["كَلْب","🐕"],["عِنَب","🍇"]]},
-    {"ch": "م", "word": ["أُمّ","👩"], "words": [["مَوْز","🍌"],["مِفْتَاح","🔑"],["مُهَرِّج","🤡"],["مِقَصّ","✂️"],["مَدْرَسَة","🏫"],["مِلْعَقَة","🥄"],["نَمْلَة","🐜"],["شَمْس","☀️"],["قَلَم","✏️"]]},
-    {"ch": "ح", "word": ["حَبّ","🌾"], "words": [["حِصَان","🐴"],["حِمَار","🫏"],["حُوت","🐋"],["حَبْل","🪢"],["حَقِيبَة","🎒"],["لَحْم","🥩"],["مِلْح","🧂"],["تُفَّاح","🍎"]]},
-    {"ch": "د", "word": ["دُبّ","🐻"], "words": [["دِيك","🐓"],["دَجَاجَة","🐔"],["دُودَة","🐛"],["دَلْو","🪣"],["دَوَاء","💊"],["مَدْرَسَة","🏫"],["قِرْد","🐒"],["وَرْد","🌹"]]},
-    {"ch": "ج", "word": ["جَدّ","👴"], "words": [["جَمَل","🐫"],["جَرَس","🔔"],["جَزَر","🥕"],["جِسْر","🌉"],["جُبْن","🧀"],["جُنْدِي","💂"],["نَجْمَة","⭐"],["رَجُل","👨"],["تَاج","👑"],["ثَلْج","❄️"]]},
-    {"ch": "خ", "word": ["أَخ","👦"], "words": [["خَرُوف","🐑"],["خُبْز","🍞"],["خِيَار","🥒"],["خَاتَم","💍"],["خَسّ","🥬"],["نَخْلَة","🌴"],["بِطِّيخ","🍉"],["صَخْرَة","🪨"]]},
-    {"ch": "ت", "word": ["خَتْم","🔖"], "words": [["تُفَّاحَة","🍎"],["تَاج","👑"],["تِمْسَاح","🐊"],["تِنِّين","🐉"],["كَتْكُوت","🐥"],["بَيْت","🏠"],["زَيْت","🫒"],["تُوت","🫐"]]},
-    {"special": "ta", "title": "التاء المفتوحة والمربوطة", "icon": "ت ة"},
-    {"ch": "ل", "word": ["لَحْم","🥩"], "words": [["لَيْمُون","🍋"],["لِسَان","👅"],["لَبَن","🥛"],["لُعْبَة","🧸"],["قَلْب","❤️"],["فِيل","🐘"],["جَمَل","🐫"],["نَحْلَة","🐝"]]},
-    {"special": "al", "title": "ال التعريف", "icon": "ال"},
-    {"ch": "س", "word": ["سُلَّم","🪜"], "words": [["سَمَكَة","🐟"],["سَاعَة","⌚"],["سَيَّارَة","🚗"],["سَفِينَة","🚢"],["سِنْجَاب","🐿️"],["مَسْجِد","🕌"],["أَسَد","🦁"],["شَمْس","☀️"],["فَأْس","🪓"]]},
-    {"ch": "ن", "word": ["بُنّ","☕"], "words": [["نَحْلَة","🐝"],["نَمِر","🐯"],["نَسْر","🦅"],["نِعْنَاع","🌿"],["نُقُود","💵"],["مَنْزِل","🏡"],["لَيْمُون","🍋"],["بِنْت","👧"],["عِنَب","🍇"]]},
-    {"ch": "ر", "word": ["رَمْل","🏖️"], "words": [["رَجُل","👨"],["رِيشَة","🪶"],["رُكْبَة","🦵"],["مَرْكَب","⛵"],["أَرْنَب","🐇"],["نَمِر","🐯"],["بَحْر","🌊"],["قِرْد","🐒"]]},
-    {"ch": "ف", "word": ["فَم","👄"], "words": [["فِيل","🐘"],["فَرَاشَة","🦋"],["فَأْر","🐭"],["فُسْتَان","👗"],["فُول","🫘"],["مِفْتَاح","🔑"],["قُفْل","🔒"],["خَرُوف","🐑"],["سَيْف","🗡️"]]},
-    {"ch": "ك", "word": ["كَلْب","🐕"], "words": [["كِتَاب","📕"],["كُرَة","⚽"],["كُرْسِي","🪑"],["كَعْكَة","🎂"],["كُوب","🥤"],["كَأْس","🏆"],["سَمَكَة","🐟"],["دِيك","🐓"],["مَرْكَب","⛵"]]},
-    {"ch": "ق", "word": ["قَلَم","✏️"], "words": [["قِطَّة","🐈"],["قَمِيص","👕"],["قَدَم","🦶"],["قُبَّعَة","👒"],["قُفْل","🔒"],["بَقَرَة","🐄"],["بُرْتُقَال","🍊"],["صُنْدُوق","📦"],["طَبَق","🍽️"]]},
-    {"ch": "ي", "word": ["يَد","✋"], "words": [["يَاقُوت","💎"],["يَخْت","🛥️"],["يُويُو","🪀"],["بَيْت","🏠"],["بَيْض","🥚"],["كُرْسِي","🪑"],["جُنْدِي","💂"],["فِيل","🐘"]]},
-    {"special": "review", "title": "مراجعة كلمات المنهج", "icon": "📝"}
+    {"talk": "school", "title": "At school", "icon": "🏫",
+     "words": [["teacher","👩‍🏫"],["school","🏫"],["boy","👦"],["girl","👧"],["classroom","🧑‍🏫"]],
+     "phrases": [["Stand up","🧍"],["Sit down","🪑"],["Hands up","🙋"],["Hands down","🙇"],["Be quiet","🤫"],["Clap your hands","👏"]],
+     "qa": [["What can you see at school?","I can see classroom and teachers."]]},
+    {"ch": "A", "vowel": "a", "key": ["apple","🍎"], "words": [["apple","🍎"],["ant","🐜"],["alligator","🐊"],["axe","🪓"],["arm","💪"]]},
+    {"ch": "B", "key": ["boy","👦"], "words": [["boy","👦"],["bee","🐝"],["banana","🍌"],["bus","🚌"],["blue","🔵"],["baby","👶"]]},
+    {"ch": "C", "key": ["cat","🐱"], "words": [["cat","🐱"],["carrot","🥕"],["cake","🍰"],["car","🚗"],["circle","⭕"]]},
+    {"talk": "face", "title": "My face", "icon": "😊",
+     "words": [["eyes","👀"],["nose","👃"],["mouth","👄"],["ears","👂"],["cheeks","☺️"],["head","🙂"]],
+     "qa": [["How many eyes do you have?","I have two eyes."],["What do you do with your nose?","I can smell with my nose."]]},
+    {"ch": "D", "key": ["dad","👨"], "words": [["dad","👨"],["dog","🐕"],["doll","🪆"],["duck","🦆"],["door","🚪"]]},
+    {"ch": "E", "vowel": "eo", "key": ["egg","🥚"], "words": [["egg","🥚"],["eggplant","🍆"],["elephant","🐘"],["envelope","✉️"]]},
+    {"talk": "body", "title": "My body", "icon": "🙌",
+     "words": [["arms","💪"],["legs","🦵"],["feet","🦶"],["hands","👐"]],
+     "qa": [["What do you do with your eyes?","I can see with my eyes."],["What do you do with your mouth?","I can eat with my mouth."],["What do you do with your ears?","I can hear with my ears."],["What do you do with your hands?","I can touch with my hands."]]},
+    {"ch": "F", "key": ["fox","🦊"], "words": [["fox","🦊"],["flower","🌸"],["frog","🐸"],["fish","🐟"],["finger","☝️"]]},
+    {"ch": "G", "key": ["gun","🔫"], "words": [["gun","🔫"],["goat","🐐"],["girl","👧"],["grapes","🍇"],["green","🟢"]]},
+    {"talk": "actions", "title": "What can you do?", "icon": "🏃",
+     "words": [["run","🏃"],["dance","💃"],["crawl","🧎"],["kick","⚽"]],
+     "qa": [["What can you do?","I can run."],["What can you do?","I can kick."]]},
+    {"ch": "H", "key": ["hat","👒"], "words": [["hat","👒"],["hen","🐔"],["hand","✋"],["house","🏠"],["honey","🍯"]]},
+    {"ch": "I", "vowel": "i", "key": ["in","📦"], "words": [["in","📦"],["ink","🖋️"],["insects","🐞"],["ice cream","🍦"]]},
+    {"talk": "family", "title": "My family", "icon": "👨‍👩‍👧‍👦",
+     "words": [["dad","👨"],["mom","👩"],["brother","👦"],["sister","👧"],["baby","👶"]],
+     "qa": [["Who is in your family?","Mom, dad, sister, brother and baby."]]},
+    {"ch": "J", "key": ["jam","🫙"], "words": [["jam","🫙"],["jacket","🧥"],["juice","🧃"],["jelly","🍮"],["jellyfish","🪼"]]},
+    {"ch": "K", "key": ["key","🔑"], "words": [["key","🔑"],["king","🤴"],["kite","🪁"],["koala","🐨"],["kiwi","🥝"],["kangaroo","🦘"]]},
+    {"talk": "pets", "title": "My pet", "icon": "🐶",
+     "words": [["cat","🐱"],["bird","🐦"],["rabbit","🐰"],["fish","🐠"]],
+     "qa": [["What is your favorite pet?","A cat."]]},
+    {"ch": "L", "key": ["leg","🦵"], "words": [["leg","🦵"],["lion","🦁"],["lemon","🍋"],["lamp","💡"],["leaf","🍃"],["lollipop","🍭"]]},
+    {"ch": "M", "vowel": "u", "key": ["mug","☕"], "words": [["mug","☕"],["mom","👩"],["monkey","🐒"],["moon","🌙"]]},
+    {"talk": "me", "title": "About me", "icon": "🙋",
+     "words": [],
+     "qa": [["What is your name?","I am …"],["How old are you?","I am five."],["What grade are you in?","I am in KG one."],["What is this?","It is a cat."],["What is this?","It is an egg."]]},
+    {"review": true, "title": "Key words review", "icon": "📝"}
   ],
-  "ta": [["قِطَّة","🐈"],["بَيْت","🏠"],["دُودَة","🐛"],["زَيْت","🫒"],["سَاعَة","⌚"],["نَبَات","🪴"],["بُومَة","🦉"],["كُرَة","⚽"],["بَقَرَة","🐄"],["تُوت","🫐"],["بِنْت","👧"],["شَجَرَة","🌳"]],
-  "al": [["دُبّ","🐻","الدُّبّ"],["أَب","👨","الأَب"],["أُمّ","👩","الأُمّ"],["قَلَم","✏️","القَلَم"],["كَلْب","🐕","الكَلْب"],["بَاب","🚪","البَاب"],["شَمْس","☀️","الشَّمْس"],["رَمْل","🏖️","الرَّمْل"],["لَحْم","🥩","اللَّحْم"],["جَدّ","👴","الجَدّ"]],
+  "cvc": [["cat","🐱","a"],["hat","👒","a"],["fan","🪭","a"],["cap","🧢","a"],["dad","👨","a"],["bag","👜","a"],["van","🚐","a"],["map","🗺️","a"],
+          ["dog","🐕","o"],["fox","🦊","o"],["log","🪵","o"],["pot","🍲","o"],["box","📦","o"],
+          ["hen","🐔","e"],["bed","🛏️","e"],["pen","🖊️","e"],["ten","🔟","e"],["leg","🦵","e"],
+          ["pig","🐷","i"],["six","6️⃣","i"],["pin","📌","i"],["lip","👄","i"],["bin","🗑️","i"],
+          ["sun","☀️","u"],["bus","🚌","u"],["cup","🥤","u"],["mug","☕","u"],["bug","🐛","u"],["gun","🔫","u"]],
   "say": {
-    "intro": "اسمع الكلمات، واضغط على كل صورة",
-    "write": "هيا نكتب الحرف بالقلم",
-    "harakat": "هذه الحركات: فتحة، كسرة، ضمة. اضغط واسمع",
-    "harakatQ": "اسمع، ثم اختر الصوت الصحيح",
-    "harakatPic": "اختر التشكيل المناسب للصورة",
-    "forms": "الحرف يتغير شكله في أول الكلمة ووسطها وآخرها",
-    "position": "اسمع الكلمة: أين الحرف؟ في الأول، أم الوسط، أم الآخر؟",
-    "missing": "اختر الحرف الناقص",
-    "first": "ما الحرف الأول في اسم الصورة؟",
-    "common": "ما الحرف المشترك بين الكلمتين؟",
-    "build": "جرّد الكلمة: اضغط على حروفها بالترتيب",
-    "spell": "اكتب اسم الصورة: اضغط على الحروف بالترتيب",
-    "stepDone": "أحسنت! هيا للخطوة التالية",
-    "tryAgain": "حاول مرة أخرى",
-    "taIntro": "التاء المفتوحة نكتبها هكذا ت، والتاء المربوطة نكتبها هكذا ة",
-    "taQ": "اختر التاء المناسبة",
-    "taOpen": "اضغط على الكلمات التي فيها تاء مفتوحة",
-    "alIntro": "ال التعريف تأتي في أول الكلمة",
-    "alTap": "اضغط على ال لتضيفها للكلمة",
-    "alQ": "اختر الكلمة التي فيها ال التعريف",
-    "reviewIntro": "هيا نراجع كلمات المنهج",
-    "courseDone": "رائع! أنهيت الدرس كله",
-    "homeCourse": "أهلًا! اختر درسًا من المنهج",
-    "fatha": "فتحة", "kasra": "كسرة", "damma": "ضمة",
-    "pos0": "في أول الكلمة", "pos1": "في وسط الكلمة", "pos2": "في آخر الكلمة",
-    "openTa": "تاء مفتوحة", "tiedTa": "تاء مربوطة"
+    "homeCourse": "Hello! Choose a lesson.",
+    "homeAll": "Hello! Warm up, or choose a letter.",
+    "penOn": "Now only the pen can write.",
+    "penOff": "Now your finger and the pen can write.",
+    "grip": "Hold the pencil with your thumb and first finger, and rest it on your middle finger.",
+    "gripDone": "Great! Let's write.",
+    "grip1": "Hold the pencil with your thumb and first finger.",
+    "grip2": "Rest the pencil on your middle finger.",
+    "grip3": "Hold the pencil close to the tip.",
+    "grip4": "Sit up straight, with the iPad in front of you.",
+    "watch": "Watch how we write it.",
+    "yourTurn": "Your turn! Start from the green dot, and follow the arrows.",
+    "tryAlone": "Now try by yourself.",
+    "drawAlone": "Now draw it by yourself.",
+    "stronger": "Your hand is getting stronger!",
+    "offLetter": "Try to write on the letter.",
+    "dotPlace": "Put the dot in its place.",
+    "startHere": "Start here.",
+    "contGreen": "Continue from the green dot.",
+    "startGreen": "Start from the green dot.",
+    "contStop": "Keep going from where you stopped.",
+    "intro": "Listen, and tap each picture.",
+    "write": "Let's write the big letter and the small letter.",
+    "first": "Choose the first letter.",
+    "supply": "Supply the missing letter.",
+    "tick": "Does it start with this letter? Tap yes or no.",
+    "capital": "Find the capital letter.",
+    "small": "Find the small letter.",
+    "readPic": "Read, and choose the picture.",
+    "spell": "Spell the word. Tap the letters in order.",
+    "vowel": "Supply the short vowel.",
+    "words": "Listen, and tap each picture.",
+    "talkQA": "Tap the question, then tap the answer. Say it with me!",
+    "listenPick": "Listen, and choose the picture.",
+    "stepDone": "Well done! Let's go to the next step.",
+    "tryAgain": "Try again.",
+    "reviewIntro": "Let's review the key words.",
+    "allDone": "Amazing! You finished the lesson.",
+    "yes": "Yes", "no": "No"
   },
   "tpl": {
-    "pick": "اختر الصورة التي تبدأ بحرف {def}",
-    "circle": "اضغط على كل كلمة فيها حرف {def}",
-    "color": "اضغط على كل مربع فيه حرف {def}",
-    "lessonDone": "أحسنت! أنهيت درس حرف {def}"
-  }
+    "find": "Find and tap the letter {L}.",
+    "color": "Tap the pictures that start with {L}.",
+    "isFor": "{L} is for {W}.",
+    "lessonDone": "Well done! You finished letter {L}.",
+    "watchL": "{D}.",
+    "alone": "Now write {D} by yourself.",
+    "wrote": "You wrote {D} by yourself."
+  },
+  "praise": ["Well done!", "Great job!", "Excellent!", "Super!", "Amazing!", "Good job!", "You did it!"],
+  "small": ["Nice!", "Keep going!", "Good!", "Yes!"],
+  "warm": [["Draw a sleeping line, from left to right."], ["Draw a standing line, from top to bottom."], ["Draw the sea waves."], ["Draw little mountains."], ["Draw a big circle."]]
 }
 </script>
 <script>
 (() => {
   // ---------- data ----------
-  // Letter shapes live in a 100×100 box (y down). The writing line (السطر) is y = 64.
-  // Each stroke is an SVG path drawn in writing order and direction (right → left), or a dot [x, y].
-  const BODY_BA = "M80 48 C82 60 78 66 66 66 L34 66 C24 66 17 60 18 48";
-  const BODY_JIM = "M36 34 C46 30 58 28 66 30 C54 36 40 42 34 52 C28 64 34 80 50 84 C60 86 68 84 72 80";
-  const BODY_DAL = "M44 34 C52 42 62 52 62 60 C62 65 56 66 36 64";
-  const BODY_RA = "M58 46 C60 58 56 70 34 80";
-  const BODY_SIN = "M88 48 L88 58 C88 64 78 64 76 58 L76 50 L76 58 C76 64 66 64 64 58 L64 50 L64 62 C64 80 50 86 38 84 C24 82 18 74 20 64";
-  const BODY_SAD = "M60 62 C62 44 92 42 90 56 C88 64 74 62 60 62 C60 80 46 86 34 84 C22 82 17 74 19 64";
-  const BODY_TA = "M30 64 C50 64 68 64 80 62 C92 58 88 42 74 44 C62 46 54 56 50 64";
-  const BODY_AIN = "M62 36 C54 30 44 34 46 44 C48 52 58 54 66 52 C50 56 40 64 42 76 C44 86 58 88 70 84";
+  const COURSE = JSON.parse(document.getElementById("courseData").textContent);
+  const SAY = COURSE.say, TPL = COURSE.tpl, PRAISE = COURSE.praise, SMALL = COURSE.small;
+  const tpl = (k, v) => TPL[k].replace("{L}", v.L || "").replace("{W}", v.W || "").replace("{D}", v.D || "");
 
+  // Handwriting shapes in a 100×100 box on four lines: top 20, dashed middle 45, base 70 (red), tail 88.
+  // Strokes are drawn in writing order and direction (left → right, top → bottom); [x, y] is a dot.
+  const O_SMALL = "M62 50 C57 43 44 42 40 51 C36 60 41 70 50 70 C57 70 61 66 62 60";   // the "c" curve inside a, d, g
   const LETTERS = [
-    { ch: "أ", name: "أَلِف", word: "أَرْنَب", emo: "🐇", s: ["M50 32 L50 66", "M62 8 C57 3 46 4 46 11 C46 16 50 18 55 18 L62 24 C54 26 46 26 37 25"] },
-    { ch: "ب", name: "بَاء", word: "بَطَّة", emo: "🦆", s: [BODY_BA, [50, 80]] },
-    { ch: "ت", name: "تَاء", word: "تُفَّاحَة", emo: "🍎", s: [BODY_BA, [57, 50], [43, 50]] },
-    { ch: "ث", name: "ثَاء", word: "ثَعْلَب", emo: "🦊", s: [BODY_BA, [57, 52], [43, 52], [50, 41]] },
-    { ch: "ج", name: "جِيم", word: "جَمَل", emo: "🐫", s: [BODY_JIM, [52, 64]] },
-    { ch: "ح", name: "حَاء", word: "حِصَان", emo: "🐴", s: [BODY_JIM] },
-    { ch: "خ", name: "خَاء", word: "خَرُوف", emo: "🐑", s: [BODY_JIM, [50, 18]] },
-    { ch: "د", name: "دَال", word: "دُبّ", emo: "🐻", s: [BODY_DAL] },
-    { ch: "ذ", name: "ذَال", word: "ذُرَة", emo: "🌽", s: [BODY_DAL, [46, 24]] },
-    { ch: "ر", name: "رَاء", word: "رِيشَة", emo: "🪶", s: [BODY_RA] },
-    { ch: "ز", name: "زَاي", word: "زَرَافَة", emo: "🦒", s: [BODY_RA, [58, 34]] },
-    { ch: "س", name: "سِين", word: "سَمَكَة", emo: "🐟", s: [BODY_SIN] },
-    { ch: "ش", name: "شِين", word: "شَمْس", emo: "☀️", s: [BODY_SIN, [82, 38], [70, 38], [76, 28]] },
-    { ch: "ص", name: "صَاد", word: "صَقْر", emo: "🦅", s: [BODY_SAD] },
-    { ch: "ض", name: "ضَاد", word: "ضِفْدَع", emo: "🐸", s: [BODY_SAD, [74, 34]] },
-    { ch: "ط", name: "طَاء", word: "طَائِرَة", emo: "✈️", s: [BODY_TA, "M52 20 L52 62"] },
-    { ch: "ظ", name: "ظَاء", word: "ظَرْف", emo: "✉️", s: [BODY_TA, "M52 20 L52 62", [70, 32]] },
-    { ch: "ع", name: "عَيْن", word: "عِنَب", emo: "🍇", s: [BODY_AIN] },
-    { ch: "غ", name: "غَيْن", word: "غَزَال", emo: "🦌", s: [BODY_AIN, [54, 20]] },
-    { ch: "ف", name: "فَاء", word: "فِيل", emo: "🐘", s: ["M74 58 C64 54 66 40 76 40 C84 40 86 50 82 56 C80 60 76 62 66 62 L32 62 C22 62 17 56 18 46", [76, 28]] },
-    { ch: "ق", name: "قَاف", word: "قِطَّة", emo: "🐈", s: ["M66 50 C58 44 64 32 74 34 C82 36 82 48 76 54 C74 70 64 84 46 84 C30 84 22 74 24 62", [80, 22], [67, 22]] },
-    { ch: "ك", name: "كَاف", word: "كِتَاب", emo: "📕", s: ["M84 14 C80 16 76 19 76 25 L76 60 C76 66 70 66 64 66 L30 66 C22 66 18 60 18 52", "M59 31 C54 26 44 27 44 34 C44 39 48 41 53 41 L59 47 C52 49 45 49 38 48"] },
-    { ch: "ل", name: "لَام", word: "لَيْمُون", emo: "🍋", s: ["M66 20 L66 62 C66 80 52 86 40 84 C28 82 22 74 24 64"] },
-    { ch: "م", name: "مِيم", word: "مَوْز", emo: "🍌", s: ["M52 58 C50 44 64 40 68 48 C72 56 62 60 52 58 C44 58 42 70 42 86"] },
-    { ch: "ن", name: "نُون", word: "نَحْلَة", emo: "🐝", s: ["M68 48 C72 60 66 78 50 80 C34 80 28 70 30 56", [50, 57]] },
-    { ch: "ه", name: "هَاء", word: "هَدِيَّة", emo: "🎁", s: ["M36 14 C48 14 62 18 69 24 C80 31 85 44 79 53 C73 61 60 63 53 56 C44 48 40 37 44 30 C49 23 60 23 62 31 C65 39 59 47 52 51 C46 54 43 60 39 63 L15 65"] },
-    { ch: "و", name: "وَاو", word: "وَرْدَة", emo: "🌹", s: ["M60 58 C52 58 50 46 58 44 C66 42 70 50 66 58 C62 70 52 80 38 84"] },
-    { ch: "ي", name: "يَاء", word: "يَد", emo: "✋", s: ["M62 36 C52 36 50 48 60 52 C70 56 76 62 70 72 C62 82 40 84 28 78 C22 74 22 66 26 62", [56, 92], [44, 92]] },
-  ].map((l, i) => ({ ...l, key: "l" + i, kind: "letter", def: "ال" + l.name.replace(/[ً-ْ]/g, "") }));
+    { ch: "A", name: "A", word: "apple", emo: "🍎", s: ["M50 20 L28 70", "M50 20 L72 70", "M37 50 L63 50"] },
+    { ch: "a", name: "a", word: "apple", emo: "🍎", s: [O_SMALL, "M63 45 L63 70"] },
+    { ch: "B", name: "B", word: "boy", emo: "👦", s: ["M34 20 L34 70", "M34 20 C58 18 64 26 62 34 C60 42 50 45 34 45", "M34 45 C62 44 68 52 66 60 C64 68 54 71 34 70"] },
+    { ch: "b", name: "b", word: "boy", emo: "👦", s: ["M38 20 L38 70", "M38 56 C42 46 56 43 62 52 C66 61 60 71 50 71 C44 71 40 67 38 62"] },
+    { ch: "C", name: "C", word: "cat", emo: "🐱", s: ["M68 30 C60 18 40 18 32 32 C26 44 28 60 38 67 C48 74 62 70 68 60"] },
+    { ch: "c", name: "c", word: "cat", emo: "🐱", s: ["M62 50 C56 43 44 43 40 52 C36 61 41 70 50 70 C56 70 60 67 62 64"] },
+    { ch: "D", name: "D", word: "dad", emo: "👨", s: ["M34 20 L34 70", "M34 20 C58 20 70 32 70 45 C70 58 58 70 34 70"] },
+    { ch: "d", name: "d", word: "dad", emo: "👨", s: [O_SMALL, "M63 20 L63 70"] },
+    { ch: "E", name: "E", word: "egg", emo: "🥚", s: ["M36 20 L36 70", "M36 20 L66 20", "M36 45 L60 45", "M36 70 L66 70"] },
+    { ch: "e", name: "e", word: "egg", emo: "🥚", s: ["M38 57 L62 57 C62 48 56 44 50 44 C42 44 38 50 38 57 C38 65 44 70 51 70 C56 70 60 68 62 65"] },
+    { ch: "F", name: "F", word: "fox", emo: "🦊", s: ["M36 20 L36 70", "M36 20 L66 20", "M36 45 L60 45"] },
+    { ch: "f", name: "f", word: "fox", emo: "🦊", s: ["M62 24 C58 18 46 18 46 30 L46 70", "M36 45 L58 45"] },
+    { ch: "G", name: "G", word: "gun", emo: "🔫", s: ["M68 30 C60 18 40 18 32 32 C26 44 28 60 38 67 C48 74 62 70 68 60 L68 48 L54 48"] },
+    { ch: "g", name: "g", word: "gun", emo: "🔫", s: [O_SMALL, "M63 45 L63 80 C63 90 48 92 40 84"] },
+    { ch: "H", name: "H", word: "hat", emo: "👒", s: ["M34 20 L34 70", "M66 20 L66 70", "M34 45 L66 45"] },
+    { ch: "h", name: "h", word: "hat", emo: "👒", s: ["M38 20 L38 70", "M38 54 C42 46 52 44 58 46 C62 48 63 52 63 56 L63 70"] },
+    { ch: "I", name: "I", word: "in", emo: "📦", s: ["M50 20 L50 70", "M38 20 L62 20", "M38 70 L62 70"] },
+    { ch: "i", name: "i", word: "in", emo: "📦", s: ["M50 45 L50 70", [50, 33]] },
+    { ch: "J", name: "J", word: "jam", emo: "🫙", s: ["M62 20 L62 58 C62 70 46 72 38 62"] },
+    { ch: "j", name: "j", word: "jam", emo: "🫙", s: ["M56 45 L56 80 C56 90 44 92 36 84", [56, 33]] },
+    { ch: "K", name: "K", word: "key", emo: "🔑", s: ["M36 20 L36 70", "M64 20 L36 48", "M45 40 L66 70"] },
+    { ch: "k", name: "k", word: "key", emo: "🔑", s: ["M38 20 L38 70", "M60 45 L38 60", "M45 55 L62 70"] },
+    { ch: "L", name: "L", word: "leg", emo: "🦵", s: ["M38 20 L38 70 L66 70"] },
+    { ch: "l", name: "l", word: "leg", emo: "🦵", s: ["M50 20 L50 70"] },
+    { ch: "M", name: "M", word: "mug", emo: "☕", s: ["M30 20 L30 70", "M30 20 L50 55 L70 20 L70 70"] },
+    { ch: "m", name: "m", word: "mug", emo: "☕", s: ["M32 45 L32 70", "M32 54 C35 46 46 43 48 54 L48 70", "M48 54 C51 46 62 43 66 54 L66 70"] },
+  ].map((l, i) => ({ ...l, key: "l" + i, kind: "letter", def: (l.ch === l.ch.toUpperCase() ? "capital " : "small ") + l.ch }));
 
+  // Warm-up lines go left → right, like English writing.
   const WARMUPS = [
-    { ch: "➖", lbl: "خط نائم", say: "ارسم خطًّا نائمًا من اليمين إلى اليسار", s: ["M86 50 L14 50"] },
-    { ch: "|", lbl: "خط واقف", say: "ارسم خطًّا واقفًا من فوق إلى تحت", s: ["M50 14 L50 86"] },
-    { ch: "〰️", lbl: "خط موجي", say: "ارسم موجة البحر", s: ["M88 50 C80 30 66 30 60 50 C54 70 40 70 34 50 C30 38 20 36 14 44"] },
-    { ch: "⚡", lbl: "خط متعرج", say: "ارسم جبالًا صغيرة", s: ["M88 62 L76 38 L64 62 L52 38 L40 62 L28 38 L16 62"] },
-    { ch: "⭕", lbl: "دائرة", say: "ارسم دائرة كبيرة", s: ["M50 18 C30 18 18 34 18 50 C18 68 32 82 50 82 C68 82 82 68 82 50 C82 34 70 18 52 18"] },
-  ].map((w, i) => ({ ...w, key: "w" + i, kind: "warm" }));
+    { ch: "➖", lbl: "Sleeping line", s: ["M14 50 L86 50"] },
+    { ch: "|", lbl: "Standing line", s: ["M50 14 L50 86"] },
+    { ch: "〰️", lbl: "Waves", s: ["M12 50 C20 30 34 30 40 50 C46 70 60 70 66 50 C70 38 80 36 86 44"] },
+    { ch: "⚡", lbl: "Mountains", s: ["M12 62 L24 38 L36 62 L48 38 L60 62 L72 38 L84 62"] },
+    { ch: "⭕", lbl: "Circle", s: ["M66 22 C58 16 42 16 32 24 C20 34 17 56 27 70 C37 83 63 83 73 70 C83 57 82 37 72 27 C70 25 68 23 66 22"] },
+  ].map((w, i) => ({ ...w, say: COURSE.warm[i][0], key: "w" + i, kind: "warm" }));
 
   const COLORS = ["#2F80ED", "#E8508A", "#2BA84A", "#9B51E0", "#F2994A", "#16A3B8"];
-  const PRAISE = ["أحسنت!", "برافو عليك!", "ممتاز!", "شاطر!", "رائع جدًّا!", "الله عليك!", "هايل!"];
-  const SMALL = ["جميل!", "استمر!", "تمام!", "حلو!"];
-
   const $ = id => document.getElementById(id);
   const pick = a => a[Math.floor(Math.random() * a.length)];
-  const ar = n => n.toLocaleString("ar-EG");
+  const ar = n => String(n);
   let childName = "";
   try { childName = localStorage.getItem("hatha-name") || ""; } catch (e) {}
-  const withName = s => childName ? s.replace(/[!،.]?$/, m => ` يا ${childName}${m || "!"}`) : s;
+  const withName = s => childName ? s.replace(/[!.]?$/, m => `, ${childName}${m || "!"}`) : s;
 
   let stars = {};
-  try { stars = JSON.parse(localStorage.getItem("kg1-stars") || "{}"); } catch (e) {}
-  const saveStars = () => { try { localStorage.setItem("kg1-stars", JSON.stringify(stars)); } catch (e) {} };
+  try { stars = JSON.parse(localStorage.getItem("kg1en-stars") || "{}"); } catch (e) {}
+  const saveStars = () => { try { localStorage.setItem("kg1en-stars", JSON.stringify(stars)); } catch (e) {} };
+
 
   // ---------- sampling stroke paths ----------
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -471,13 +511,13 @@
   const canSpeak = "speechSynthesis" in window;
   function loadVoices() {
     const vs = speechSynthesis.getVoices();
-    arVoice = vs.find(v => /^ar[-_]EG/i.test(v.lang)) || vs.find(v => /^ar/i.test(v.lang)) || null;
+    arVoice = vs.find(v => /^en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
   }
   if (canSpeak) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
-  // Recorded clips (Egyptian voice) play first; the device voice is only a fallback.
-  // voice-letters.json maps each spoken phrase to a base64 mp3 (made by make-voice.py). If it is missing, the device voice speaks.
+  // Recorded clips (natural English voice) play first; the device voice is only a fallback.
+  // voice-english.json maps each spoken phrase to a base64 mp3 (made by make-voice.py). If it is missing, the device voice speaks.
   let clips = null;
-  const clipsReady = fetch("voice-letters.json").then(r => r.ok ? r.json() : null).then(j => { clips = j; return j; }).catch(() => null);
+  const clipsReady = fetch("voice-english.json").then(r => r.ok ? r.json() : null).then(j => { clips = j; return j; }).catch(() => null);
   const bufs = new Map();
   let playId = 0, playing = null;
   function audioCtx() {
@@ -503,7 +543,7 @@
     return new Promise(done => {
       if (!canSpeak) return done();
       const u = new SpeechSynthesisUtterance(vocalize(text));
-      u.lang = arVoice ? arVoice.lang : "ar-EG";
+      u.lang = arVoice ? arVoice.lang : "en-US";
       if (arVoice) u.voice = arVoice;
       u.rate = 0.85; u.pitch = 1.15;
       u.onend = u.onerror = done;
@@ -572,7 +612,7 @@
     try { localStorage.setItem("kg1-pen", v ? "1" : "0"); } catch (e) {}
   }
   try { if (localStorage.getItem("kg1-pen") === "1") setPenOnly(true); } catch (e) {}
-  $("penBtn").onclick = () => { setPenOnly(!penOnly); talk(penOnly ? "الآن القلم فقط هو الذي يكتب" : "الآن الإصبع والقلم يكتبان"); };
+  $("penBtn").onclick = () => { setPenOnly(!penOnly); talk(penOnly ? SAY.penOn : SAY.penOff); };
 
   // ---------- confetti ----------
   const fx = $("fx"), fcx = fx.getContext("2d");
@@ -624,13 +664,12 @@
     renderHome(); renderCourse(); setTab(homeTab);
     const done = LETTERS.filter(l => (stars[l.key] || 0) >= 3).length;
     if (homeTab === "course") talk(withName(SAY.homeCourse), SAY.homeCourse);
-    else if (done) talk(withName(`أهلًا! كتبت ${ar(done)} من ${ar(LETTERS.length)} حرفًا. اختر حرفًا`), "أهلًا! اختر حرفًا");
-    else talk(withName("أهلًا! ابدأ بالتسخين أو اختر حرفًا"), "أهلًا! ابدأ بالتسخين أو اختر حرفًا");
+    else talk(withName(SAY.homeAll), SAY.homeAll);
   }
   $("homeBtn").onclick = showHome;
 
-  $("gripBtn").onclick = () => { $("gripCard").hidden = false; talk("أمسك القلم بالإبهام والسبابة، وأسنده على الإصبع الوسطى"); };
-  $("gripClose").onclick = () => { $("gripCard").hidden = true; talk("ممتاز! هيا نكتب"); };
+  $("gripBtn").onclick = () => { $("gripCard").hidden = false; talk(SAY.grip); };
+  $("gripClose").onclick = () => { $("gripCard").hidden = true; talk(SAY.gripDone); };
   document.querySelectorAll(".tip-row").forEach(b => b.onclick = () => say(b.dataset.say));
 
   // ---------- trace screen ----------
@@ -660,11 +699,12 @@
   function drawGuide() {
     g.setTransform(dpr * k(), 0, 0, dpr * k(), 0, 0);
     g.clearRect(0, 0, 100, 100);
-    // notebook lines, with the red writing line (السطر)
-    g.lineWidth = .4; g.strokeStyle = "#D6E7F5";
-    [24, 44, 84].forEach(y => { g.beginPath(); g.moveTo(3, y); g.lineTo(97, y); g.stroke(); });
+    // notebook lines, with the red writing line (base line)
+    g.lineWidth = .5; g.strokeStyle = "#9CCBF0";
+    [20, 88].forEach(y => { g.beginPath(); g.moveTo(3, y); g.lineTo(97, y); g.stroke(); });
+    g.setLineDash([2, 2]); g.beginPath(); g.moveTo(3, 45); g.lineTo(97, 45); g.stroke(); g.setLineDash([]);
     g.lineWidth = .7; g.strokeStyle = "#F28B82";
-    g.beginPath(); g.moveTo(3, 64); g.lineTo(97, 64); g.stroke();
+    g.beginPath(); g.moveTo(3, 70); g.lineTo(97, 70); g.stroke();
 
     const faint = step === "solo";
     g.lineCap = g.lineJoin = "round";
@@ -753,7 +793,7 @@
     stopWatch();
     step = "watch"; setChips(); resetStroke(); showHelp = true;
     $("soloBtn").hidden = $("nextBtn").hidden = true;
-    if (item.kind === "letter") talk(`شاهد كيف نكتب حرف ${item.ch}`, [`حرف ${item.def}`, item.word, "شاهد كيف نكتبه"]);
+    if (item.kind === "letter") talk(`${item.def} ${item.emo}`, [tpl("watchL", { D: item.def }), SAY.watch]);
     else talk(item.lbl, item.say);
     const pen = $("pencil");
     let t0 = null;
@@ -794,15 +834,15 @@
     stars[item.key] = Math.max(stars[item.key] || 0, 1); saveStars();
     $("soloBtn").hidden = $("nextBtn").hidden = true;
     drawAll();
-    talk("دورك! ابدأ من النقطة الخضراء، وامشِ مع الأسهم");
+    talk(SAY.yourTurn);
   }
   // --- step 3: on your own ---
   function startSolo() {
     step = "solo"; setChips(); resetStroke(); showHelp = false; soloMisses = 0;
     $("soloBtn").hidden = $("nextBtn").hidden = true;
     drawAll();
-    if (item.kind === "letter") talk(`الآن اكتب حرف ${item.ch} وحدك`, `الآن اكتب حرف ${item.def} وحدك`);
-    else talk("الآن ارسمه وحدك");
+    if (item.kind === "letter") talk(tpl("alone", { D: item.def }));
+    else talk(SAY.drawAlone);
   }
   $("soloBtn").onclick = startSolo;
   $("nextBtn").onclick = () => {
@@ -826,16 +866,16 @@
       stars[item.key] = Math.max(stars[item.key] || 0, 2); saveStars();
       confetti(60);
       const pr = pick(PRAISE);
-      talk(`${withName(pr)} الآن جرّب وحدك`, [pr, "الآن جرّب وحدك"]);
+      talk(`${withName(pr)} ${SAY.tryAlone}`, [pr, SAY.tryAlone]);
       $("soloBtn").hidden = false;
     } else {
       stars[item.key] = 3; saveStars();
       confetti(160); setTimeout(() => confetti(100), 500);
       const pr = pick(PRAISE);
-      if (item.kind === "letter") talk(`${withName(pr)} كتبت حرف ${item.ch} وحدك`, [pr, `كتبت حرف ${item.def} وحدك`, item.word]);
-      else talk(`${withName(pr)} يدك أصبحت أقوى`, [pr, "يدك أصبحت أقوى"]);
+      if (item.kind === "letter") talk(`${withName(pr)} ${tpl("wrote", { D: item.def })}`, [pr, tpl("wrote", { D: item.def }), item.word]);
+      else talk(`${withName(pr)} ${SAY.stronger}`, [pr, SAY.stronger]);
       $("nextBtn").hidden = false;
-      $("nextBtn").textContent = backHook ? "ارجع للدرس ⬅" : item.kind === "letter" ? "الحرف التالي ⬅" : "التمرين التالي ⬅";
+      $("nextBtn").textContent = backHook ? "Back to lesson ➡" : item.kind === "letter" ? "Next letter ➡" : "Next ➡";
     }
     drawAll();
   }
@@ -901,16 +941,16 @@
     if (messy) {
       s.bad = true;
       setTimeout(() => { inks = inks.filter(x => x !== s); drawSoon(); }, 700);
-      nag("حاول أن تكتب فوق الحرف");
+      nag(SAY.offLetter);
     } else if (s.completed || !cur) {
       // finished a stroke in this go: nothing to correct
     } else if (cur.dot) {
-      nag("ضع النقطة في مكانها");
+      nag(SAY.dotPlace);
     } else if (!s.startedOk) {
       if (step === "solo") showHelp = true;          // show the start dot after one miss
-      nag(step === "solo" && idx === 0 ? "ابدأ من هنا" : idx > 0 ? "أكمل من النقطة الخضراء" : "ابدأ من النقطة الخضراء");
+      nag(step === "solo" && idx === 0 ? SAY.startHere : idx > 0 ? SAY.contGreen : SAY.startGreen);
     } else if (idx > 0) {
-      nag("أكمل من حيث توقفت");
+      nag(SAY.contStop);
     }
     drawSoon();
   }
@@ -919,93 +959,64 @@
   // stop iPad from scrolling or zooming while writing
   board.addEventListener("touchmove", e => e.preventDefault(), { passive: false });
 
-  // ================= منهج KG1: lessons in the school book's order and its exercise types =================
-  const COURSE = JSON.parse($("courseData").textContent);
-  const SAY = COURSE.say, TPL = COURSE.tpl;
-  const MARKS = /[ً-ْ]/g;
-  const bare = w => w.replace(MARKS, "");
-  const NONJOIN = "اأإآدذرزوةء";                           // letters that never join the next letter
-  const ALL_CH = LETTERS.map(l => l.ch);
+  // ================= KG1 English course: the school book's order and exercise types =================
   const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const sample = (a, n) => shuffle(a).slice(0, n);
   const ding = () => tone([660, 880, 1320], .1);
   const boop = () => tone([300, 220], .14, "sine", .12);
-  const mkWord = ([v, emo, al]) => ({ v, emo, al, p: bare(v) });
+  const mkWord = ([v, emo]) => ({ v, emo, p: v.toLowerCase() });
+  const ABC = "abcdefghijklmnopqrstuvwxyz".split("");
+  const otherLetters = (not, n) => sample(ABC.filter(c => !not.includes(c)), n);
+  const traceOf = ch => LETTERS.find(l => l.ch === ch);
 
-  const LESSONS = COURSE.lessons.map(l => {
-    if (l.special) return { ...l, key: "s-" + l.special, kind: "special" };
-    const base = LETTERS.find(x => x.ch === l.ch);
-    return { ...l, kind: "lesson", key: "c-" + l.ch, name: base.name, def: base.def, trace: base,
-      set: l.match || l.ch, words: l.words.map(mkWord), word: l.word ? mkWord(l.word) : null };
+  const LESSONS = COURSE.lessons.map((l, i) => {
+    if (l.talk) return { ...l, kind: "talk", key: "t-" + l.talk, words: (l.words || []).map(mkWord), phrases: (l.phrases || []).map(mkWord) };
+    if (l.review) return { ...l, kind: "review", key: "review" };
+    return { ...l, kind: "lesson", key: "c-" + l.ch, low: l.ch.toLowerCase(), words: l.words.map(mkWord), word: mkWord(l.key),
+      cap: traceOf(l.ch), small: traceOf(l.ch.toLowerCase()) };
   });
   const LLESSONS = LESSONS.filter(l => l.kind === "lesson");
   const BANK = [];
-  LLESSONS.forEach(l => [...l.words, ...(l.word ? [l.word] : [])].forEach(w => { if (!BANK.some(b => b.v === w.v)) BANK.push(w); }));
-  const TA = COURSE.ta.map(mkWord), AL = COURSE.al.map(mkWord);
-
-  const has = (w, L) => [...w.p].some(c => L.set.includes(c));
-  const count = (w, L) => [...w.p].filter(c => L.set.includes(c)).length;
-  const starts = (w, L) => L.set.includes(w.p[0]);
-  const posOf = (w, L) => { const i = [...w.p].findIndex(c => L.set.includes(c)); return i === 0 ? 0 : i === w.p.length - 1 ? 2 : 1; };
-  const tpl = (key, L) => TPL[key].replace("{def}", L.def);
-  const HARAKA = ["َ", "ِ", "ُ"];
-  const HNAME = [SAY.fatha, SAY.kasra, SAY.damma];
-  const syllables = L => L.ch === "أ" ? ["أَ", "إِ", "أُ"] : HARAKA.map(h => L.ch + h);
-  const firstHaraka = w => HARAKA.indexOf(w.v[1]);
-  const otherLetters = (not, n) => sample(ALL_CH.filter(c => !not.includes(c)), n);
-
-  // the lesson's letter in colour inside a word, keeping Arabic joining with zero-width joiners
-  function markWord(w, L, color) {
-    const chars = [...w.v]; let out = "", i = 0;
-    while (i < chars.length) {
-      let j = i + 1;
-      while (j < chars.length && /[ً-ْ]/.test(chars[j])) j++;
-      const grp = chars.slice(i, j).join("");
-      if (L && L.set.includes(chars[i])) {
-        const prev = i ? bare(chars.slice(0, i).join("")).slice(-1) : "";
-        const pre = prev && !NONJOIN.includes(prev) ? "‍" : "";
-        const post = j < chars.length && !NONJOIN.includes(chars[i]) ? "‍" : "";
-        out += `${pre}<b style="color:${color}">${pre}${grp}${post}</b>${post}`;
-      } else out += grp;
-      i = j;
-    }
-    return out;
-  }
+  LLESSONS.forEach(l => l.words.forEach(w => { if (!BANK.some(b => b.v === w.v)) BANK.push(w); }));
+  const CVC = COURSE.cvc.map(([v, emo, vowel]) => ({ v, emo, vowel, p: v }));
+  const starts = (w, L) => w.p[0] === L.low;
+  const vowelsUpTo = L => LLESSONS.slice(0, LLESSONS.indexOf(L) + 1).map(x => x.vowel || "").join("").split("").filter(Boolean);
 
   // ---------- progress ----------
   let prog = {};
-  try { prog = JSON.parse(localStorage.getItem("kg1-course") || "{}"); } catch (e) {}
-  const saveProg = () => { try { localStorage.setItem("kg1-course", JSON.stringify(prog)); } catch (e) {} };
-  const stepsOf = L => L.kind === "lesson" ? ["intro", "write", "harakat", "forms", "practice", ...(L.word ? ["word"] : [])]
-    : L.special === "review" ? ["practice"] : ["learn", "practice"];
-  const STEP_LABEL = { intro: "👀 تعرّف", write: "✍️ اكتب", harakat: "🎵 الحركات", forms: "📍 مكان الحرف",
-    practice: "🧩 تدريبات", word: "🧱 كلمة المنهج", learn: "📖 تعلّم" };
+  try { prog = JSON.parse(localStorage.getItem("kg1en-course") || "{}"); } catch (e) {}
+  const saveProg = () => { try { localStorage.setItem("kg1en-course", JSON.stringify(prog)); } catch (e) {} };
+  const stepsOf = L => L.kind === "lesson" ? ["intro", "write", "practice", "word", "reading"]
+    : L.kind === "review" ? ["practice"]
+    : [...(L.words.length || L.phrases.length ? ["words"] : []), "talk", ...(L.words.length ? ["quiz"] : [])];
+  const STEP_LABEL = { intro: "👀 Meet", write: "✍️ Write", practice: "🧩 Practice", word: "🧱 Key word", reading: "📖 Reading",
+    words: "👀 Words", talk: "💬 Talk", quiz: "🎯 Quiz" };
   const doneSteps = L => prog[L.key] || [];
   function markDone(L, s) { const d = doneSteps(L); if (!d.includes(s)) { prog[L.key] = [...d, s]; saveProg(); } }
 
   // ---------- home: course path ----------
   let homeTab = "course";
-  try { homeTab = localStorage.getItem("kg1-tab") || "course"; } catch (e) {}
+  try { homeTab = localStorage.getItem("kg1en-tab") || "course"; } catch (e) {}
   function setTab(t) {
     homeTab = t;
     $("paneCourse").hidden = t !== "course"; $("paneAll").hidden = t !== "all";
     $("tabCourse").setAttribute("aria-pressed", t === "course"); $("tabAll").setAttribute("aria-pressed", t === "all");
-    try { localStorage.setItem("kg1-tab", t); } catch (e) {}
+    try { localStorage.setItem("kg1en-tab", t); } catch (e) {}
   }
   $("tabCourse").onclick = () => { setTab("course"); talk(SAY.homeCourse); };
-  $("tabAll").onclick = () => { setTab("all"); talk("أهلًا! ابدأ بالتسخين أو اختر حرفًا"); };
+  $("tabAll").onclick = () => { setTab("all"); talk(SAY.homeAll); };
 
   function renderCourse() {
     const box = $("courseList"); box.innerHTML = "";
     LESSONS.forEach((L, i) => {
       const st = stepsOf(L), d = doneSteps(L).filter(s => st.includes(s)).length;
       const b = document.createElement("button");
-      b.className = "lesson-card" + (d >= st.length ? " done" : "") + (L.kind === "special" ? " special" : "");
+      b.className = "lesson-card" + (d >= st.length ? " done" : "") + (L.kind !== "lesson" ? " special" : "");
       const c = COLORS[i % COLORS.length];
-      const title = L.kind === "lesson" ? `حرف ${L.def}` : L.title;
-      const sub = L.kind === "lesson" ? (L.word ? `كلمة المنهج: ${L.word.v} ${L.word.emo}` : `${L.words[0].v} ${L.words[0].emo}`) : "درس خاص";
-      b.innerHTML = `<span class="lc-num">${ar(i + 1)}</span>
-        <span class="lc-ch" style="color:${c}">${L.kind === "lesson" ? L.ch : L.icon}</span>
+      const title = L.kind === "lesson" ? `Letter ${L.ch}` : L.title;
+      const sub = L.kind === "lesson" ? `Key word: ${L.word.v} ${L.word.emo}` : L.kind === "talk" ? "Talk time" : "Review";
+      b.innerHTML = `<span class="lc-num">${i + 1}</span>
+        <span class="lc-ch" style="color:${c}">${L.kind === "lesson" ? L.ch + L.low : L.icon}</span>
         <span class="lc-info"><b>${title}</b><small>${sub}</small>
           <span class="bar-prog"><i style="width:${Math.round(100 * d / st.length)}%"></i></span></span>
         <span class="lc-state">${d >= st.length ? "⭐" : d ? "▶️" : ""}</span>`;
@@ -1023,9 +1034,9 @@
     ["scrHome", "scrTrace"].forEach(id => $(id).hidden = true);
     $("scrLesson").hidden = false; $("homeBtn").hidden = false;
     const i = LESSONS.indexOf(L), c = COLORS[i % COLORS.length];
-    $("lLetter").textContent = L.kind === "lesson" ? L.ch : L.icon;
+    $("lLetter").textContent = L.kind === "lesson" ? L.ch + L.low : L.icon;
     $("lLetter").style.color = c;
-    $("lTitle").textContent = L.kind === "lesson" ? `حرف ${L.def}` : L.title;
+    $("lTitle").textContent = L.kind === "lesson" ? `Letter ${L.ch}` : L.title;
     const st = stepsOf(L);
     goStep(s || st.find(x => !doneSteps(L).includes(x)) || st[0]);
   }
@@ -1039,17 +1050,13 @@
       box.appendChild(b);
     });
   }
-  function goStep(s) {
-    lstep = s; renderSteps(); scrollTo({ top: 0 });
-    STEPS[s](lesson);
-  }
-  function nextButton(label = "التالي ⬅") {
+  function goStep(s) { lstep = s; renderSteps(); scrollTo({ top: 0 }); STEPS[s](lesson); }
+  function button(label, cls, onClick) {
     const b = document.createElement("button");
-    b.className = "act go l-next"; b.textContent = label;
-    b.onclick = nextStep;
-    lbody().appendChild(b);
-    return b;
+    b.className = "act l-next " + cls; b.textContent = label; b.onclick = onClick;
+    lbody().appendChild(b); return b;
   }
+  const nextButton = (label = "Next ➡") => button(label, "go", nextStep);
   function nextStep() {
     markDone(lesson, lstep);
     const st = stepsOf(lesson), i = st.indexOf(lstep);
@@ -1065,20 +1072,15 @@
     renderSteps();
     confetti(160); setTimeout(() => confetti(100), 500);
     tone([523, 659, 784, 1047, 784, 1047], .14, "triangle", .18);
-    const msg = lesson.kind === "lesson" ? tpl("lessonDone", lesson) : SAY.courseDone;
+    const msg = lesson.kind === "lesson" ? tpl("lessonDone", { L: lesson.ch }) : SAY.allDone;
     lbody().innerHTML = `<div class="cleared"><div class="big-em">🏆</div><p>${msg}</p></div>`;
     talk(withName(msg), msg);
     const i = LESSONS.indexOf(lesson);
-    if (i < LESSONS.length - 1) {
-      const b = document.createElement("button"); b.className = "act go l-next"; b.textContent = "الدرس التالي ⬅";
-      b.onclick = () => openLesson(LESSONS[i + 1]); lbody().appendChild(b);
-    }
-    const h = document.createElement("button"); h.className = "act l-next"; h.textContent = "📚 المنهج";
-    h.onclick = showHome; lbody().appendChild(h);
+    if (i < LESSONS.length - 1) button("Next lesson ➡", "go", () => openLesson(LESSONS[i + 1]));
+    button("📚 Lessons", "", showHome);
   }
 
   // ---------- question engine ----------
-  // q = { text, say, hint, show(box, resolve) }; resolve(ok, btn, afterParts, keep)
   function runQuiz(qs, onEnd) {
     let i = 0;
     const next = () => {
@@ -1107,7 +1109,7 @@
     };
     next();
   }
-  const hearBtn = parts => { const b = document.createElement("button"); b.className = "hear"; b.textContent = "🔊 اسمع"; b.onclick = () => say(parts); return b; };
+  const hearBtn = parts => { const b = document.createElement("button"); b.className = "hear"; b.textContent = "🔊 Listen"; b.onclick = () => say(parts); return b; };
   function head(box, { emo, word, hearParts, html }) {
     const h = document.createElement("div"); h.className = "q-head";
     if (emo) h.insertAdjacentHTML("beforeend", `<div class="q-pic">${emo}</div>`);
@@ -1115,9 +1117,7 @@
     if (html) h.insertAdjacentHTML("beforeend", html);
     if (hearParts) h.appendChild(hearBtn(hearParts));
     box.appendChild(h);
-    return h;
   }
-  // one right answer among buttons
   function qChoice({ text, say: parts, hint, top, opts, cls = "" }) {
     return { text, say: parts, hint, show(box, resolve) {
       if (top) head(box, top);
@@ -1125,12 +1125,11 @@
       opts.forEach(op => {
         const b = document.createElement("button");
         b.className = "opt " + (op.cls || ""); b.innerHTML = op.html;
-        b.onclick = () => { if (op.ok && op.onRight) op.onRight(); resolve(op.ok, b, op.ok ? op.after : null); };
+        b.onclick = () => resolve(op.ok, b, op.ok ? op.after : null);
         o.appendChild(b);
       });
     } };
   }
-  // tap every right answer (ضع دائرة / لوّن)
   function qMulti({ text, say: parts, hint, items, cls = "", fill }) {
     return { text, say: parts, hint, show(box, resolve) {
       const o = document.createElement("div"); o.className = "q-opts " + cls; box.appendChild(o);
@@ -1149,7 +1148,6 @@
       });
     } };
   }
-  // put a word's letters in order into the circles (جرّد / اكتب اسم الشكل)
   function qBuild({ text, say: parts, w, showWord }) {
     return { text, say: parts, show(box, resolve) {
       head(box, { emo: w.emo, word: showWord ? w.v : "", hearParts: [w.v] });
@@ -1165,210 +1163,127 @@
           if (ch !== letters[at]) return resolve(false, b, null, letters.slice(at).includes(ch));
           slots[at].textContent = ch; slots[at].classList.remove("blank"); b.disabled = true; at++;
           tone([880], .05);
-          if (at === letters.length) {
-            circ.insertAdjacentHTML("afterend", `<div class="q-word joined">${w.v}</div>`);
-            resolve(true, null, [w.v]);
-          }
+          if (at === letters.length) { circ.insertAdjacentHTML("afterend", `<div class="q-word joined">${w.v}</div>`); resolve(true, null, [w.v]); }
         };
         o.appendChild(b);
       });
     } };
   }
-  const letterOpts = (right, not, n = 2) => shuffle([right, ...otherLetters([...not, right], n)]).map(c => ({ html: c, ok: c === right }));
+  const letterOpts = (right, n = 2) => shuffle([right, ...otherLetters([right], n)]).map(c => ({ html: c, ok: c === right }));
+  const gap = (w, at) => [...w.p].map((c, i) => `<span class="tile-l${i === at ? " blank" : ""}">${i === at ? "?" : c}</span>`).join("");
 
   // ---------- steps ----------
+  function cards(list, L) {
+    lbody().insertAdjacentHTML("beforeend", `<div class="words"></div>`);
+    const box = lbody().querySelector(".words:last-of-type");
+    list.forEach(w => {
+      const b = document.createElement("button"); b.className = "wcard";
+      const c = $("lLetter").style.color;
+      const shown = L && starts(w, L) ? `<b style="color:${c}">${w.v[0]}</b>${w.v.slice(1)}` : w.v;
+      b.innerHTML = `<span class="em">${w.emo}</span><span class="w">${shown}</span>`;
+      b.onclick = () => say(w.v);
+      box.appendChild(b);
+    });
+  }
   const STEPS = {
     intro(L) {
-      const c = $("lLetter").style.color;
-      lbody().innerHTML = `<div class="words"></div>`;
-      const box = lbody().querySelector(".words");
-      [...(L.word ? [L.word] : []), ...L.words].forEach((w, i) => {
-        const b = document.createElement("button");
-        b.className = "wcard" + (L.word && i === 0 ? " star" : "");
-        b.innerHTML = `<span class="em">${w.emo}</span><span class="w">${markWord(w, L, c)}</span>${L.word && i === 0 ? '<span class="tag">كلمة المنهج</span>' : ""}`;
-        b.onclick = () => say(w.v);
-        box.appendChild(b);
-      });
-      talk(`حرف ${L.ch}`, [`حرف ${L.def}`, SAY.intro]);
+      lbody().innerHTML = "";
+      cards(L.words, L);
+      talk(`${L.ch} ${L.low}`, [tpl("isFor", { L: L.ch, W: L.word.v }), SAY.intro]);
       nextButton();
     },
     write(L) {
-      lbody().innerHTML = `<div class="cleared"><div class="big-em">✍️</div><p>اكتب حرف <b class="lf">${L.ch}</b> بالقلم: شاهد، ثم تتبّع، ثم اكتبه وحدك</p></div>`;
-      const b = document.createElement("button"); b.className = "act primary l-next"; b.textContent = "✍️ ابدأ الكتابة";
-      b.onclick = () => openItem(L.trace, () => { openLesson(L, "write"); nextStep(); });
-      lbody().appendChild(b);
+      lbody().innerHTML = `<div class="cleared"><div class="big-em">✍️</div><p>Write <b class="lf">${L.ch}</b> and <b class="lf">${L.low}</b> with the pen: watch, trace, then write by yourself.</p></div>`;
+      button("✍️ Start writing", "primary", () => openItem(L.cap, () => openItem(L.small, () => { openLesson(L, "write"); nextStep(); })));
       if (doneSteps(L).includes("write")) nextButton();
       talk(SAY.write);
     },
-    harakat(L) {
-      const syl = syllables(L);
-      lbody().innerHTML = `<div class="syl-row"></div>`;
-      const row = lbody().querySelector(".syl-row");
-      syl.forEach((s, i) => {
-        const b = document.createElement("button"); b.className = "syl";
-        b.innerHTML = `${s}<small>${HNAME[i]}</small>`;
-        b.onclick = () => say([s, HNAME[i]]);
-        row.appendChild(b);
-      });
-      talk(SAY.harakat);
-      const go = document.createElement("button"); go.className = "act primary l-next"; go.textContent = "🎯 هيا نختبر";
-      go.onclick = () => {
-        const qs = shuffle(syl).map(s => qChoice({ text: SAY.harakatQ, say: [SAY.harakatQ, s],
-          top: { html: '<div class="q-pic">👂</div>', hearParts: [s] },
-          opts: shuffle(syl).map(x => ({ html: x, ok: x === s, after: [x] })) }));
-        const pics = [...(L.word ? [L.word] : []), ...L.words].filter(w => starts(w, L) && firstHaraka(w) >= 0);
-        const seen = new Set();
-        shuffle(pics).forEach(w => { const h = firstHaraka(w); if (seen.has(h) || seen.size >= 2) return; seen.add(h);
-          qs.push(qChoice({ text: SAY.harakatPic, say: [SAY.harakatPic, w.v], top: { emo: w.emo, hearParts: [w.v] },
-            opts: syl.map((x, i) => ({ html: x, ok: i === h, after: [w.v] })) })); });
-        runQuiz(qs, () => stepCleared());
-      };
-      lbody().appendChild(go);
-    },
-    forms(L) {
-      const c = $("lLetter").style.color, joins = !NONJOIN.includes(L.ch);
-      const forms = joins ? [[0, L.ch + "ـ", SAY.pos0], [1, "ـ" + L.ch + "ـ", SAY.pos1], [2, "ـ" + L.ch, SAY.pos2]]
-        : [[0, L.ch, SAY.pos0], [2, "ـ" + L.ch, "في الوسط والآخر"]];
-      const once = [...(L.word ? [L.word] : []), ...L.words].filter(w => count(w, L) === 1);
-      lbody().innerHTML = `<div class="forms"></div>`;
-      const box = lbody().querySelector(".forms");
-      forms.forEach(([p, f, lbl]) => {
-        const d = document.createElement("div"); d.className = "form-card";
-        d.innerHTML = `<div class="f" style="color:${c}">${f}</div><div class="lbl">${lbl}</div><div class="exs"></div>`;
-        once.filter(w => joins ? posOf(w, L) === p : (p === 0 ? posOf(w, L) === 0 : posOf(w, L) > 0)).slice(0, 3).forEach(w => {
-          const b = document.createElement("button"); b.className = "ex"; b.innerHTML = `${w.emo} ${markWord(w, L, c)}`;
-          b.onclick = () => say(w.v); d.querySelector(".exs").appendChild(b);
-        });
-        box.appendChild(d);
-      });
-      talk(SAY.forms);
-      const go = document.createElement("button"); go.className = "act primary l-next"; go.textContent = "🎯 هيا نلعب";
-      go.onclick = () => {
-        const byPos = [0, 1, 2].map(p => shuffle(once.filter(w => posOf(w, L) === p)));
-        const picks = [];
-        for (let r = 0; picks.length < 4 && r < 4; r++) byPos.forEach(list => { if (list[r] && picks.length < 4) picks.push(list[r]); });
-        const qs = shuffle(picks).map(w => qChoice({ text: SAY.position, say: [SAY.position, w.v],
-          top: { emo: w.emo, word: w.v, hearParts: [w.v] }, cls: "",
-          opts: [0, 1, 2].map(p => ({ html: ["أول", "وسط", "آخر"][p], cls: "small", ok: posOf(w, L) === p, after: [SAY["pos" + p]] })) }));
-        runQuiz(qs, () => stepCleared());
-      };
-      lbody().appendChild(go);
-    },
     practice(L) {
-      if (L.kind === "special") return SPECIAL[L.special].practice(L);
+      if (L.kind === "review") return reviewPractice();
       const li = LLESSONS.indexOf(L), learned = LLESSONS.slice(0, li + 1);
-      const mine = [...(L.word ? [L.word] : []), ...L.words];
-      const notMine = BANK.filter(w => !has(w, L));
+      const mine = L.words, notMine = BANK.filter(w => !starts(w, L));
       const qs = [];
-      // اختر الصورة المناسبة للحرف
-      const s = pick(mine.filter(w => starts(w, L)));
-      qs.push(qChoice({ text: tpl("pick", L), say: [tpl("pick", L)], cls: "",
-        opts: shuffle([s, ...sample(notMine, 2)]).map(w => ({ html: w.emo, cls: "pic", ok: w === s, after: [w.v] })) }));
-      // ضع دائرة حول الكلمة التي بها الحرف
-      qs.push(qMulti({ text: tpl("circle", L), say: [tpl("circle", L)], cls: "many",
-        items: shuffle([...sample(mine, 3).map(w => ({ html: w.v, v: w.v, ok: true, cls: "txt" })), ...sample(notMine, 3).map(w => ({ html: w.v, ok: false, cls: "txt" }))]) }));
-      // اكتب الحرف الناقص
-      const m = pick(mine.filter(w => count(w, L) === 1 && w.p.length > 1));
-      if (m) {
-        const at = [...m.p].findIndex(c => L.set.includes(c)), right = m.p[at];
-        const tiles = [...m.p].map((c, i) => `<span class="tile-l${i === at ? " blank" : ""}">${i === at ? "؟" : c}</span>`).join("");
-        qs.push(qChoice({ text: SAY.missing, say: [SAY.missing, m.v], top: { emo: m.emo, html: `<div class="tiles">${tiles}</div>`, hearParts: [m.v] },
-          opts: letterOpts(right, L.set).map(o => ({ ...o, after: [m.v] })) }));
-      }
-      // لوّن الحرف
-      qs.push(qMulti({ text: tpl("color", L), say: [tpl("color", L)], cls: "many", fill: $("lLetter").style.color,
-        items: shuffle([...Array(3).fill(L.ch), ...otherLetters(L.set, 5)]).map(c => ({ html: c, ok: c === L.ch, cls: "" })) }));
-      // اكتب الحرف الأول (من الحروف السابقة أيضًا)
-      const fl = pick(learned.length > 1 ? learned.slice(0, -1) : learned);
-      const fw = pick([...fl.words, ...(fl.word ? [fl.word] : [])].filter(w => starts(w, fl)));
+      // Choose the first letter
+      const fl = pick(learned.length > 1 ? learned.slice(-3) : learned), fw = pick(fl.words);
       qs.push(qChoice({ text: SAY.first, say: [SAY.first, fw.v], top: { emo: fw.emo, hearParts: [fw.v] },
-        opts: letterOpts(fw.p[0], fl.set).map(o => ({ ...o, after: [fw.v] })) }));
-      // الحرف المشترك
-      if (li >= 1) {
-        const X = pick([L, L, ...learned]);
-        const pair = sample(BANK.filter(w => has(w, X)), 2);
-        if (pair.length === 2) {
-          const common = [...pair[0].p].filter(c => pair[1].p.includes(c));
-          const right = common.find(c => X.set.includes(c));
-          if (right) qs.push(qChoice({ text: SAY.common, say: [SAY.common, pair[0].v, pair[1].v],
-            top: { html: `<div class="pair"><button class="ex">${pair[0].emo} ${pair[0].v}</button><span>+</span><button class="ex">${pair[1].emo} ${pair[1].v}</button></div>` },
-            opts: shuffle([right, ...otherLetters([...common, ...X.set], 2)]).map(c => ({ html: c, ok: c === right })) }));
-        }
-      }
-      // اكتب اسم الشكل: كلمة منهج سابقة
-      const prevWords = learned.slice(0, -1).filter(x => x.word).map(x => x.word);
-      if (prevWords.length) { const pw = pick(prevWords); qs.push(qBuild({ text: SAY.spell, say: [SAY.spell, pw.v], w: pw, showWord: false })); }
+        opts: letterOpts(fw.p[0]).map(o => ({ ...o, after: [fw.v] })) }));
+      // Supply the missing letter: _us
+      const sw = pick(mine.filter(w => w.p.length > 2 && !w.p.includes(" ")));
+      qs.push(qChoice({ text: SAY.supply, say: [SAY.supply, sw.v], top: { emo: sw.emo, html: `<div class="tiles">${gap(sw, 0)}</div>`, hearParts: [sw.v] },
+        opts: letterOpts(L.low).map(o => ({ ...o, after: [sw.v] })) }));
+      // Find and circle the letter
+      const look = { B: "EFKRPY", D: "BOPQ", E: "FBHL", F: "EPT", G: "COQ", H: "NKM", I: "LJT", J: "IL", K: "XRH", L: "IJT", M: "NWH" }[L.ch] || "BDEFHKPR";
+      qs.push(qMulti({ text: tpl("find", { L: L.ch }), say: [tpl("find", { L: L.ch })], cls: "many", fill: $("lLetter").style.color,
+        items: shuffle([...Array(4).fill(L.ch), ...shuffle([...look.replace(L.ch, ""), ...sample(ABC.map(c => c.toUpperCase()).filter(c => c !== L.ch), 6)]).slice(0, 6)])
+          .map(c => ({ html: c, ok: c === L.ch })) }));
+      // Color the pictures that start with the letter
+      qs.push(qMulti({ text: tpl("color", { L: L.ch }), say: [tpl("color", { L: L.ch })], cls: "many",
+        items: shuffle([...sample(mine, 3).map(w => ({ html: w.emo, v: w.v, ok: true, cls: "pic" })), ...sample(notMine, 3).map(w => ({ html: w.emo, ok: false, cls: "pic" }))]) }));
+      // Put ✓ or ✗
+      const yes = Math.random() < .5, tw = yes ? pick(mine) : pick(notMine);
+      qs.push(qChoice({ text: SAY.tick, say: [SAY.tick, tw.v], top: { emo: tw.emo, html: `<div class="q-word">${L.ch} ${L.low}</div>`, hearParts: [tw.v] }, cls: "two",
+        opts: [[true, "✔️"], [false, "✖️"]].map(([v, h]) => ({ html: h, cls: "pic", ok: v === yes, after: [tw.v] })) }));
+      // Capital and small letters
+      const caps = Math.random() < .5;
+      qs.push(qChoice({ text: caps ? SAY.capital : SAY.small, say: [caps ? SAY.capital : SAY.small], top: { html: `<div class="q-pic lf">${caps ? L.low : L.ch}</div>` },
+        opts: shuffle([L.ch, ...otherLetters([L.low], 2).map(c => c.toUpperCase())]).map(c => ({ html: caps ? c : c.toLowerCase(), ok: c === L.ch })) }));
+      // Read and choose the picture
+      const rw = pick(mine);
+      qs.push(qChoice({ text: SAY.readPic, say: [SAY.readPic], top: { word: rw.v },
+        opts: shuffle([rw, ...sample(notMine, 2)]).map(w => ({ html: w.emo, cls: "pic", ok: w === rw, after: [w.v] })) }));
       runQuiz(qs, () => stepCleared());
     },
     word(L) {
-      runQuiz([qBuild({ text: SAY.build, say: [SAY.build, L.word.v], w: L.word, showWord: true }),
+      runQuiz([qBuild({ text: SAY.spell, say: [SAY.spell, L.word.v], w: L.word, showWord: true }),
                qBuild({ text: SAY.spell, say: [SAY.spell, L.word.v], w: L.word, showWord: false })], () => stepCleared());
     },
-    learn(L) { SPECIAL[L.special].learn(L); },
-  };
-
-  // ---------- special lessons ----------
-  const SPECIAL = {
-    ta: {
-      learn() {
-        const open = TA.filter(w => w.p.endsWith("ت")), tied = TA.filter(w => w.p.endsWith("ة"));
-        lbody().innerHTML = `<div class="forms"><div class="form-card"><div class="f">ت</div><div class="lbl">${SAY.openTa}</div><div class="exs" id="exOpen"></div></div>
-          <div class="form-card"><div class="f">ة ـة</div><div class="lbl">${SAY.tiedTa}</div><div class="exs" id="exTied"></div></div></div>`;
-        [[open, "exOpen"], [tied, "exTied"]].forEach(([list, id]) => list.slice(0, 4).forEach(w => {
-          const b = document.createElement("button"); b.className = "ex"; b.textContent = `${w.emo} ${w.v}`; b.onclick = () => say(w.v); $(id).appendChild(b);
-        }));
-        talk(SAY.taIntro);
-        nextButton();
-      },
-      practice() {
-        const qs = sample(TA, 6).map(w => {
-          const stem = w.p.slice(0, -1), right = w.p.slice(-1);
-          const shown = stem + (NONJOIN.includes(stem.slice(-1)) ? "" : "ـ");
-          return qChoice({ text: SAY.taQ, say: [SAY.taQ, w.v], top: { emo: w.emo, html: `<div class="q-word">${shown}<span class="tile-l blank">؟</span></div>`, hearParts: [w.v] },
-            cls: "two", opts: ["ت", "ة"].map(c => ({ html: c, ok: c === right, after: [w.v] })) });
-        });
-        const pickW = [...sample(TA.filter(w => w.p.endsWith("ت")), 3), ...sample(TA.filter(w => w.p.endsWith("ة")), 3)];
-        qs.push(qMulti({ text: SAY.taOpen, say: [SAY.taOpen], cls: "many",
-          items: shuffle(pickW).map(w => ({ html: w.v, v: w.v, ok: w.p.endsWith("ت"), cls: "txt" })) }));
-        runQuiz(qs, () => stepCleared());
-      },
+    reading(L) {
+      const vs = vowelsUpTo(L), pool = CVC.filter(w => vs.includes(w.vowel));
+      const qs = sample(pool, 2).map(w => qChoice({ text: SAY.readPic, say: [SAY.readPic], top: { word: w.v },
+        opts: shuffle([w, ...sample(CVC.filter(x => x !== w), 2)]).map(x => ({ html: x.emo, cls: "pic", ok: x === w, after: [x.v] })) }));
+      if (vs.length > 1) sample(pool, 2).forEach(w => {
+        const opts = shuffle([...new Set([w.vowel, ...sample(vs.filter(v => v !== w.vowel), 2)])]);
+        qs.push(qChoice({ text: SAY.vowel, say: [SAY.vowel, w.v], top: { emo: w.emo, html: `<div class="tiles">${gap(w, 1)}</div>`, hearParts: [w.v] },
+          opts: opts.map(v => ({ html: v, ok: v === w.vowel, after: [w.v] })) }));
+      });
+      runQuiz(qs, () => stepCleared());
     },
-    al: {
-      learn() {
-        lbody().innerHTML = `<div class="al-list"></div>`;
-        const box = lbody().querySelector(".al-list");
-        AL.slice(0, 6).forEach(w => {
-          const row = document.createElement("div"); row.className = "al-row";
-          row.innerHTML = `<span class="em">${w.emo}</span><span class="q-word">${w.v}</span>`;
-          const b = document.createElement("button"); b.className = "opt small"; b.textContent = "+ ال";
-          b.onclick = () => { row.querySelector(".q-word").textContent = w.al; b.disabled = true; row.classList.add("on"); tone([880], .06); say(w.al); };
-          row.appendChild(b); box.appendChild(row);
-        });
-        talk(SAY.alIntro, [SAY.alIntro, SAY.alTap]);
-        nextButton();
-      },
-      practice() {
-        const qs = sample(AL, 4).map(w => {
-          const others = sample(BANK.filter(b => b.v !== w.v), 2);
-          return qChoice({ text: SAY.alQ, say: [SAY.alQ], cls: "",
-            opts: shuffle([{ html: `${w.emo}<br>${w.al}`, ok: true, after: [w.al] }, ...others.map(o => ({ html: `${o.emo}<br>${o.v}`, ok: false }))]).map(o => ({ ...o, cls: "txt" })) });
-        });
-        runQuiz(qs, () => stepCleared());
-      },
+    words(L) {
+      lbody().innerHTML = "";
+      if (L.phrases.length) cards(L.phrases);
+      if (L.words.length) cards(L.words);
+      talk(SAY.words);
+      nextButton();
     },
-    review: {
-      practice() {
-        const words = sample(LLESSONS.filter(l => l.word).map(l => l.word), 8);
-        talk(SAY.reviewIntro);
-        runQuiz(words.map(w => qBuild({ text: SAY.spell, say: [SAY.spell, w.v], w, showWord: false })), () => stepCleared(SAY.courseDone));
-      },
+    talk(L) {
+      lbody().innerHTML = `<div class="qa-list"></div>`;
+      const box = lbody().querySelector(".qa-list");
+      L.qa.forEach(([q, a]) => {
+        const row = document.createElement("div"); row.className = "qa";
+        const shownA = L.talk === "me" && a === "I am …" && childName ? `I am ${childName}.` : a;
+        row.innerHTML = `<button class="qa-q">❓ ${q}</button><button class="qa-a">💬 ${shownA}</button>`;
+        row.querySelector(".qa-q").onclick = () => say(q);
+        row.querySelector(".qa-a").onclick = () => say(a);
+        box.appendChild(row);
+      });
+      talk(SAY.talkQA);
+      nextButton();
+    },
+    quiz(L) {
+      const pool = [...L.words, ...L.phrases];
+      runQuiz(sample(pool, Math.min(4, pool.length)).map(w => qChoice({ text: SAY.listenPick, say: [SAY.listenPick, w.v], top: { html: '<div class="q-pic">👂</div>', hearParts: [w.v] },
+        opts: shuffle([w, ...sample(pool.filter(x => x !== w), 2)]).map(x => ({ html: x.emo, cls: "pic", ok: x === w, after: [x.v] })) })), () => stepCleared());
     },
   };
+  function reviewPractice() {
+    talk(SAY.reviewIntro);
+    runQuiz(sample(LLESSONS.map(l => l.word), 8).map(w => qBuild({ text: SAY.spell, say: [SAY.spell, w.v], w, showWord: false })), () => stepCleared(SAY.allDone));
+  }
 
   showHome();
 })();
 </script>
-<a class="hub-link" href="./" aria-label="القائمة">🏫</a>
+<a class="hub-link left" href="./" aria-label="القائمة">🏫</a>
 
 <script>
   // offline support: cache the app the first time it opens
